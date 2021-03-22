@@ -1,0 +1,20 @@
+p{
+    color: orange;
+    font-size: 60px;
+    text-decoration: none;
+}
+
+.class-test, div{
+    color:gold;
+    size: 60px;
+}
+
+#id-test{
+    color: aqua;
+    font-size: 60px;
+    text-decoration: none;
+}
+#id-id{
+    color: black;
+    font-size: 60px;
+}

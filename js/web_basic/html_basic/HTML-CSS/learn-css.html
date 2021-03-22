@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css learn</title>
+
+    <style type="text/css">
+        /*하위 선택자*/
+        #item-list{
+            color: aqua;
+        }
+        /*자식 선택자 : 첫번째 자식만 허용한다는 건가*/
+        #item-list > p{
+            color : gold;
+        }
+
+    </style>
+</head>
+<body>
+<div id = "item-list">
+    <p>first child</p>
+    <p>첫번째 아이템</p>
+    <div>
+        <p>second child</p>
+        <p>두번째 아이</p>
+    </div>
+</div>
+
+</body>
+</html>

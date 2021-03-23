@@ -1,0 +1,43 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+.png
+.jpg
+.jepg
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+# Created by https://www.toptal.com/developers/gitignore/api/java-web,flex
+# Edit at https://www.toptal.com/developers/gitignore?templates=java-web,flex
+
+### Flex ###
+
+# Build and Release Folders
+bin/
+bin-debug/
+bin-release/
+.actionScriptProperties
+
+# only for a non-library project
+.flexProperties
+
+# only for library project
+.flexLibProperties
+
+
+# Other files and folders
+.settings/
+.project/
+
+.FlexUnitSettings
+.externalToolBuilders
+.model
+
+### Java-Web ###
+## ignoring target file
+target/
+
+# End of https://www.toptal.com/developers/gitignore/api/java-web,flex

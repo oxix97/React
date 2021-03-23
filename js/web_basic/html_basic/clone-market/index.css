@@ -1,6 +1,7 @@
 /* * 는 모든 태그를 의미*/
 *{
-
+    margin: 0px;
+    padding: 0px;
 }
 #header{
     height: 64px;
@@ -8,16 +9,16 @@
     justify-content: center;
     border-bottom: 1px solid gray;
 }
-
 #body{
     width: 1024px;
     height: 100%;
-    /*margin: 0 auto; !* 자식이 부모로 부터 가운데 정렬 *!*/
+    margin: 0 auto; /* 자식이 부모로 부터 가운데 정렬 */
     padding-bottom: 10px;
 }
 
 #footer{
     height: 200px;
+    background-color: red;
 }
 
 #product-list{

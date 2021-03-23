@@ -1,6 +1,36 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/react
-# Edit at https://www.toptal.com/developers/gitignore?templates=react
+# Created by https://www.toptal.com/developers/gitignore/api/react,flex,java-web
+# Edit at https://www.toptal.com/developers/gitignore?templates=react,flex,java-web
+
+### Flex ###
+
+# Build and Release Folders
+bin/
+bin-debug/
+bin-release/
+.actionScriptProperties
+.jpg
+.png
+.jepg
+
+# only for a non-library project
+.flexProperties
+
+# only for library project
+.flexLibProperties
+
+
+# Other files and folders
+.settings/
+.project/
+
+.FlexUnitSettings
+.externalToolBuilders
+.model
+
+### Java-Web ###
+## ignoring target file
+target/
 
 ### react ###
 .DS_*
@@ -8,8 +38,7 @@
 logs
 **/*.backup.*
 **/*.back.*
-.idea
-.iml
+
 node_modules
 bower_components
 
@@ -19,4 +48,4 @@ psd
 thumb
 sketch
 
-# End of https://www.toptal.com/developers/gitignore/api/react
+# End of https://www.toptal.com/developers/gitignore/api/react,flex,java-web

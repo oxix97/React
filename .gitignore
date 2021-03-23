@@ -12,6 +12,7 @@ bin-release/
 .jpg
 .png
 .jepg
+.idea
 
 # only for a non-library project
 .flexProperties

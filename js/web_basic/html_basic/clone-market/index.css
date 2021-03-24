@@ -57,6 +57,7 @@
     margin-bottom: 10px;
     border : 1px solid #090505;
     border-radius: 2px;
+    overflow : hidden;
 }
 .product-img{
     width: 100%;

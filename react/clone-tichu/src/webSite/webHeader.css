@@ -15,14 +15,13 @@ head, body, #root, #root > div {
 
 #header-area {
     display: flex;
-    flex-wrap: nowrap;
     justify-content: space-between;
-    margin-top: 10px;
+    align-items: center;
 }
 
 #header-area > #header-area-start {
     display: flex;
-    justify-content: flex-start;
+    flex : 1 1 auto;
 }
 
 #header-area > #header-area-end {
@@ -30,8 +29,8 @@ head, body, #root, #root > div {
     justify-content: flex-end;
 }
 
-#header-area-start > .search {
-    margin: 10px;
+#header-area-start > input {
+    margin: 8px;
     background-color: #e5e3e3;
 }
 

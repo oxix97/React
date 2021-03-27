@@ -5,6 +5,11 @@ function webBody() {
         <div id="body">
             <div id="body-users">
                 <h1>유저 </h1>
+                <br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/>
 
             </div>
 
@@ -13,7 +18,7 @@ function webBody() {
             </div>
 
             <div id="footer">
-
+                <h1>하단부분</h1>
             </div>
         </div>
     );

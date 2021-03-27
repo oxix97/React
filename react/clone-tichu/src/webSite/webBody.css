@@ -1,0 +1,27 @@
+head, body, #root, #root > div {
+    height: 100%;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#body {
+    width: 1024px;
+    height: 300px;
+    margin: 0 auto; /* 자식이 부모로 부터 가운데 정렬 */
+    padding-bottom: 5px;
+    background-color: lightgray;
+}
+
+#body > #body-users{
+    display: flex;
+    margin-top: 20px;
+}
+
+#body > #footer {
+    display: flex;
+    height: 200px;
+    background-color: dodgerblue;
+}

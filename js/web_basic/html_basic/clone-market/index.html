@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div id = "header">
+<div id="header">
     <div id="header-area">
         <!--        종횡비를 유지해야 해상도가 깨지지 않는다.-->
         <img src="images/icons/logo.png" alt="icons">
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div id = "body">
+<div id="body">
     <div id="banner">
         <img src="images/banners/banner1.png" alt="banner1.png">
         <img src="images/banners/banner2.png" alt="banner2.png">
@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div id = "footer">
+<div id="footer">
 
 </div>
 
@@ -35,73 +35,73 @@
 
 <script type="text/javascript">
     let products = [{
-        name : '농구공1',
-        price : "50,000원",
-        seller : 'Nike',
-        imgurl : 'images/products/basketball1.jpeg'
-    },{
-        name : '농구공2',
-        price : "70,000원",
-        seller : 'Chan',
-        imgurl : 'images/products/basketball2.jpg'
-    },{
-        name : '농구공3',
-        price : "100,000원",
-        seller : 'Nike',
-        imgurl : 'images/products/basketball3.jpg'
-    },{
-        name : '덤벨 8kg',
-        price : "10,000원",
-        seller : '보8근',
-        imgurl : 'images/products/dumbell1.jpeg'
-    },{
-        name : '덤벨 25kg',
-        price : "20,000원",
-        seller : '보5근',
-        imgurl : 'images/products/dumbell2.jpeg'
-    },{
-        name : '축구공',
-        price : "30,000원",
-        seller : 'Messi',
-        imgurl : 'images/products/soccerball1.jpg'
-    },{
-        name : '키보드 1',
-        price : "10,000원",
-        seller : 'Chan',
-        imgurl : 'images/products/keyboard1.jpg'
-    },{
-        name : '키보드 2',
-        price : "56,000원",
-        seller : 'Chan',
-        imgurl : 'images/products/keyboard2.jpg'
-    },{
-        name : '맥북',
-        price : "1,750,000원",
-        seller : '스티브 잡스',
-        imgurl : 'images/products/notebook1.jpg'
-    },{
-        name : '삼성 노트북',
-        price : "1,200,000원",
-        seller : '이재용',
-        imgurl : 'images/products/notebook2.jpg'
+        name: '농구공1',
+        price: "50,000원",
+        seller: 'Nike',
+        imgurl: 'images/products/basketball1.jpeg'
+    }, {
+        name: '농구공2',
+        price: "70,000원",
+        seller: 'Chan',
+        imgurl: 'images/products/basketball2.jpg'
+    }, {
+        name: '농구공3',
+        price: "100,000원",
+        seller: 'Nike',
+        imgurl: 'images/products/basketball3.jpg'
+    }, {
+        name: '덤벨 8kg',
+        price: "10,000원",
+        seller: '보8근',
+        imgurl: 'images/products/dumbell1.jpeg'
+    }, {
+        name: '덤벨 25kg',
+        price: "20,000원",
+        seller: '보5근',
+        imgurl: 'images/products/dumbell2.jpeg'
+    }, {
+        name: '축구공',
+        price: "30,000원",
+        seller: 'Messi',
+        imgurl: 'images/products/soccerball1.jpg'
+    }, {
+        name: '키보드 1',
+        price: "10,000원",
+        seller: 'Chan',
+        imgurl: 'images/products/keyboard1.jpg'
+    }, {
+        name: '키보드 2',
+        price: "56,000원",
+        seller: 'Chan',
+        imgurl: 'images/products/keyboard2.jpg'
+    }, {
+        name: '맥북',
+        price: "1,750,000원",
+        seller: '스티브 잡스',
+        imgurl: 'images/products/notebook1.jpg'
+    }, {
+        name: '삼성 노트북',
+        price: "1,200,000원",
+        seller: '이재용',
+        imgurl: 'images/products/notebook2.jpg'
     }]
 
     let productsHTML = '';
 
-    for(let i = 0;i<products.length;i++){
+    for (let i = 0; i < products.length; i++) {
         let product = products[i];
-        productsHTML += '<div class="product-card">'+
-            '   <div>'+
-            '      <img class="product-img" src= "'+product.imgurl+'" alt="basketball1"/>'+
-            '  </div>'+
-            '  <div class="product-contents">'+
-            '  <span class="product-name">'+product.name+'</span>'+
-            '  <span class="product-price">'+product.price+'</span>'+
-            ' <div class="product-seller">'+
-            '    <img class="product-avater" src="images/icons/avatar.png" alt="">'+
-            '       <span>'+product.seller+'</span>'+
-            '  </div>'+
-            ' </div>'+
+        productsHTML += '<div class="product-card">' +
+            '   <div>' +
+            '      <img class="product-img" src= "' + product.imgurl + '" alt="basketball1"/>' +
+            '  </div>' +
+            '  <div class="product-contents">' +
+            '  <span class="product-name">' + product.name + '</span>' +
+            '  <span class="product-price">' + product.price + '</span>' +
+            ' <div class="product-seller">' +
+            '    <img class="product-avater" src="images/icons/avatar.png" alt="">' +
+            '       <span>' + product.seller + '</span>' +
+            '  </div>' +
+            ' </div>' +
             '</div>'
     }
     document.querySelector("#product-list").innerHTML = productsHTML;

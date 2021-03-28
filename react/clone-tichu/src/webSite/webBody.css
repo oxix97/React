@@ -8,20 +8,23 @@ head, body, #root, #root > div {
 }
 
 #body {
-    width: 1024px;
-    height: 500px;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height:180%;
     margin: 0 auto; /* 자식이 부모로 부터 가운데 정렬 */
-    padding-bottom: 5px;
-    background-color: lightgray;
 }
 
 #body > #body-users{
     display: flex;
     margin-top: 20px;
+    block-size: 600px;
+    padding-bottom: 5px;
+    background-color: lightgray;
 }
 
 #body > #footer {
-    display: flex;
+    width: 100%;
+    background-color: orange;
     height: 200px;
-    background-color: dodgerblue;
 }

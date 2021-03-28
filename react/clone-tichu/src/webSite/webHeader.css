@@ -9,7 +9,7 @@ head, body, #root, #root > div {
 
 #header {
     margin: 0 auto;
-    width: 1024px;
+    width: 75%;
     height: 100%;
 }
 
@@ -21,7 +21,6 @@ head, body, #root, #root > div {
 
 #header-area > #header-area-start {
     display: flex;
-    flex : 1 1 auto;
 }
 
 #header-area > #header-area-end {
@@ -29,13 +28,8 @@ head, body, #root, #root > div {
     justify-content: flex-end;
 }
 
-#header-area-start > input {
-    margin: 8px;
-    background-color: #e5e3e3;
-}
-
 #header-area-start > img {
-    width: 128px;
+    width: 164px;
 }
 
 #header-area-end > img {

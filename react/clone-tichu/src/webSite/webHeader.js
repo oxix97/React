@@ -6,11 +6,12 @@ function head() {
                     <img src="images/startplayup.png" alt="logo"/>
                 </div>
                 <div id="header-area-end">
-                    <img src="images/home-32.png" alt="alarm"/>
-                    <img src="images/message-32.png" alt="message"/>
-                    <img src="images/menu-32.png" alt="user"/>
+                    <img src="images/realalarm.png" alt="alarm"/>
+                    <img src="images/mviolet.png" alt="message"/>
+                    <img src="images/realmenu.png" alt="user"/>
                 </div>
             </div>
+            <hr/>
         </div>
     );
 

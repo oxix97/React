@@ -20,11 +20,11 @@ head, body, #root, #root > div {
     margin-top: 20px;
     block-size: 600px;
     padding-bottom: 5px;
-    background-color: lightgray;
+    background-color: #ececec;
 }
 
 #body > #footer {
     width: 100%;
-    background-color: orange;
+    background-color: #c89bdd;
     height: 200px;
 }

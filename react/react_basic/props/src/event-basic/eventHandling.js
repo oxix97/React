@@ -16,7 +16,7 @@ class ButtonEffect extends Component {
         return (
             <div>
                 <h1>이벤트 연습</h1>
-                <p>버튼 입력 여부 : {this.state.number}</p>
+                <p>버튼 입력 회수 : {this.state.number}</p>
                 <input
                     type="text"
                     name={"message"}
@@ -34,7 +34,7 @@ class ButtonEffect extends Component {
                 <button onClick={()=>{
                     alert(this.state.message);
                     this.setState({
-                        number : this.useState.number + 1
+                        number : this.state.number + 1
                     });
                 }}>확인</button>
             </div>

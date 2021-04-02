@@ -6,14 +6,14 @@ head, body, #root, #root > div {
     margin: 0px;
     padding: 0px;
 }
-
 #header {
-    margin: 0 auto;
-    width: 75%;
-    height: 100%;
+    background-color: #566270;
 }
 
 #header-area {
+    width: 75%;
+    height: 100%;
+    margin : 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,6 +21,7 @@ head, body, #root, #root > div {
 
 #header-area > #header-area-start {
     display: flex;
+    justify-content: flex-start;
 }
 
 #header-area > #header-area-end {
@@ -29,7 +30,7 @@ head, body, #root, #root > div {
 }
 
 #header-area-start > img {
-    width: 164px;
+    width: 180px;
 }
 
 #header-area-end > img {

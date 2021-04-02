@@ -1,30 +1,45 @@
-head, body, #root, #root > div {
+head, body, #root{
+    width: 100%;
     height: 100%;
 }
-
+#root{
+    background-color: #E0E3DA;
+}
 * {
     margin: 0px;
     padding: 0px;
 }
 
-#body {
+#body-center{
+    width: 75%;
+    height: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    width: 75%;
-    height:180%;
-    margin: 0 auto; /* 자식이 부모로 부터 가운데 정렬 */
 }
 
-#body > #body-users{
+#button-area{
     display: flex;
+    justify-content: flex-end;
     margin-top: 20px;
-    block-size: 600px;
-    padding-bottom: 5px;
-    background-color: #ececec;
+}
+/*
+
+*/
+#button-area > button{
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #A593E0;
+    border-radius: 2px;
+    border: 0;
+    padding: 5px;
 }
 
-#body > #footer {
-    width: 100%;
-    background-color: #c89bdd;
-    height: 200px;
+#body-center > #room-list{
+    background-color: #FFFFF3;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 500px;
 }
+
+

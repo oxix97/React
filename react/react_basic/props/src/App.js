@@ -1,5 +1,6 @@
 import MyComponent from "./props-basic/MyComponent";
-import ButtonEffect from "./event-basic/eventHandling"
+import ButtonEffect from "./event-basic/eventHandling";
+
 function App() {
   return (
     <div>

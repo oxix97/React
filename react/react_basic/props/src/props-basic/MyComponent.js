@@ -18,6 +18,7 @@ class MyComponent extends Component {
             number : 0
         }
     }
+
     render() {
         return (
             <div>

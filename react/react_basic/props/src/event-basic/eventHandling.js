@@ -7,9 +7,23 @@ class ButtonEffect extends Component {
             number: 0,
             message : ''
         }
+
         this.useState ={
             number: this.state.number
         }
+    }
+
+    handleChange(e){
+        this.setState({
+            message : e.target.value
+        })
+    }
+
+    handleClick(){
+        alert(this.state.message)
+        this.setState({
+            message : ''
+        })
     }
 
     render() {
@@ -22,21 +36,10 @@ class ButtonEffect extends Component {
                     name={"message"}
                     placeholder={"아무거나 입력해보세요."}
                     value={this.state.message}
-                    onChange={
-                        (event => {
-                            this.setState({
-                                message : event.target.value
-                            })
-                        })
-                    }
+                    onChange={this.handleChange}
                 />
 
-                <button onClick={()=>{
-                    alert(this.state.message);
-                    this.setState({
-                        number : this.state.number + 1
-                    });
-                }}>확인</button>
+                <button onClick={this.handleClick}>확인</button>
             </div>
         );
     }

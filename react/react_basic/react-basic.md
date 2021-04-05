@@ -16,7 +16,6 @@
 - #### React useEffect
 
 
-
 ### React
 
 웹이 복잡해 지면서 하나의 html 파일에 많은 Javascript 라이브러리, html요소를 포함하게 된다. 하나의 파일에 코드 수가 많아지면 유지보수하기가 어려워져 React가 탄생하게 되었다.

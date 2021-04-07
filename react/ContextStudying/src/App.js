@@ -7,26 +7,29 @@ const ThemeContext = React.createContext('light');
 class App extends React.Component{
     render() {
         return(
-            <ThemeContext.Provider value = "dark">
-            <Toolbar/>
-            </ThemeContext.Provider>
+            <div>
+                {/*<ThemeContext.Provider value = "dark">*/}
+                {/*    <Toolbar/>*/}
+                {/*</ThemeContext.Provider>*/}
+            </div>
+
         )
     }
 }
-
-function Toolbar(){
-    return(
-        <div>
-            <ThemedButton/>
-        </div>
-    )
-}
-
-class ThemedButton extends React.Component{
-    static contextType = ThemeContext;
-    render() {
-        return <button theme={this.context}/>
-    }
-}
+//
+// function Toolbar(){
+//     return(
+//         <div>
+//             <ThemedButton/>
+//         </div>
+//     )
+// }
+//
+// class ThemedButton extends React.Component{
+//     static contextType = ThemeContext;
+//     render() {
+//         return <button theme={this.context}/>
+//     }
+// }
 
 export default App;

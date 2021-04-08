@@ -6,10 +6,8 @@ import WebHeader from './webSite/webHeader'
 import WebBody from './webSite/webBody'
 function App() {
   return (
-    <div className="App">
-        <WebHeader/>
-        <WebBody/>
-
+    <div>
+      Router Studying
     </div>
   );
 }

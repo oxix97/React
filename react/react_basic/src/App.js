@@ -1,16 +1,15 @@
-import './App.css';
-import {Switch,Route} from 'react-router-dom'
+import React, {useState} from 'react'
+import {Route} from 'react-router-dom'
+import {Home, About} from './pages'
+import Hello from "./Hello";
 
-function App(){
-  return (
-      <div>
-          <Switch>
-              <Route path="/">
+const App = () => {
 
-              </Route>
-          </Switch>
-      </div>
-  )
-}
+    return (
+        <div>
+            <Hello name = "react"/>
+        </div>
+    );
+};
 
 export default App;

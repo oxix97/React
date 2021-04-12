@@ -22,8 +22,19 @@ function App() {
             <Route exact path='/' component={Home}/>
             <Route path='/About/:name?' component={About}/>
             <Route path='/Posts' component={Posts}/>
+            <Route path = '/Post' component={Post}/>
         </>
     );
 }
+
+const Post = ({ match, location,history }) => {
+    console.log("Match");
+    console.dir(match);
+    console.log("Location");
+    console.dir(location);
+    console.log("history");
+    console.dir(history);
+    return <h1>Post</h1>;
+};
 
 export default App;

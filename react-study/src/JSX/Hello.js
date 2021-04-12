@@ -7,7 +7,7 @@ const fullnames = {
 
 const list = (
     <ul>
-        {Names(fullnames).map(props => <li>{props}</li>)}
+        {/*{Names(fullnames).map(props => <li>{props}</li>)}*/}
     </ul>
 );
 

@@ -8,10 +8,11 @@ import {
     Home,
     About
 } from './Route/pages';
+import Menu from "./Route/components/Menu";
 
 function App() {
     return (
-        <>
+        <>  <Menu/>
             <Route exact path = '/' component={Home}/>
             <Route path='/About/:name?' component={About}/>
         </>

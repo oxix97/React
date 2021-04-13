@@ -13,7 +13,6 @@ import Menu from "./Route/components/Menu";
 
 import SignIn from "./Modal/SignIn";
 import Button from "./Modal/Button";
-import './Modal/sign.scss';
 
 function App() {
     return (

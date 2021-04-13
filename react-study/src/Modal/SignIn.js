@@ -99,12 +99,9 @@ const Footer = styled.div`
     justify-content : space-between;
 `
 const ResultButton = styled.button`
-    border : 0;
     width : 100%;
     font-size : 14px;
     padding : 5px;
-    background-color : ${props => props.color};
-    color : white;
 `
 
 class SignIn extends Component {
@@ -114,10 +111,10 @@ class SignIn extends Component {
         password: "",
     };
 
-    loginHandler = (e) => {
-        const {name, value} = e.target;
-        this.setState({[name]: value});
-    };   ////계산된 속성명 사용
+    // loginHandler = (e) => {
+    //     const {name, value} = e.target;
+    //     this.setState({[name]: value});
+    // };   ////계산된 속성명 사용
 
 
     render() {
@@ -133,7 +130,7 @@ class SignIn extends Component {
                     /// true인 상태로 있어서 화면이 안꺼진다.
 
                     <Modal>
-                        <LoginMid>
+                        <LoginMid onClick={() => close}>
                             <LoginModal>
                                 <Close className="close" onClick={close}>
                                      &times;
@@ -164,8 +161,7 @@ class SignIn extends Component {
                                     </SelectPrivate>
                                 </ModalContents>
                                 <Footer>
-                                    {/*<ResultButton color='#B8B8B0'>취소</ResultButton>*/}
-                                    <ResultButton color='#A593E0'>확인</ResultButton>
+                                    <ResultButton onClick={close}>확인</ResultButton>
                                 </Footer>
                             </LoginModal>
                         </LoginMid>

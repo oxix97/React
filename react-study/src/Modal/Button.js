@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SignIn from "./SignIn";
-import './sign.scss';
 class Button extends Component {
     constructor(props) {
         super(props);

@@ -1,8 +1,114 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-import "./sign.scss";
+// import "./sign.scss";
+import styled from 'styled-components';
+import Button from "./Button";
+
+const Modal = styled.div`
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+`
+
+const LoginModal = styled.div`
+    flex-basis : 320px;
+    background-color: white;
+    position: relative;
+    box-sizing: border-box;
+    margin: 56px auto;
+`
+
+const LoginMid = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const Close = styled.div`
+    float: right;
+    font-size: 28px;
+    margin-right : 5px;
+`
+
+const ModalContents = styled.div`
+    margin: 0 auto;
+      width: 100%;
+      position: relative;
+      padding: 0 20px 32px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 20px 20px 20px;
+
+`
+
+const Title = styled.div`
+    font-size : 24px;
+    text-align : center;
+    margin-bottom : 20px;
+    letter-spacing : 3px;
+`
+
+const RoomTitle = styled.div`
+    display : flex;
+    flex-wrap : nowrap;
+    font-size : 14px;
+    margin-top: 20px;
+    align-items: center;
+    padding: 8px;
+`
+const Input = styled.input`
+        font-size : 12px;
+        border-style:none;
+        border-bottom:solid 1px #cacaca;
+        border-collapse:collapse;
+        width : ${props => props.width};
+`
+
+const SelectGame = styled.div`
+    display : flex;
+    justify-content = center;
+    flex-direction : column;
+`
+
+const Select = styled.select`
+    font-size : 12px;
+    text-align : center;
+    width : 40%;
+    margin : 30px auto;
+`
+
+const Games = styled.option`
+    font-size : 12px;
+    text-align : center;
+`
+const SelectPrivate = styled.div`
+    display : flex;
+    flex-wrap : nowrap;
+    justify-content : center;
+    margin-bottom : 10px;
+`
+
+const Footer = styled.div`
+    display : flex;
+    flex-wrap : nowrap;
+    justify-content : space-between;
+`
+const ResultButton = styled.button`
+    border : 0;
+    width : 100%;
+    font-size : 14px;
+    padding : 5px;
+    background-color : ${props => props.color};
+    color : white;
+`
 
 class SignIn extends Component {
+
     state = {
         email: "",
         password: "",
@@ -13,21 +119,6 @@ class SignIn extends Component {
         this.setState({[name]: value});
     };   ////계산된 속성명 사용
 
-    loginClickHandler = () => {
-        const {email, password} = this.state;
-        fetch("http://10.58.2.17:8000/auth/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email,
-                password,
-            }),
-        })
-            .then((res) => res.json())
-            .then((res) => console.log(res));
-    };
 
     render() {
         const {isOpen, close} = this.props;   //아까 버튼에서 props로 가져온것
@@ -41,67 +132,44 @@ class SignIn extends Component {
                     ////<div className="modalContents" onClick={isOpen}> 로그인 화면은 버튼 클릭해서 들어오면
                     /// true인 상태로 있어서 화면이 안꺼진다.
 
-                    <div className="modal">
-                        <div onClick={close}>
-                            <div className="loginModal">
-                <span className="close" onClick={close}>
-                  &times;
-                </span>
-                                <div className="modalContents" onClick={isOpen}>
-                                    <div>
+                    <Modal>
+                        <LoginMid>
+                            <LoginModal>
+                                <Close className="close" onClick={close}>
+                                     &times;
+                <               /Close>
+                                <ModalContents onClick={isOpen}>
+                                    <Title>
                                         StartPlayUp
-                                    </div>
-                                    <input
-                                        className="loginId"
-                                        type="text"
-                                        placeholder="제목을 입력하세요"
-                                    />
-                                    <input
-                                        name="password"
-                                        className="loginPw"
-                                        type="password"
-                                        placeholder="비밀번호"
-                                        onChange={this.loginHandler}
-                                    />
-                                    <div className="loginMid">
-                                        <label className="autoLogin" for="hint">
-                                            {" "}
-                                            <input type="checkbox" id="hint"/> 로그인 유지하기
-                                        </label>
-                                        <div className="autoLogin">아이디/비밀번호 찾기</div>
-                                    </div>
-                                    <button className="loginBtn" onClick={this.loginClickHandler}>
-                                        {" "}
-                                        로그인{" "}
-                                    </button>
-                                    <div className="socialBox">
-                                        <div className="kakao">
-                                            <img
-                                                className="kakaoLogo"
-                                                src="/Images/SignIn/kakao.png"
-                                            />
-                                            <div className="kakaoText">카카오 계정으로 신규가입</div>
-                                        </div>
-                                        <div className="facebook">
-                                            <img
-                                                className="facebookLogo"
-                                                src="/Images/SignIn/facebook.png"
-                                            />
-                                            <div className="facebookText">
-                                                페이스북 계정으로 신규가입
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="loginEnd">
-                                        <div className="loginLine">
-                                            회원이 아니신가요? <Link to="/signup">회원가입</Link>
-                                        </div>
-                                        <div className="noUser">비회원 주문 조회</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    </Title>
+                                    <RoomTitle>
+                                        <span>제목 : &nbsp; </span>
+                                        <Input type="text" maxLength="20" width='200px'/>
+                                    </RoomTitle>
+                                    <RoomTitle>
+                                        <span>암호 : &nbsp; </span>
+                                        <input type="checkbox"/>
+                                        <Input type="password" maxLength='10' width='180px'/>
+                                    </RoomTitle>
+                                    <SelectGame>
+                                        <Select>
+                                            <Games>윷놀이</Games>
+                                            <Games>요트 다이스</Games>
+                                            <Games>마피아</Games>
+                                        </Select>
+                                    </SelectGame>
+                                    <SelectPrivate>
+                                        <span>관전허용 : </span>
+                                        <input type="checkbox"/>
+                                    </SelectPrivate>
+                                </ModalContents>
+                                <Footer>
+                                    {/*<ResultButton color='#B8B8B0'>취소</ResultButton>*/}
+                                    <ResultButton color='#A593E0'>확인</ResultButton>
+                                </Footer>
+                            </LoginModal>
+                        </LoginMid>
+                    </Modal>
                 ) : null}
             </>
         );

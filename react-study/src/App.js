@@ -13,7 +13,8 @@ import Menu from "./Route/components/Menu";
 
 import SignIn from "./Modal/SignIn";
 import Button from "./Modal/Button";
-
+import StateValue from "./State/stateValue";
+import OnOff from "./State/OnOff";
 function App() {
     return (
         <>
@@ -21,7 +22,8 @@ function App() {
             {/*<Route exact path='/' component={Home}/>*/}
             {/*<Route path='/About/:name?' component={About}/>*/}
             {/*<Route path='/Posts' component={Posts}/>*/}
-            <Button/>
+            {/*<Button/>*/}
+            <StateValue/>
         </>
     );
 }

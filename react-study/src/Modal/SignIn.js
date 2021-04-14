@@ -122,7 +122,6 @@ class SignIn extends Component {
         return (
             <>
                 {isOpen ? (
-
                     ////만약 isopen(this.state.isModalOpen)이 true일때 코드를 실행 false면  null
                     /// <div onClick={close}> 로그인창 말고 회색 바탕을 누를시 모달이 꺼지게 만듬
                     ///<span className="close" onClick={close}>&times;</span> x버튼 누를시 꺼짐

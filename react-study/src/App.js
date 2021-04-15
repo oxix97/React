@@ -14,7 +14,7 @@ import Menu from "./Route/components/Menu";
 import SignIn from "./Modal/SignIn";
 import Button from "./Modal/Button";
 import StateValue from "./State/stateValue";
-import OnOff from "./State/OnOff";
+import InputValue from "./State/InputValue";
 function App() {
     return (
         <>
@@ -23,7 +23,9 @@ function App() {
             {/*<Route path='/About/:name?' component={About}/>*/}
             {/*<Route path='/Posts' component={Posts}/>*/}
             {/*<Button/>*/}
-            <StateValue/>
+            {/*<StateValue/>*/}
+            <InputValue />
+
         </>
     );
 }

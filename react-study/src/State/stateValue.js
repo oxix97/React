@@ -10,7 +10,7 @@ const ResultButton = styled.input`
     color : white;
 `
 
-const StateValue = () => {
+const StateValue = ({history}) => {
 
     // const [value, setValue] = useState(0);
     const [text, setText] = useState('');
@@ -25,6 +25,7 @@ const StateValue = () => {
             </div>
             <div>
                 <input type="text" value={text} onChange={Change}/>
+                <button onClick={() => {history.push('./pad')}}>button</button>
                 {/*<ResultButton type={'submit'}>asdfads</ResultButton>*/}
             </div>
         </div>

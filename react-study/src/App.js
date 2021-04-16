@@ -7,7 +7,8 @@ import {Route} from 'react-router-dom';
 import {
     Home,
     About,
-    Posts
+    Posts,
+    Pad
 } from './Route/pages';
 import Menu from "./Route/components/Menu";
 
@@ -19,11 +20,12 @@ function App() {
     return (
         <>
             {/*<Menu/>*/}
-            {/*<Route exact path='/' component={Home}/>*/}
+            <Route exact path='/' component={Home}/>
             {/*<Route path='/About/:name?' component={About}/>*/}
             {/*<Route path='/Posts' component={Posts}/>*/}
             {/*<Button/>*/}
             {/*<StateValue/>*/}
+            <Route exact path = '/pad' component={Pad}/>
             <InputValue />
 
         </>

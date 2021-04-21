@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        axios
+            .get('https://jsonplaceholder.typicode.com/todos/1')
+            .then(function (result) {
+                console.log('통신 결과 : ', result.status);
+                console.log('통신 데이터 : ',result.data);
+            })
+            .catch(function (error) {
+                console.log('에러 발생 : ', error);
+            });
+        console.log('바로 실행');
+    </script>
+    <title>axios</title>
+</head>
+<body>
+
+</body>
+</html>

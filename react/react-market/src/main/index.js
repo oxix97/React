@@ -1,6 +1,7 @@
 import './index.css';
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 
 function MainPage() {
 
@@ -19,7 +20,6 @@ function MainPage() {
 
     return (
         <div>
-            {/*<Server/>*/}
             <div id="header">
                 <div id="header-area">
                     <img src="images/icons/logo.png" alt="icons"/>
@@ -36,20 +36,23 @@ function MainPage() {
                     {products.map(function (products, index) {
                         return (
                             <div className="product-card">
-                                <img alt="ball" className="product-img"
-                                     src={products.imageUrl}/>
-                                <div className="product-contents">
+                                <Link className={'product-link'} to={`/products/${index}`}>
+
+                                    <img alt="ball" className="product-img"
+                                         src={products.imageUrl}/>
+                                    <div className="product-contents">
                                     <span className="product-name">
                                         {products.name}
                                     </span>
-                                    <span className="product-price">
+                                        <span className="product-price">
                                         {products.price}원
                                         </span>
-                                </div>
-                                <div className={"product-seller"}>
-                                    <img src="images/icons/avatar.png" alt="" className="product-avater"/>
-                                    <span>{products.seller}</span>
-                                </div>
+                                    </div>
+                                    <div className={"product-seller"}>
+                                        <img src="images/icons/avatar.png" alt="" className="product-avater"/>
+                                        <span>{products.seller}</span>
+                                    </div>
+                                </Link>
                             </div>
                         );
                     })

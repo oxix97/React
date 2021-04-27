@@ -17,7 +17,6 @@ function MainPage() {
                 console.error("error : ", error);
             });
     }, []);
-
     return (
         <div>
             <div id="header">

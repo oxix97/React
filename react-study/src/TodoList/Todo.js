@@ -3,7 +3,7 @@ import {useState} from "react";
 
 function TodoList() {
     const [desc, setDesc] = useState('');
-    const [currentId, setCurrentId] = useState('');
+    const [currentId, setCurrentId] = useState(1);
     const [todoList, setTodoList] = useState([]);
 
     function onAdd() {
@@ -42,4 +42,5 @@ function TodoList() {
         </div>
     );
 }
+
 export default TodoList;

@@ -1,11 +1,11 @@
 import React from 'react';
-import Index from "./Movies";
+import RoleDistribution from "./Mafia/meetingFrame/Role";
 
 class App extends React.Component {
     render() {
         return (
             <div>
-                <Index/>
+                <RoleDistribution/>
             </div>
         )
     }

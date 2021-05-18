@@ -26,21 +26,29 @@ class Index extends React.Component {
     render() {
         const {isLoading, movies} = this.state;
         return (
-            <div>
-                {isLoading ? "Loading..." : movies.map((movie) => {
-                    console.log(movie)
-                    return <Movies
-                        key={movie.id}
-                        id={movie.id}
-                        year={movie.year}
-                        title={movie.title}
-                        summary={movie.summary}
-                        poster={movie.medium_cover_image}
-                    />
-                })}
-            </div>
+            <section class={'container'}>
+                {isLoading ? (
+                    <div class={'movies'}>
+                        <span class={'load_text'}>Loading...</span>
+                    </div>
+                ) : (
+                    <div>
+                        {movies.map(movie => (
+                            <Movies
+                                key={movie.id}
+                                title={movie.title}
+                                poster={movie.medium_cover_image}
+                                summary={movie.summary}
+                                year={movie.year}
+                            />
+                        ))}
+                    </div>
+                )}
+            </section>
         )
     }
+
 }
+
 
 export default Index;

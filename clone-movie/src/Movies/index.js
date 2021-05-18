@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Movies from "./Movies";
 
 class Index extends React.Component {
 
@@ -12,26 +13,34 @@ class Index extends React.Component {
         this.getMovies();
     }
 
-    getMovies = async() => {
-        const{
-            data : {
-                data:{movies},
+    getMovies = async () => {
+        const {
+            data: {
+                data: {movies},
             },
         }
-         = await axios.get('https://yts-proxy.now.sh/list_movies.json');
-        this.setState({movies,isLoading:false})
+            = await axios.get('https://yts.mx/api/v2/list_movies.json?sort_by=rating');
+        this.setState({movies, isLoading: false})
     }
 
-
     render() {
-        const {isLoading} = this.state;
+        const {isLoading, movies} = this.state;
         return (
             <div>
-                {isLoading ? 'Loading...' : 'We are ready'}
-                {/*we are ready 부분에 영화 데이터 넣을 예정*/}
+                {isLoading ? "Loading..." : movies.map((movie) => {
+                    console.log(movie)
+                    return <Movies
+                        key={movie.id}
+                        id={movie.id}
+                        year={movie.year}
+                        title={movie.title}
+                        summary={movie.summary}
+                        poster={movie.medium_cover_image}
+                    />
+                })}
             </div>
         )
     }
 }
 
-export default Index
+export default Index;

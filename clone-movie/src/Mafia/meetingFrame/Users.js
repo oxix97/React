@@ -15,6 +15,8 @@ export const Users = [
     {nickname: 'user8', life: ALIVE, role: '', key: 'user8'},
 ]
 
+export const Roles = ['Mafia', 'Mafia', 'Police', 'Doctor', 'Reporter', 'Citizen', 'Citizen', 'Citizen'];
+
 Users.propTypes = {
     nickname: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,

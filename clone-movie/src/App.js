@@ -1,14 +1,17 @@
 import React from 'react';
-import RoleDistribution from "./Mafia/meetingFrame/Role";
-
-class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <RoleDistribution/>
-            </div>
-        )
-    }
+import {Switch,Route} from 'react-router-dom';
+import {
+    RoleDistribution,
+    Vote, VoteResult,
+} from "./Mafia/index";
+function App() {
+    return(
+        <Switch>
+            <Route exact path={'/'} component={RoleDistribution}/>
+            <Route exact path={'/vote'} component={Vote}/>
+            <Route exact path={'/voteResult'} component={VoteResult}/>
+        </Switch>
+    )
 }
 
 export default App;

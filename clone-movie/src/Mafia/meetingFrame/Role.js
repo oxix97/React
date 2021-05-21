@@ -1,23 +1,9 @@
-import React, {useState} from 'react';
-import {Users,ALIVE,DEAD} from "./Users";
-// import shuffle from "lodash.shuffle";
-import Begin from "./Begin";
+import React from 'react';
+import {Users, ALIVE, DEAD} from "./Users";
 
 const RoleDistribution = ({history}) => {
-    // const [role, setRole] = useState(['Mafia', 'Mafia', 'Police', 'Doctor', 'Reporter', 'Citizen', 'Citizen', 'Citizen']);
-    // const shuffleList = () => {
-    //     setRole(shuffle(role));
-    // }
-
     return (
         <div>
-            {/*<button onClick={shuffleList}>*/}
-            {/*    시작*/}
-            {/*</button>*/}
-            {Users.map((user, index) => {
-                Users[index].role = user.role
-            })}
-
             <div>
                 {
                     Users.map((user) => (
@@ -45,10 +31,10 @@ const RoleDistribution = ({history}) => {
                     })
                 }
             </div>
-            <button onClick={()=>(history.push({
+            <button onClick={() => (history.push({
                 pathname: "/vote",
             }))}>
-                넘어가기
+                투표로 넘어가기
             </button>
         </div>
     );

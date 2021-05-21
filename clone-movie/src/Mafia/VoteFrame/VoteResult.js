@@ -1,16 +1,32 @@
 import React from "react";
 import {useLocation} from 'react-router-dom'
-import Vote from "./Vote";
+import {Users} from "../meetingFrame/Users";
 
-
-
-function VoteResult({history}) {
+function VoteResult() {
     const location = useLocation();
-    const voteResult = location.state.vote;
-
-    return(
+    const voteResultNickname = location.state.vote;
+    const voteResultLife = location.state.life;
+    const findUserList = () => {
+        Users.map((user, index) => {
+            if (user.nickname === voteResultNickname) {
+                user.life = voteResultLife;
+                console.log(user.nickname);
+                console.log(user.life);
+            }
+        })
+    }
+    return (
         <div>
-            <h1>{voteResult}</h1>
+            <h1>{voteResultNickname}</h1>
+            <button onClick={findUserList}>dd</button>
+            {
+                Users.map((user, index) => (
+                    <div>
+                        <li>{user.nickname}</li>
+                        <li>{user.life}</li>
+                    </div>
+                ))
+            }
         </div>
     )
 }

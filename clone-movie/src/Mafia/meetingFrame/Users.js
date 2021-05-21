@@ -20,6 +20,6 @@ export const Roles = ['Mafia', 'Mafia', 'Police', 'Doctor', 'Reporter', 'Citizen
 Users.propTypes = {
     nickname: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
-    life: PropTypes.bool.isRequired,
+    life: PropTypes.number.isRequired,
     skill: PropTypes.string,
 };

@@ -40,7 +40,7 @@ class Index extends React.Component {
                                 poster={movie.medium_cover_image}
                                 summary={movie.summary}
                                 year={movie.year}
-                            />
+                                genres={movie.genres}/>
                         ))}
                     </div>
                 )}

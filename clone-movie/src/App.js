@@ -5,15 +5,23 @@ import {
     RoleDistribution,
     Vote, VoteResult,
 } from "./Mafia/index";
+import {GlobalStyle,MoiveStyle} from './AppStyle'
+import Index from "./Movies";
 function App() {
     return(
-        <Switch>
-            <Route exact path={'/'} component={Begin}/>
-            <Route exact path={'/meetingRoom'} component={RoleDistribution}/>
-            <Route exact path={'/vote'} component={Vote}/>
-            <Route exact path={'/voteResult'} component={VoteResult}/>
-            <Route exact path={'/reporterVote'} component={ReportUser}/>
-        </Switch>
+        // <Switch>
+        //     <Route exact path={'/'} component={Begin}/>
+        //     <Route exact path={'/meetingRoom'} component={RoleDistribution}/>
+        //     <Route exact path={'/vote'} component={Vote}/>
+        //     <Route exact path={'/voteResult'} component={VoteResult}/>
+        //     <Route exact path={'/reporterVote'} component={ReportUser}/>
+        // </Switch>
+        <>
+            <GlobalStyle/>
+            <MoiveStyle>
+                <Index/>
+            </MoiveStyle>
+        </>
     )
 }
 

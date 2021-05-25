@@ -12,9 +12,13 @@ export const Users = [
     {nickname: 'user6', life: ALIVE, role: '', vote: 0},
     {nickname: 'user7', life: ALIVE, role: '', vote: 0},
     {nickname: 'user8', life: ALIVE, role: '', vote: 0},
+    {nickname: 'user9', life: ALIVE, role: '', vote: 0},
+    {nickname: 'user10', life: ALIVE, role: '', vote: 0},
 ]
 
-export const Roles = ['Mafia', 'Mafia', 'Police', 'Doctor', 'Reporter', 'Citizen', 'Citizen', 'Citizen'];
+export const MafiaOne = ['Mafia'];
+export const MafiaTwo = ['Mafia','Mafia'];
+export const Roles = ['Politician', 'Solider', 'Police', 'Doctor', 'Reporter', 'Terrorist', 'Gangster', 'WatchMan'];
 
 Users.propTypes = {
     nickname: PropTypes.string.isRequired,

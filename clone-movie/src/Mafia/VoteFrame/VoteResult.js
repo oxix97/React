@@ -15,7 +15,7 @@ function VoteResult({history}) {
                 ))}
             </div>
             <div>
-
+                
             </div>
             <button onClick={() => history.push({
                 pathname: '/reporterVote',

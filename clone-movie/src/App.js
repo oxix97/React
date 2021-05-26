@@ -1,6 +1,5 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import Js_028 from './JS200/part_2/js_028';
 import {
     Begin, ReportUser,
     RoleDistribution,

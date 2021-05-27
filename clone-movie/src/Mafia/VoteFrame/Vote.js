@@ -12,7 +12,7 @@ function Vote({history}) {
 
     const VotedUser = () => {
         Users.map((user, index) => {
-            if (user.nickname === voteNickname || voteNickname==='none') {
+            if (user.nickname === voteNickname || voteNickname === 'none') {
                 user.vote += 1;
                 console.log(user.nickname);
                 history.push({
@@ -32,7 +32,7 @@ function Vote({history}) {
                 num = index;
             }
         });
-        console.log(Users[num].nickname+' has '+Users[num].vote);
+        console.log(Users[num].nickname + ' has ' + Users[num].vote);
     };
 
     return (
@@ -57,8 +57,7 @@ function Vote({history}) {
                         <button
                             id={users.nickname + 'button'}
                             onClick={VotedUser}
-                            disabled={isActive}
-                        >
+                            disabled={isActive}>
                             투표하기
                         </button>
                     </div>
@@ -67,7 +66,7 @@ function Vote({history}) {
             <div>
                 <button onClick={() => (votedCounted)(history.push({
                     pathname: '/voteResult',
-                    vote : voteNickname,
+                    vote: voteNickname,
                 }))}>
                     결과 보기
                 </button>

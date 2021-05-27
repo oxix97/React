@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import ChildComponent from "./Component/ChildComponent";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    render() {
+        const array = [1,2,3]
+        const obj = {name : 'title', age : 30}
+        const node = <h1>node</h1>
+        const func  = () => {console.log('message')}
+
+        return (
+            <div>
+                <ChildComponent
+                    arrayValue={array}
+                    // objValue={obj}
+                    nodeValue={node}
+                    funcValue={func}
+                />
+            </div>
+        );
+    }
+
+
 }
 
 export default App;

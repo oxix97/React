@@ -22,6 +22,7 @@ function Vote({history}) {
             }
         });
     }
+
     const votedCounted = () => {
         let count = 0;
         let num = 0;

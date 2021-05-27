@@ -1,15 +1,14 @@
 import React from "react";
-import StateExample from "./Component/StateExample";
+import Counter from "./Component/Counter";
 
 class App extends React.Component {
     render() {
         return (
             <div>
-                <StateExample/>
+                <Counter/>
             </div>
         );
     }
-
 }
 
 export default App;

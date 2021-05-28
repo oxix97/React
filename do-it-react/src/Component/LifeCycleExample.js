@@ -10,11 +10,32 @@ class LifeCycleExample extends React.Component {
         console.log('constructor call');
     }
 
-    render() {
-        return (
-            <div>
+    componentDidMount(){
+        console.log('componentDidMount')
+        this.setState({updated : true})
+        this.forceUpdate();
+    }
 
-            </div>
-        );
+    componentDidUpdate(){
+        console.log('componentDidUpdate')
+    }
+
+    componentWillUnmount(){
+        console.log('componentWillUnmount')
+        return true;
+    }
+    getSnapshotBeforeUpdate(){
+        console.log('getSnapshotBeforeUpdate')
+        return {};
+    }
+    shouldComponentUpdate(){
+        console.log('render call')
+        return false;
+    }
+    render() {
+        console.log('렌더 함수 호출됨')
+
+        return null;
     }
 }
+export default LifeCycleExample

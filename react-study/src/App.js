@@ -15,7 +15,7 @@ class App extends React.Component {
                     arrayValue={array}
                     objValue={obj}
                     nodeValue={node}
-                    funcValue={func}
+                    funcValue={() => func}
                 />
             </div>
         )

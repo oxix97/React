@@ -9,5 +9,12 @@ class LifeCycleExample extends React.Component {
         this.state={};
         console.log('constructor call');
     }
-    
+
+    render() {
+        return (
+            <div>
+
+            </div>
+        );
+    }
 }

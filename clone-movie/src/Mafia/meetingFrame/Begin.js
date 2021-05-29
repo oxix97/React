@@ -1,6 +1,6 @@
 import React from "react";
 import shuffle from "lodash.shuffle";
-import {Users, Roles, MafiaOne, MafiaTwo} from "./Users";
+import {Users, Roles,} from "./Users";
 
 function Begin({history}) {
     const shuffleList = () => {

@@ -1,6 +1,4 @@
 import React from "react";
-import {Users} from "../meetingFrame/Users";
-
 
 function VoteResult({history}) {
 

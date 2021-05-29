@@ -18,7 +18,7 @@ function VoteResult({history}) {
 
             </div>
             <button onClick={() => history.push({
-                pathname: '/reporterVote',
+                pathname: '/night',
             })}>
                 기자 이벤트
             </button>

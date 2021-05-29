@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import {Users} from "../meetingFrame/Users";
 
-
-const ReportUser = ({history}) => {
+const ReportUser = ({history},props) => {
     const [index,setIndex] = useState(0);
     const [vote, setVote] = useState(Users[index].nickname)
     const [isClick, setIsClick] = useState(false);
     const [reportVote, setReportVote] = useState('');
     const ReportOnChange = e => {
         setVote(e.target.value);
+        console.log('ReportOnChange');
     };
 
     const ReportOnClick = e => {
@@ -17,6 +17,7 @@ const ReportUser = ({history}) => {
         setReportVote(Users[index].role);
         setIsClick(true);
         Users[index].skill=false;
+        console.log('ReportOnClick')
     }
 
     return (

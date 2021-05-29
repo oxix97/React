@@ -2,11 +2,20 @@ import React from "react";
 import ReportUser from "./ReportUser";
 
 
-const Night = () => {
-    return(
+function Night() {
+    return (
         <div>
-            <ReportUser/>
+            <div className={'Reporter'}>
+                <ReportUser/>
+            </div>
+            <div className={'police'}>
+
+            </div>
+            <div>
+
+            </div>
         </div>
+
     )
 };
 

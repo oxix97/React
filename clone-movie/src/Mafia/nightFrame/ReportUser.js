@@ -1,22 +1,43 @@
-import React from "react";
+import React, {useState} from "react";
+import {Users} from "../meetingFrame/Users";
 
-
-const Report = () => {
-    
-}
 
 const ReportUser = ({history}) => {
+    const [index,setIndex] = useState(0);
+    const [vote, setVote] = useState(Users[index].nickname)
+    const [isClick, setIsClick] = useState(false);
+    const [reportVote, setReportVote] = useState('');
+    const ReportOnChange = e => {
+        setVote(e.target.value);
+    };
+
+    const ReportOnClick = e => {
+        const index = e.target.value;
+        setIndex(index);
+        setReportVote(Users[index].role);
+        setIsClick(true);
+        Users[index].skill=false;
+    }
+
     return (
         <div>
-            <button onClick={Report}>취재</button>
+            <select onChange={ReportOnChange}>
+                {Users.map((user, index) =>
+                    (<option key={`player${index}`} value={index}>{user.nickname}</option>))}
+            </select>
+            <button value={vote} disabled={isClick} onClick={ReportOnClick}>취재</button>
             <button onClick={() => history.push({
                     pathname: '/policeVote'
                 }
             )}>넘어가기
             </button>
-            <div>
-                취재 결과는 최종 결과창에서 보여집니다.
-            </div>
+            {
+                isClick ? (
+                    <h3>{reportVote}입니다.</h3>
+                ) : null
+            }
+
+
         </div>
     )
 }

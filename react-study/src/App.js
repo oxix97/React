@@ -1,22 +1,13 @@
 import React from 'react';
-import ChildComponent from "./Component/ChildComponent";
 
 class App extends React.Component {
     render() {
-        const array = [1,2,3];
-        const obj = {name : 'title',age : 30};
-        const node = <h1>node</h1>
-        const func = () => {console.log('message')};
-        return(
+        // return [1,2,3].map((number,index)=>(
+        //     <input key={`key${index}`} type="radio" name={`option${index+1}`} value={number} label={`${index+1}개`}/>
+        // ))
+        return (
             <div>
-                <ChildComponent
-                    boolValue={true}
-                    numValue={1}
-                    arrayValue={array}
-                    objValue={obj}
-                    nodeValue={node}
-                    funcValue={() => func}
-                />
+
             </div>
         )
     }

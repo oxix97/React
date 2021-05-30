@@ -8,7 +8,6 @@ const ReportUser = ({history},props) => {
     const [reportVote, setReportVote] = useState('');
     const ReportOnChange = e => {
         setVote(e.target.value);
-        console.log('ReportOnChange');
     };
 
     const ReportOnClick = e => {
@@ -17,7 +16,6 @@ const ReportUser = ({history},props) => {
         setReportVote(Users[index].role);
         setIsClick(true);
         Users[index].skill=false;
-        console.log('ReportOnClick')
     }
 
     return (

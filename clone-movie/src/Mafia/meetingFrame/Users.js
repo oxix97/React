@@ -18,7 +18,7 @@ export const Users = [
 
 export const MafiaOne = ['Mafia'];
 export const MafiaTwo = ['Mafia', 'Mafia'];
-export const Roles = ['Politician', 'Solider', 'Police', 'Doctor', 'Reporter', 'Terrorist', 'Gangster', 'WatchMan'];
+export const Roles = ['Politician', 'Solider', 'Police', 'Doctor', 'Reporter', 'Undertaker', 'Thief', 'Terrorist', 'WatchMan'];
 
 Users.propTypes = {
     nickname: PropTypes.string.isRequired,

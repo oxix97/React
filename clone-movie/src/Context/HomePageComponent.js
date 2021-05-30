@@ -1,6 +1,13 @@
 import React, {useContext, useState} from "react";
 
 const themes = {
+    user1: {
+        nickname: 'user1',
+        role: 'Mafia',
+        life: 1,
+        skill: true,
+        voteCount : 0,
+    },
     light: {
         foregroundColor: '#000000',
         backgroundColor: '#eeeeee',
@@ -11,15 +18,30 @@ const themes = {
     }
 };
 
-const ThemeContext = React.createContext(themes.light);
-
-function HomePageCompoent() {
+const ThemeContext = React.createContext('');
+const UserContext = React.createContext('');
+function HomePageComponent() {
     return (
         <ThemeContext.Provider value={themes.dark}>
+            <UserContext.Provider value={themes.user1}>
+                <Memo/>
+            </UserContext.Provider>
             <Toolbar/>
         </ThemeContext.Provider>
-    )
+    );
 }
+const Memo = () =>{
+    return(
+        <div>
+            {
+                themes.user1.nickname = 'user2'
+            }
+            <li>{`nickname : ${themes.user1.nickname}`}</li>
+        </div>
+    )
+
+}
+
 
 function Toolbar(props) {
     return (
@@ -47,5 +69,5 @@ function ThemeButton() {
     )
 }
 
-export default HomePageCompoent;
+export default HomePageComponent;
 

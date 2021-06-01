@@ -6,11 +6,10 @@ const RoleDistribution = ({history}) => {
         <div>
             <div>
                 {
-                    Users.map((user,index) => (
+                    Users.users.map((user,index) => (
                         <div key={`key${index}`}>
                             <li>NICKNAME : {user.nickname}</li>
                             <li>ROLE : {user.role}</li>
-                            <li>LIFE : {user.life}</li>
                             <br/>
                         </div>
                     ))
@@ -18,7 +17,7 @@ const RoleDistribution = ({history}) => {
             </div>
             <div>
                 {
-                    Users.map((user, index) => {
+                    Users.users.map((user, index) => {
                         if (user.life === ALIVE) {
                             if (user.role === 'Mafia') {
                                 console.log('Mafia');

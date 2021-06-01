@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 
-const themes = {
+export const themes = {
     user1: {
         nickname: 'user1',
         role: 'Mafia',
@@ -42,7 +42,6 @@ const Memo = () =>{
 
 }
 
-
 function Toolbar(props) {
     return (
         <>
@@ -59,13 +58,15 @@ function ThemeButton() {
     }
     const theme = useContext(ThemeContext)
     return (
-        <button
-            style={{background: theme.backgroundColor, color: theme.foregroundColor}}
-            onClick={onClick}
-            disabled={isClick}
-        >
-            useContext apply !!
-        </button>
+       <div>
+           <button
+               style={{background: theme.foregroundColor, color: theme.foregroundColor}}
+               onClick={onClick}
+               disabled={isClick}
+           >
+               useContext apply !!
+           </button>
+       </div>
     )
 }
 

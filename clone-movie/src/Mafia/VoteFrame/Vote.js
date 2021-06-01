@@ -10,7 +10,7 @@ function Vote({history}) {
 
     const VotedUser = e => {
         const votedUser = e.target.value;
-        Users.map((user) => {
+        Users.users.map((user) => {
             if (user.nickname === votedUser || votedUser === 'none') {
                 user.vote += 1;
                 history.push({
@@ -25,25 +25,25 @@ function Vote({history}) {
     const votedCounted = () => {
         let count = 0;
         let num = 0;
-        Users.map((user, index) => {
+        Users.users.map((user, index) => {
             if (count <= user.vote) {
                 count = user.vote;
                 num = index;
             }
         });
-        console.log(Users[num].nickname + ' has ' + Users[num].vote);
+        console.log(Users.users[num].nickname + ' has ' + Users.users[num].vote);
     };
 
     return (
         <>
             {
-                Users.map((users, index) => (
+                Users.users.map((users, index) => (
                     <div key={index}>
                         <span>{`${users.nickname}`} &nbsp; </span>
                         <select onChange={onVoteChange}>
                             <option value='none'>무효표</option>
                             {
-                                Users.map((user, index) => (
+                                Users.users.map((user, index) => (
                                     <option key={`${index}`} name={'username'} value={voteNickname}>
                                         {user.nickname}
                                     </option>

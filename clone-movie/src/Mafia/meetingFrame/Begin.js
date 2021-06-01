@@ -5,19 +5,19 @@ import {Users, Roles,} from "./Users";
 function Begin({history}) {
     const shuffleList = () => {
         const mafiaList = [];
-        if (Users.length >= 4) {
-            if (Users.length <= 6) {
+        if (Users.users.length >= 4) {
+            if (Users.users.length <= 6) {
                 mafiaList.push('Mafia');
-            } else if (Users.length <= 10) {
+            } else if (Users.users.length <= 10) {
                 mafiaList.push('Mafia');
                 mafiaList.push('Mafia');
             }
             const temp = [
                 ...mafiaList,
-                ...Roles.slice(0, Users.length - mafiaList.length),
+                ...Roles.slice(0, Users.users.length - mafiaList.length),
             ]
             const roles = shuffle(temp);
-            Users.map((user, index) => {
+            Users.users.map((user, index) => {
                 user.role = roles[index];
             });
             history.push({
@@ -30,7 +30,6 @@ function Begin({history}) {
 
     return (
         <>
-
             <button onClick={shuffleList}>
                 게임 시작
             </button>

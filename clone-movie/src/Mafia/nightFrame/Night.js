@@ -1,5 +1,5 @@
 import React from "react";
-import {Users,initState} from "../meetingFrame/Users";
+import {Game} from "../meetingFrame/Users";
 import styled from "styled-components";
 import ReportUser from "./ReportUser";
 import DoctorUser from "./DoctorUser";
@@ -24,7 +24,7 @@ const WDisplay = styled.div`
 
 `
 
-function Night() {
+function Night({history}) {
     return (
         <>
             <HDisplay>
@@ -65,6 +65,9 @@ function Night() {
                     </Frame>
                 </HDisplay>
             </HDisplay>
+            <button onClick={() => history.push({
+                pathname : '/nightResult'
+            })}>결과</button>
         </>
     );
 };

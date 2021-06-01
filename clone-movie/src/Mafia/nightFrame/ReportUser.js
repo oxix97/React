@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {Users} from "../meetingFrame/Users";
+import {Game} from "../meetingFrame/Users";
 
-const ReportUser = ({history},props) => {
-    const [index,setIndex] = useState(0);
-    const [vote, setVote] = useState(Users.users[index].nickname)
+const ReportUser = ({history}) => {
+    const [index, setIndex] = useState(0);
+    const [vote, setVote] = useState(Game.users[index].nickname)
     const [isClick, setIsClick] = useState(false);
     const [reportVote, setReportVote] = useState('');
     const ReportOnChange = e => {
@@ -13,15 +13,15 @@ const ReportUser = ({history},props) => {
     const ReportOnClick = e => {
         const index = e.target.value;
         setIndex(index);
-        setReportVote(Users.users[index].role);
+        setReportVote(Game.users[index].role);
         setIsClick(true);
-        Users.users[index].skill=false;
+        Game.users[index].skill = false;
     }
 
     return (
         <div>
             <select onChange={ReportOnChange}>
-                {Users.users.map((user, index) =>
+                {Game.users.map((user, index) =>
                     (<option key={`player${index}`} value={index}>{user.nickname}</option>))}
             </select>
             <button value={vote} disabled={isClick} onClick={ReportOnClick}>취재</button>
@@ -34,8 +34,6 @@ const ReportUser = ({history},props) => {
                 )}>넘어가기
                 </button>
             }
-
-
         </div>
     )
 }

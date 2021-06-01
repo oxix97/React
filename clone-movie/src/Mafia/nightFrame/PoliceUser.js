@@ -1,9 +1,9 @@
 import {useState} from "react";
-import {Users,Roles} from "../meetingFrame/Users";
+import {Game} from "../meetingFrame/Users";
 
 function PoliceUser() {
     const [index, setIndex] = useState(0);
-    const [vote, setVote] = useState(Users.users[index].nickname)
+    const [vote, setVote] = useState(Game.users[index].nickname)
     const [isClick, setIsClick] = useState(false);
     const [policeVote, setPoliceVote] = useState(false);
 
@@ -14,14 +14,14 @@ function PoliceUser() {
     const onClick = e => {
         const playerIndex = e.target.value;
         setIndex(playerIndex);
-        setPoliceVote(Users.users[playerIndex].role === 'Mafia')
+        setPoliceVote(Game.users[playerIndex].role === 'Mafia')
         setIsClick(true);
     };
 
     return (
         <div>
             <select onChange={onChange}>
-                {Users.users.map((user, index) => (
+                {Game.users.map((user, index) => (
                     <option key={index} value={index}>{user.nickname}</option>
                 ))}
             </select>
@@ -35,7 +35,6 @@ function PoliceUser() {
             }
         </div>
     )
-
 }
 
 export default PoliceUser

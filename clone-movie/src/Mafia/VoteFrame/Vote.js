@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Users} from "../meetingFrame/Users";
+import {Game} from "../meetingFrame/Users";
 
 function Vote({history}) {
     const [isActive, setIsActive] = useState(false);
@@ -10,7 +10,7 @@ function Vote({history}) {
 
     const VotedUser = e => {
         const votedUser = e.target.value;
-        Users.users.map((user) => {
+        Game.users.map((user) => {
             if (user.nickname === votedUser || votedUser === 'none') {
                 user.vote += 1;
                 history.push({
@@ -25,25 +25,25 @@ function Vote({history}) {
     const votedCounted = () => {
         let count = 0;
         let num = 0;
-        Users.users.map((user, index) => {
+        Game.users.map((user, index) => {
             if (count <= user.vote) {
                 count = user.vote;
                 num = index;
             }
         });
-        console.log(Users.users[num].nickname + ' has ' + Users.users[num].vote);
+        console.log(Game.users[num].nickname + ' has ' + Game.users[num].vote);
     };
 
     return (
         <>
             {
-                Users.users.map((users, index) => (
+                Game.users.map((users, index) => (
                     <div key={index}>
                         <span>{`${users.nickname}`} &nbsp; </span>
                         <select onChange={onVoteChange}>
                             <option value='none'>무효표</option>
                             {
-                                Users.users.map((user, index) => (
+                                Game.users.map((user, index) => (
                                     <option key={`${index}`} name={'username'} value={voteNickname}>
                                         {user.nickname}
                                     </option>

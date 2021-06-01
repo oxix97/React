@@ -15,9 +15,7 @@ const ReportUser = ({history}) => {
         setIndex(index);
         setReportVote(Game.users[index].role);
         setIsClick(true);
-        Game.users[index].skill = false;
     }
-
     return (
         <div>
             <select onChange={ReportOnChange}>
@@ -26,13 +24,22 @@ const ReportUser = ({history}) => {
             </select>
             <button value={vote} disabled={isClick} onClick={ReportOnClick}>취재</button>
             {
-                isClick ? (
-                    <h3>{reportVote}입니다.</h3>
-                ) : <button onClick={() => history.push({
-                        pathname: '/policeVote'
+                isClick ?
+                    <div>
+                        {
+                            Game.users[Game.users.map(e => e.role).indexOf('Reporter')].skill ?
+                            <div>
+                                <h3>{reportVote}입니다.</h3>
+                                {Game.users[Game.users.map(e => e.role).indexOf('Reporter')].skill = false}
+                            </div>
+                            : <h3>이미 능력 사용하였습니다.</h3>}
+                    </div>
+
+                    : <button onClick={() => history.push({
+                        pathname: '/nightResult'
                     }
-                )}>넘어가기
-                </button>
+                    )}>넘어가기
+                    </button>
             }
         </div>
     )

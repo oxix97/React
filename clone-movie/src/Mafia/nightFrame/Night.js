@@ -5,18 +5,19 @@ import ReportUser from "./ReportUser";
 import DoctorUser from "./DoctorUser";
 import PoliceUser from "./PoliceUser";
 import MafiaUser from "./MafiaUser";
+import ThiefUser from "./ThiefUser";
 
-const HDisplay = styled.div`
+export const HDisplay = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 `
-const Frame = styled.div`
+export const Frame = styled.div`
     border : 5px solid green;
     margin : 3%;
     padding : 50px;
 `
-const WDisplay = styled.div`
+export const WDisplay = styled.div`
     display : flex;
     align-items : center;
     flex-wrap : wrap;
@@ -29,16 +30,16 @@ function Night({history}) {
         <>
             <HDisplay>
                 <WDisplay>
-                    {/*    {*/}
-                    {/*    Users.map((user, index) => (*/}
-                    {/*        <ul key={index}>*/}
-                    {/*            <li>{`nickname : ${user.nickname}`}</li>*/}
-                    {/*            <li>{`role : ${user.role}`}</li>*/}
-                    {/*            <li>{`life : ${user.life}`}</li>*/}
-                    {/*            <li>{`skill : ${user.skill}`}</li>*/}
-                    {/*        </ul>*/}
-                    {/*    ))*/}
-                    {/*}*/}
+                        {
+                        Game.users.map((user, index) => (
+                            <ul key={index}>
+                                <li>{`nickname : ${user.nickname}`}</li>
+                                <li>{`role : ${user.role}`}</li>
+                                <li>{`life : ${user.life}`}</li>
+                                <li>{`skill : ${user.skill}`}</li>
+                            </ul>
+                        ))
+                    }
                 </WDisplay>
                 <HDisplay>
                     <Frame>
@@ -54,14 +55,13 @@ function Night({history}) {
                         <PoliceUser/>
                     </Frame>
                     <Frame>
-                        <h3>Thief</h3>
-                    </Frame>
-                    <Frame>
-                        <h3>Mafia</h3>
+                        <h3>Mafia Frame</h3>
                         <MafiaUser/>
                     </Frame>
+
                     <Frame>
-                        {}
+                        <h3>Thief Frame</h3>
+                        <ThiefUser/>
                     </Frame>
                 </HDisplay>
             </HDisplay>
@@ -70,6 +70,6 @@ function Night({history}) {
             })}>결과</button>
         </>
     );
-};
+}
 
 export default Night

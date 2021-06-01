@@ -1,24 +1,28 @@
 import React from "react";
 import {Game} from "../meetingFrame/Users";
+import {HDisplay, WDisplay} from "./Night";
 
 function NightResult({history}) {
     return (
-        <div>
-            {
-                Game.users.map((user, index) => (
-                    <div key={index}>
-                        <li>{`name : ${user.nickname}`}</li>
-                        <li>{`role : ${user.role}`}</li>
-                        <li>{`life : ${user.life}`}</li>
-                    </div>
-                ))
-            }
+        <HDisplay>
+            <WDisplay>
+                {
+                    Game.users.map((user, index) => (
+                        <ul key={index}>
+                            <li>{`nickname : ${user.nickname}`}</li>
+                            <li>{`role : ${user.role}`}</li>
+                            <li>{`life : ${user.life}`}</li>
+                            <li>{`skill : ${user.skill}`}</li>
+                        </ul>
+                    ))
+                }
+            </WDisplay>
             <button onClick={() => history.push({
                 pathname: '/meetingRoom',
             })}>
                 회의방으로
             </button>
-        </div>
+        </HDisplay>
     )
 }
 

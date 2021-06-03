@@ -1,11 +1,12 @@
 import React from "react";
-
+import {PageFrame,Title} from "./Styled";
+import {PlayerInfo, Players} from "./gameSetting";
 
 function MainFrame() {
     return(
-        <div>
-
-        </div>
+        <PageFrame>
+            <PlayerInfo/>
+        </PageFrame>
     )
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import shuffle from 'lodash.shuffle';
+import {Title} from "./Styled";
 
 export const angels = ['Merlin','Percival','Citizen'];
 export const evils = ['Morgana','Assassin','Heresy','Modred'];
@@ -19,6 +20,21 @@ export const Players = [
 const mustHaveRoles = ['Merlin','Percival','Citizen','Morgana','Assassin']
 const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
 
+export const PlayerInfo = () => {
+    return(
+        <Title>
+            {
+                Players.map((user,index)=>(
+                    <ul key={index}>
+                        <li>{`nickname : ${user.nickname}`}</li>
+                        <li>{`role : ${user.role}`}</li>
+                    </ul>
+                ))
+            }
+        </Title>
+    )
+}
+
 function GameSetting({history}) {
     const onClick = () => {
         if (Players.length >= 5) {
@@ -30,10 +46,9 @@ function GameSetting({history}) {
             Players.map((user, index) => {
                 user.role = roles[index];
             });
-            // history.push({
-            //     pathname : '/main'
-            // })
-            console.log(Players)
+            history.push({
+                pathname : '/main'
+            })
         }else{
             alert('error')
         }

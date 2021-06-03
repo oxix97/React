@@ -2,6 +2,10 @@ import React from "react";
 import {Game} from "../meetingFrame/Users";
 import {HDisplay, WDisplay} from "./Night";
 
+const GoOut = e => {
+    
+}
+
 function NightResult({history}) {
     return (
         <HDisplay>

@@ -1,5 +1,6 @@
 import React from 'react';
-import {Game, ALIVE, DEAD} from "./Users";
+import {ALIVE, DEAD, Game} from "./Users";
+import {HDisplay} from "../nightFrame/Night";
 
 const RoleDistribution = ({history}) => {
     return (
@@ -15,21 +16,21 @@ const RoleDistribution = ({history}) => {
                     ))
                 }
             </div>
-            <div>
-                {
-                    Game.users.map((user, index) => {
-                        if (user.life === ALIVE) {
-                            if (user.role === 'Mafia') {
-                                console.log('Mafia');
-                            } else {
-                                console.log('Citizen');
-                            }
-                        } else if (user.life === DEAD) {
-                            console.log('Dead');
-                        }
-                    })
-                }
-            </div>
+            {/*<div>*/}
+            {/*    {*/}
+            {/*        Game.users.map((user, index) => {*/}
+            {/*            if (user.life === ALIVE) {*/}
+            {/*                if (user.role === 'Mafia') {*/}
+            {/*                    console.log('Mafia');*/}
+            {/*                } else {*/}
+            {/*                    console.log('Citizen');*/}
+            {/*                }*/}
+            {/*            } else if (user.life === DEAD) {*/}
+            {/*                console.log('Dead');*/}
+            {/*            }*/}
+            {/*        })*/}
+            {/*    }*/}
+            {/*</div>*/}
             <button onClick={() => (history.push({
                 pathname: "/vote",
             }))}>

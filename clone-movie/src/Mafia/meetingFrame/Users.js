@@ -15,7 +15,7 @@ export const Game = {
         {nickname: 'user8', life: ALIVE, role: '', vote: 0, skill: true},
         {nickname: 'user9', life: ALIVE, role: '', vote: 0, skill: true},
         {nickname: 'user10', life: ALIVE, role: '', vote: 0, skill: true},
-    ]
+    ],
 }
 
 export const Roles = [
@@ -23,7 +23,7 @@ export const Roles = [
     'Solider', 'Police',
     'Doctor', 'Reporter',
     'Undertaker', 'Thief',
-    'Terrorist', 'WatchMan',
+    'Terrorist', 'Stalker',
 ];
 
 

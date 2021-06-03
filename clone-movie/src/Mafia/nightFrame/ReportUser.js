@@ -28,11 +28,11 @@ const ReportUser = ({history}) => {
                     <div>
                         {
                             Game.users[Game.users.map(e => e.role).indexOf('Reporter')].skill ?
-                            <div>
-                                <h3>{reportVote}입니다.</h3>
-                                {Game.users[Game.users.map(e => e.role).indexOf('Reporter')].skill = false}
-                            </div>
-                            : <h3>이미 능력 사용하였습니다.</h3>}
+                                <div>
+                                    <h3>{reportVote}입니다.</h3>
+                                    {Game.users[Game.users.map(e => e.role).indexOf('Reporter')].skill = false}
+                                </div>
+                                : <h3>이미 능력 사용하였습니다.</h3>}
                     </div>
 
                     : <button onClick={() => history.push({

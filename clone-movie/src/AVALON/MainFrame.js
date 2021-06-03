@@ -1,13 +1,21 @@
 import React from "react";
-import {PageFrame,Title} from "./Styled";
+import {Frame, PageFrame, Title} from "./Styled";
 import {PlayerInfo, Players} from "./gameSetting";
 import MerlinPlayer from "./MerlinPlayer";
+import PercivalPlayer from "./PercivalPlayer";
 
 function MainFrame() {
-    return(
+    return (
         <PageFrame>
             <PlayerInfo/>
-            <MerlinPlayer/>
+            <Frame>
+                <h4>Merlin</h4>
+                <MerlinPlayer/>
+            </Frame>
+            <Frame>
+                <h4>Percival</h4>
+                <PercivalPlayer/>
+            </Frame>
         </PageFrame>
     )
 }

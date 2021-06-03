@@ -4,6 +4,8 @@ import {Title} from "./Styled";
 
 export const angels = ['Merlin','Percival','Citizen'];
 export const evils = ['Morgana','Assassin','Heresy','Modred'];
+export const merlinSight = ['Morgana','Assassin','Heresy'];
+export const percivalSight = ['Morgana','Merlin'];
 
 export const Players = [
     {nickname: 'user1', vote: '', role: '',},

@@ -1,5 +1,4 @@
 import React from 'react';
-import GameSetting from "./AVALON/gameSetting";
 import {Switch, Route} from 'react-router-dom';
 import {
     Setting,Main

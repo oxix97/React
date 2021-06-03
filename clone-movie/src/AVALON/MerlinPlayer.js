@@ -1,8 +1,11 @@
 import React from "react";
-import {evils} from "./gameSetting";
+import {evils, Players} from "./gameSetting";
 const godEyes = () =>{
-    const list = evils.slice(0,3);
-    console.log(list)
+    const evilList = evils.slice(0,3);
+    Players.map((user, index) => {
+        if(evilList.includes(user.role))
+            console.log(user.nickname)
+    });
 }
 
 function MerlinPlayer() {

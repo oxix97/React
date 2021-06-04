@@ -8,17 +8,24 @@ export const evils = ['Morgana', 'Assassin', 'Heresy', 'Modred'];
 export const merlinSight = ['Morgana', 'Assassin', 'Heresy'];
 export const percivalSight = ['Morgana', 'Merlin'];
 
-export const _5P = [2,3,2,3,3];
-export const _6P = [2,3,4,3,4];
-export const _7P = [2,3,3,4,4];
-export const _8to10P = [3,4,4,5,5];
+export const expeditionCount = {
+    _5P: [2, 3, 2, 3, 3],
+    _6P: [2, 3, 4, 3, 4],
+    _7P: [2, 3, 3, 4, 4],
+    _8to10P: [3, 4, 4, 5, 5],
+}
+
+export const leader = {
+    represent: ''
+}
+
 
 export const Players = [
-    {nickname: 'user1', vote: '', role: '',toGo : ''},
-    {nickname: 'user2', vote: '', role: '',toGo : ''},
-    {nickname: 'user3', vote: '', role: '',toGo : ''},
-    {nickname: 'user4', vote: '', role: '',toGo : ''},
-    {nickname: 'user5', vote: '', role: '',toGo : ''},
+    {nickname: 'user1', vote: '', role: '', toGo: ''},
+    {nickname: 'user2', vote: '', role: '', toGo: ''},
+    {nickname: 'user3', vote: '', role: '', toGo: ''},
+    {nickname: 'user4', vote: '', role: '', toGo: ''},
+    {nickname: 'user5', vote: '', role: '', toGo: ''},
     // {nickname: 'user6', vote: '', role: '',toGo : ''},
     // {nickname: 'user7', vote: '', role: '',toGo : ''},
     // {nickname: 'user8', vote: '', role: '',toGo : ''},

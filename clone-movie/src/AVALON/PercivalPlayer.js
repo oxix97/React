@@ -2,7 +2,7 @@ import React from "react";
 import {Players,percivalSight} from "./gameSetting";
 
 const percivalSkill = () => {
-    Players.map((user, index) => {
+    Players.map((user) => {
         if (percivalSight.includes(user.role)) {
             console.log(user.nickname)
         }

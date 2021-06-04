@@ -1,36 +1,48 @@
-import React from "react";
+import React, {useState} from "react";
 import shuffle from 'lodash.shuffle';
 import {Title} from "./Styled";
+import ExpeditionVote from "./ExpeditionVote";
 
-export const angels = ['Merlin','Percival','Citizen'];
-export const evils = ['Morgana','Assassin','Heresy','Modred'];
-export const merlinSight = ['Morgana','Assassin','Heresy'];
-export const percivalSight = ['Morgana','Merlin'];
+export const angels = ['Merlin', 'Percival', 'Citizen'];
+export const evils = ['Morgana', 'Assassin', 'Heresy', 'Modred'];
+export const merlinSight = ['Morgana', 'Assassin', 'Heresy'];
+export const percivalSight = ['Morgana', 'Merlin'];
+
+export const _5P = [2,3,2,3,3];
+export const _6P = [2,3,4,3,4];
+export const _7P = [2,3,3,4,4];
+export const _8to10P = [3,4,4,5,5];
 
 export const Players = [
-    {nickname: 'user1', vote: '', role: '',},
-    {nickname: 'user2', vote: '', role: '',},
-    {nickname: 'user3', vote: '', role: '',},
-    {nickname: 'user4', vote: '', role: '',},
-    {nickname: 'user5', vote: '', role: '',},
-    {nickname: 'user6', vote: '', role: '',},
-    {nickname: 'user7', vote: '', role: '',},
-    {nickname: 'user8', vote: '', role: '',},
-    {nickname: 'user9', vote: '', role: '',},
+    {nickname: 'user1', vote: '', role: '',toGo : ''},
+    {nickname: 'user2', vote: '', role: '',toGo : ''},
+    {nickname: 'user3', vote: '', role: '',toGo : ''},
+    {nickname: 'user4', vote: '', role: '',toGo : ''},
+    {nickname: 'user5', vote: '', role: '',toGo : ''},
+    {nickname: 'user6', vote: '', role: '',toGo : ''},
+    {nickname: 'user7', vote: '', role: '',toGo : ''},
+    {nickname: 'user8', vote: '', role: '',toGo : ''},
+    {nickname: 'user9', vote: '', role: '',toGo : ''},
 ]
 
-const mustHaveRoles = ['Merlin','Percival','Citizen','Morgana','Assassin']
+const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin']
 const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
 
 export const PlayerInfo = () => {
-    return(
+    return (
         <Title>
             {
-                Players.map((user,index)=>(
-                    <ul key={index}>
-                        <li>{`nickname : ${user.nickname}`}</li>
-                        <li>{`role : ${user.role}`}</li>
-                    </ul>
+                Players.map((user, index) => (
+                    <div>
+                        <ul key={index}>
+                            <li>{`nickname : ${user.nickname}`}</li>
+                            <li>{`role : ${user.role}`}</li>
+                        </ul>
+                        <Title>
+                            <ExpeditionVote index={index}/>
+                        </Title>
+                    </div>
+
                 ))
             }
         </Title>
@@ -49,12 +61,11 @@ function GameSetting({history}) {
                 user.role = roles[index];
             });
             history.push({
-                pathname : '/main'
+                pathname: '/main'
             })
-        }else{
+        } else {
             alert('error')
         }
-
     };
     return (
         <div>

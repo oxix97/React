@@ -8,7 +8,7 @@ function Expedition() {
     const onClick = () => {
         Players.map((user, index) => {
           console.log(user.nickname);
-          console.log(user.toGo)
+          console.log(user.toGo);
         })
     };
     return (

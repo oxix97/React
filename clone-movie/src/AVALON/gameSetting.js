@@ -19,10 +19,10 @@ export const Players = [
     {nickname: 'user3', vote: '', role: '',toGo : ''},
     {nickname: 'user4', vote: '', role: '',toGo : ''},
     {nickname: 'user5', vote: '', role: '',toGo : ''},
-    {nickname: 'user6', vote: '', role: '',toGo : ''},
-    {nickname: 'user7', vote: '', role: '',toGo : ''},
-    {nickname: 'user8', vote: '', role: '',toGo : ''},
-    {nickname: 'user9', vote: '', role: '',toGo : ''},
+    // {nickname: 'user6', vote: '', role: '',toGo : ''},
+    // {nickname: 'user7', vote: '', role: '',toGo : ''},
+    // {nickname: 'user8', vote: '', role: '',toGo : ''},
+    // {nickname: 'user9', vote: '', role: '',toGo : ''},
 ]
 
 const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin']

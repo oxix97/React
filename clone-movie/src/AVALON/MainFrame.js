@@ -29,7 +29,6 @@ function MainFrame() {
                     <Expedition/>
                 </GameState>
             </GameFrame>
-
         </PageFrame>
     )
 }

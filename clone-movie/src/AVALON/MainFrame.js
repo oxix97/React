@@ -2,33 +2,27 @@ import React from "react";
 import {
     Frame, PageFrame,
     RoleList, UserList,
-    GameFrame, GameState} from "./Styled";
-import {PlayerInfo} from "./gameSetting";
+    GameFrame, GameState
+} from "./Styled";
 import MerlinPlayer from "./MerlinPlayer";
 import PercivalPlayer from "./PercivalPlayer";
+import VoteResult from "./VoteResult";
 import Expedition from "./Expedition";
+import ExpeditionVote from "./ExpeditionVote";
+import PlayerInfo from "./PlayerInfo";
 
 function MainFrame() {
     return (
         <PageFrame>
-            <UserList>
-                <PlayerInfo/>
-            </UserList>
+            <Expedition/>
+            <UserList/>
+            <PlayerInfo/>
             <GameFrame>
-                <RoleList>
-                    <Frame color={'green'}>
-                        <h4>Merlin</h4>
-                        <MerlinPlayer/>
-                    </Frame>
-                    <Frame color={'green'}>
-                        <h4>Percival</h4>
-                        <PercivalPlayer/>
-                    </Frame>
-                </RoleList>
                 <GameState>
-                    <Expedition/>
+
                 </GameState>
             </GameFrame>
+            <VoteResult/>
         </PageFrame>
     )
 }

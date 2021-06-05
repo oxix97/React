@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import shuffle from 'lodash.shuffle';
 import {Title} from "./Styled";
-import ExpeditionVote from "./ExpeditionVote";
+import Vote from "./Vote";
+import MerlinPlayer from "./MerlinPlayer";
+import PercivalPlayer from "./PercivalPlayer";
 
 export const angels = ['Merlin', 'Percival', 'Citizen'];
 export const evils = ['Morgana', 'Assassin', 'Heresy', 'Modred'];
@@ -14,47 +16,24 @@ export const expeditionCount = {
     _7P: [2, 3, 3, 4, 4],
     _8to10P: [3, 4, 4, 5, 5],
 }
+export const Background = {
+    expeditionStage : '',
 
-export const leader = {
-    represent: ''
 }
-
-
 export const Players = [
-    {nickname: 'user1', vote: '', role: '', toGo: ''},
-    {nickname: 'user2', vote: '', role: '', toGo: ''},
-    {nickname: 'user3', vote: '', role: '', toGo: ''},
-    {nickname: 'user4', vote: '', role: '', toGo: ''},
-    {nickname: 'user5', vote: '', role: '', toGo: ''},
-    // {nickname: 'user6', vote: '', role: '',toGo : ''},
-    // {nickname: 'user7', vote: '', role: '',toGo : ''},
-    // {nickname: 'user8', vote: '', role: '',toGo : ''},
-    // {nickname: 'user9', vote: '', role: '',toGo : ''},
+    {nickname: 'user1', role: '', vote: '', toGo: '',selected : ''},
+    {nickname: 'user2', role: '', vote: '', toGo: '',selected : ''},
+    {nickname: 'user3', role: '', vote: '', toGo: '',selected : ''},
+    {nickname: 'user4', role: '', vote: '', toGo: '',selected : ''},
+    {nickname: 'user5', role: '', vote: '', toGo: '',selected : ''},
+    // {nickname: 'user6', role: '', vote: '', toGo: '',selected : ''},
+    // {nickname: 'user7', role: '', vote: '', toGo: '',selected : ''},
+    // {nickname: 'user8', role: '', vote: '', toGo: '',selected : ''},
+    // {nickname: 'user9', role: '', vote: '', toGo: '',selected : ''},
 ]
 
 const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin']
 const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
-
-export const PlayerInfo = () => {
-    return (
-        <Title>
-            {
-                Players.map((user, index) => (
-                    <div>
-                        <ul key={index}>
-                            <li>{`nickname : ${user.nickname}`}</li>
-                            <li>{`role : ${user.role}`}</li>
-                        </ul>
-                        <Title>
-                            <ExpeditionVote index={index}/>
-                        </Title>
-                    </div>
-
-                ))
-            }
-        </Title>
-    )
-}
 
 function GameSetting({history}) {
     const onClick = () => {

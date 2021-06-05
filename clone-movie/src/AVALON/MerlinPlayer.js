@@ -1,13 +1,12 @@
 import React from "react";
 import {merlinSight, Players} from "./gameSetting";
 
-
-function MerlinPlayer(props) {
+function MerlinPlayer() {
     return(
         <div>
             {
                 Players.map((user,index)=>(
-                    <div>
+                    <div key={index}>
                         {merlinSight.includes(user.role) ? user.nickname : null}
                     </div>
                 ))

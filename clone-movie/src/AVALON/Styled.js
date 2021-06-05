@@ -35,6 +35,12 @@ export const GameFrame = styled.div`
 `
 export const GameState = styled.div`
     display : flex;
+    width : 70%;
     flex-direction : column;
     border : 5px solid black;
+`
+export const PublicFrame = styled.div`
+    display : flex;
+    flex-direction : column;
+    border : 3px solid blue;   
 `

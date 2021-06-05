@@ -1,54 +1,49 @@
 import React, {useState} from "react";
 import {Players} from "./gameSetting";
+import PlayerInfo from "./PlayerInfo";
+import Vote from "./Vote";
+import {Title} from "./Styled";
+import {withRouter} from "react-router-dom";
 
-function ExpeditionVote(props) {
-    const [count, setCount] = useState(1);
-    const [vote, setVote] = useState('agree');
-    const [click, setClick] = useState(false);
-    const onChange = e => {
-        setVote(e.target.value);
-    };
+function ExpeditionVote({history}) {
+    const [isClick, setIsClick] = useState(false);
 
-    const onClick = e => {
-        if (e.target.value === 'agree') {
-            setVote('agree')
-        } else if (e.target.value === 'oppose') {
-            setVote('oppose')
-            setCount(count + 1);
-        }
-        Players[props.index].toGo = vote;
-        setClick(true);
-    };
-
+    const onClick = () => {
+        setIsClick(true);
+    }
+    const nextPage = () => {
+        let agree = 0;
+        let oppose = 0;
+        Players.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
+        agree >= oppose ? history.push({
+            pathname : '/expedition'
+        }) : history.push({
+            pathname : '/main'
+        })
+    }
     return (
         <div>
-            {click ?
-                <div>{vote === 'agree' ? '찬성' : '반대'}</div> :
-                <div>
-                    <form>
-                        <label>찬성<input
-                            type="radio"
-                            name={'vote'}
-                            value={'agree'}
-                            onChange={onChange}/>
-                        </label>
-                        <label>반대 <input
-                            type="radio"
-                            name={'vote'}
-                            value={'oppose'}
-                            onChange={onChange}/>
-                        </label>
-                    </form>
-                    <button
-                        onClick={onClick}
-                        disabled={click}
-                        value={vote}>
-                        확인
-                    </button>
-                </div>
+            <PlayerInfo/>
+            <Title>
+                {Players.map((user, index) => <Vote key={index} index={index}/>)}
+            </Title>
+            <br/>
+            <button onClick={onClick}>결과</button>
+            {/*나중에 Timeout으로 처리*/}
+            {
+                isClick ?
+                    <div>
+                        {Players.map((user, index) => (
+                            <ul key={index}>
+                                <li>{`nickname : ${user.nickname}`}</li>
+                                <li>{`vote : ${user.toGo === 'agree' ? '찬성' : '반대'}`}</li>
+                            </ul>
+                        ))}
+                        <button onClick={nextPage}>다음</button>
+                    </div> : null
             }
         </div>
     )
 }
 
-export default ExpeditionVote
+export default withRouter(ExpeditionVote);

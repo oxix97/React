@@ -1,18 +1,17 @@
 import React from "react";
-import {Players,percivalSight} from "./gameSetting";
+import {Players, percivalSight} from "./gameSetting";
 
-const percivalSkill = () => {
-    Players.map((user) => {
-        if (percivalSight.includes(user.role)) {
-            console.log(user.nickname)
-        }
-    });
-}
 
 function PercivalPlayer() {
-    return (
+    return(
         <div>
-            <button onClick={percivalSkill}>percival</button>
+            {
+                Players.map((user,index)=>(
+                    <div key={index}>
+                        {percivalSight.includes(user.role) ? user.nickname : null}
+                    </div>
+                ))
+            }
         </div>
     )
 }

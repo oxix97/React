@@ -1,16 +1,17 @@
 import React from "react";
-import {evils, merlinSight, Players} from "./gameSetting";
-const godEyes = () =>{
-    Players.map((user, index) => {
-        if(merlinSight.includes(user.role))
-            console.log(user.nickname)
-    });
-}
+import {merlinSight, Players} from "./gameSetting";
 
-function MerlinPlayer() {
+
+function MerlinPlayer(props) {
     return(
         <div>
-            <button onClick={godEyes}>Merlin</button>
+            {
+                Players.map((user,index)=>(
+                    <div>
+                        {merlinSight.includes(user.role) ? user.nickname : null}
+                    </div>
+                ))
+            }
         </div>
     )
 }

@@ -1,33 +1,53 @@
-import {Title} from "./Styled";
 import MerlinPlayer from "./MerlinPlayer";
 import PercivalPlayer from "./PercivalPlayer";
-import React from "react";
-import {Players} from "./gameSetting";
+import React, {useState} from "react";
+import {Players, Background} from "./gameSetting";
+import styled from "styled-components";
+import Expedition from "./Expedition";
+import {withRouter} from "react-router-dom";
 
-const PlayerInfo = () => {
+const Frame = styled.div`
+    display : flex;
+    flex-direction : row;
+    flex-wrap : wrap;
+`
+
+const User = styled.div`
+    display : flex;
+    flex-direction : column;
+    flex-wrap : wrap;
+    margin : 0 auto;
+    border 3px solid black;
+    padding : 5px;
+`
+
+const PlayerInfo = ({history}) => {
+    const onClick = () => {
+        history.push({
+            pathname: '/result'
+        })
+    }
     return (
-        <Title>
+        <Frame>
             {
                 Players.map((user, index) => (
-                    <div key={index}>
+                    <User key={index}>
                         <ul>
                             <li>{`nickname : ${user.nickname}`}</li>
                             <li>{`role : ${user.role}`}</li>
+                            <br/>
+                            {user.role === 'Merlin' ?
+                                <MerlinPlayer index={index}/> : null
+                            }
+                            {user.role === 'Percival' ?
+                                <PercivalPlayer index={index}/> : null
+                            }
                         </ul>
-                        {user.role ==='Merlin' ?
-                            <MerlinPlayer index={index}/> : null
-                        }
-                        {user.role==='Percival' ?
-                            <PercivalPlayer index={index}/> : null
-                        }
-                        {/*<Title>*/}
-                        {/*    <Vote index={index}/>*/}
-                        {/*</Title>*/}
-                    </div>
-
+                        {index === Background.represent ? <button onClick={onClick}>원정 인원 정하기</button> : null}
+                    </User>
                 ))
             }
-        </Title>
+        </Frame>
     )
 }
-export default PlayerInfo;
+export default withRouter(PlayerInfo);

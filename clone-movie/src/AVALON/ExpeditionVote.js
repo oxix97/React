@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import {Players} from "./gameSetting";
+import {Background, Players} from "./gameSetting";
 import PlayerInfo from "./PlayerInfo";
 import Vote from "./Vote";
 import {Title} from "./Styled";
 import {withRouter} from "react-router-dom";
+import Expedition from "./Expedition";
 
 function ExpeditionVote({history}) {
     const [isClick, setIsClick] = useState(false);
@@ -15,15 +16,26 @@ function ExpeditionVote({history}) {
         let agree = 0;
         let oppose = 0;
         Players.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
-        agree >= oppose ? history.push({
-            pathname : '/expedition'
-        }) : history.push({
-            pathname : '/main'
-        })
+        if (agree >= oppose) {
+            Background.expeditionStage = 0;
+            history.push({
+                pathname: '/expedition',
+            })
+        } else if (Background.expeditionStage === 4) {
+            Background.expeditionStage = 0;
+        } else {
+            Background.expeditionStage += 1;
+            history.push({
+                pathname: '/main'
+            });
+        }
+        Background.represent += 1;
+        Background.represent %= Players.length;
     }
     return (
         <div>
             <PlayerInfo/>
+            <Expedition/>
             <Title>
                 {Players.map((user, index) => <Vote key={index} index={index}/>)}
             </Title>

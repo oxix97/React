@@ -1,9 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import shuffle from 'lodash.shuffle';
-import {Title} from "./Styled";
-import Vote from "./Vote";
-import MerlinPlayer from "./MerlinPlayer";
-import PercivalPlayer from "./PercivalPlayer";
+
 
 export const angels = ['Merlin', 'Percival', 'Citizen'];
 export const evils = ['Morgana', 'Assassin', 'Heresy', 'Modred'];
@@ -17,15 +14,15 @@ export const expeditionCount = {
     _8to10P: [3, 4, 4, 5, 5],
 }
 export const Background = {
-    expeditionStage : '',
-
+    expeditionStage : 0,
+    represent : 0,
 }
 export const Players = [
-    {nickname: 'user1', role: '', vote: '', toGo: '',selected : ''},
-    {nickname: 'user2', role: '', vote: '', toGo: '',selected : ''},
-    {nickname: 'user3', role: '', vote: '', toGo: '',selected : ''},
-    {nickname: 'user4', role: '', vote: '', toGo: '',selected : ''},
-    {nickname: 'user5', role: '', vote: '', toGo: '',selected : ''},
+    {nickname: 'user1', role: '', vote: '', toGo: '',selected : false},
+    {nickname: 'user2', role: '', vote: '', toGo: '',selected : false},
+    {nickname: 'user3', role: '', vote: '', toGo: '',selected : false},
+    {nickname: 'user4', role: '', vote: '', toGo: '',selected : false},
+    {nickname: 'user5', role: '', vote: '', toGo: '',selected : false},
     // {nickname: 'user6', role: '', vote: '', toGo: '',selected : ''},
     // {nickname: 'user7', role: '', vote: '', toGo: '',selected : ''},
     // {nickname: 'user8', role: '', vote: '', toGo: '',selected : ''},

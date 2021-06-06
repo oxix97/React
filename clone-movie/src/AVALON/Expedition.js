@@ -1,17 +1,9 @@
 import React, {useState} from "react";
-import {expeditionCount} from "./gameSetting";
+import {expeditionCount, Background} from "./gameSetting";
 import {Players} from "./gameSetting";
-import {withRouter} from 'react-router-dom'
-import {Frame} from "./Styled";
-import styled from "styled-components";
+import {withRouter} from 'react-router-dom';
 
-const Stage = styled.div`
-    display : flex;
-    flex-direction : row;
-    flex-wrap : wrap;
-`
-
-function Expedition({history}) {
+function Expedition({history}, props) {
     let temp = [];
     switch (Players.length) {
         case 5 :
@@ -33,36 +25,41 @@ function Expedition({history}) {
     }
     const [stage, setStage] = useState(0);
     const [count, setCount] = useState(0);
-    const [voteStage,setVoteStage] = useState(0);
+    const [voteStage, setVoteStage] = useState(0);
+    const [isClick, setIsClick] = useState(true);
+
     const onChange = e => {
         e.target.checked ? setCount(count + 1) : setCount(count - 1);
     }
+
     const onClick = () => {
-        if (count===temp[stage]){
-            setVoteStage(voteStage+1);
+        if (count === temp[stage]) {
+            setVoteStage(voteStage + 1);
             history.push({
-                pathname : '/result',
-                index : ''
-            })
-        }else{
+                pathname: '/result',
+                index: ''
+            });
+            setIsClick(false);
+        } else {
             alert(`${temp[stage]}명을 선택해야합니다.`);
         }
     }
     return (
         <div>{
-            Players.map((user, index) => (
-                <ul key={index}>
-                    <label>{user.nickname}
-                        <input
-                            onChange={onChange}
-                            type="checkbox"
-                            name={'checkbox'}
-                            value={index}/>
-                    </label>
-                </ul>
-            ))
+            isClick ?
+                Players.map((user, index) => (
+                    <ul key={index}>
+                        <label>{user.nickname}
+                            <input
+                                onChange={onChange}
+                                type="checkbox"
+                                name={'checkbox'}
+                                value={index}/>
+                        </label>
+                    </ul>
+                )) : null
         }
-            <button onClick={onClick}>결정</button>
+            <button disabled={!isClick} onClick={onClick}>결정</button>
         </div>
     );
 }

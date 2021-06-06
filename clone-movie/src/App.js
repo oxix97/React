@@ -1,20 +1,20 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {
-    Setting,Main,Result
+    Setting,Main,Result,Stage
 } from'./AVALON/index'
 function App() {
     return (
         <Switch>
             <Route exact path={'/'} component={Setting}/>
             <Route exact path={'/main'} component={Main}/>
-            <Route exact paht={'/result'} component={Result}/>
+            <Route exact path={'/result'} component={Result}/>
+            <Route exact path={'/expedition'} component={Stage}/>
         </Switch>
     )
 }
 
 export default App;
-
 
 // import {
 //     Begin, Night, NightResult, ReportUser,

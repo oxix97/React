@@ -1,7 +1,7 @@
 import {configure} from "@storybook/react";
 
 function loadStories() {
-    require('../Component/InputStory');
+    require('../src/DoItReact/stories/InputStory')
 }
 
 configure(loadStories,module);

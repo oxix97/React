@@ -15,7 +15,7 @@ function VoteResult({history}) {
 
     return (
         <GameFrame>
-            <button onClick={onClick}>button</button>
+            {/*<button onClick={onClick}>button</button>*/}
         </GameFrame>
     );
 }

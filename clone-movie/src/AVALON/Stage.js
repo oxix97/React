@@ -6,11 +6,11 @@ function Stage() {
             {
                 Players.map((user,index)=>(
                     <ul key={index}>
-                        {user.selected}
+                        {user.selected ? <li>{user.nickname}</li> : null}
                     </ul>
                 ))
             }
         </div>
     )
 }
-export default Stage
+export default Stage;

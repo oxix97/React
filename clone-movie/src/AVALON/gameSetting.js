@@ -13,16 +13,18 @@ export const expeditionCount = {
     _7P: [2, 3, 3, 4, 4],
     _8to10P: [3, 4, 4, 5, 5],
 }
+
 export const Background = {
-    expeditionStage : 0,
-    represent : 0,
+    expeditionStage: 0,
+    represent: 0,
 }
+
 export const Players = [
-    {nickname: 'user1', role: '', vote: '', toGo: '',selected : false},
-    {nickname: 'user2', role: '', vote: '', toGo: '',selected : false},
-    {nickname: 'user3', role: '', vote: '', toGo: '',selected : false},
-    {nickname: 'user4', role: '', vote: '', toGo: '',selected : false},
-    {nickname: 'user5', role: '', vote: '', toGo: '',selected : false},
+    {nickname: 'user1', role: '', vote: '', toGo: '', selected: false},
+    {nickname: 'user2', role: '', vote: '', toGo: '', selected: false},
+    {nickname: 'user3', role: '', vote: '', toGo: '', selected: false},
+    {nickname: 'user4', role: '', vote: '', toGo: '', selected: false},
+    {nickname: 'user5', role: '', vote: '', toGo: '', selected: false},
     // {nickname: 'user6', role: '', vote: '', toGo: '',selected : ''},
     // {nickname: 'user7', role: '', vote: '', toGo: '',selected : ''},
     // {nickname: 'user8', role: '', vote: '', toGo: '',selected : ''},

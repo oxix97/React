@@ -29,6 +29,7 @@ function Expedition({history}, props) {
     const [isClick, setIsClick] = useState(true);
 
     const onChange = e => {
+        Players[e.target.value].selected = e.target.checked;
         e.target.checked ? setCount(count + 1) : setCount(count - 1);
     }
 

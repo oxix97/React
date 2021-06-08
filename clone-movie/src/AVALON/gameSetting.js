@@ -15,7 +15,7 @@ export const expeditionCount = {
 }
 
 export const Background = {
-    expeditionStage: 0,
+    expeditionStage: 1,
     represent: 0,
 }
 

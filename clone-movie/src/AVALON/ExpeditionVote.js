@@ -8,7 +8,7 @@ import Expedition from "./Expedition";
 
 function ExpeditionVote({history}) {
     const [isClick, setIsClick] = useState(false);
-
+    const [count, setCount] = useState(Background.expeditionStage);
     const onClick = () => {
         setIsClick(true);
     }
@@ -17,12 +17,12 @@ function ExpeditionVote({history}) {
         let oppose = 0;
         Players.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
         if (agree >= oppose) {
-            Background.expeditionStage = 0;
+            setCount(0);
             history.push({
                 pathname: '/expedition',
             })
-        } else if (Background.expeditionStage === 4) {
-            Background.expeditionStage = 0;
+        } else if (count === 5) {
+            Background.expeditionStage = 1;
         } else {
             Background.expeditionStage += 1;
             history.push({
@@ -30,7 +30,6 @@ function ExpeditionVote({history}) {
             });
         }
         Background.represent += 1;
-        Background.represent %= Players.length;
     }
     return (
         <div>

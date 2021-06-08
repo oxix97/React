@@ -8,7 +8,8 @@ import Expedition from "./Expedition";
 
 function ExpeditionVote({history}) {
     const [isClick, setIsClick] = useState(false);
-    const [count, setCount] = useState(Background.expeditionStage);
+    const [vote, setVote] = useState(Background.expeditionStage);
+    const [count, setCount] = useState(Background.represent);
     const onClick = () => {
         setIsClick(true);
     }
@@ -17,19 +18,33 @@ function ExpeditionVote({history}) {
         let oppose = 0;
         Players.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
         if (agree >= oppose) {
-            setCount(0);
+            setVote(1);
             history.push({
                 pathname: '/expedition',
+                state: {
+                    vote: vote,
+                    count: count,
+                }
             })
-        } else if (count === 5) {
-            Background.expeditionStage = 1;
+
+        } else if (vote === 5) {
+            setVote(1)
+            // 5스텍 패배시 원정 패배
         } else {
-            Background.expeditionStage += 1;
+            // 반대 인원이 더 많아 다음 인원에게 대표자를 넘긴다.
+            setVote(vote + 1);
+            Background.expeditionStage = vote;
             history.push({
-                pathname: '/main'
+                pathname: '/main',
+                state: {
+                    vote: vote,
+                    count: count,
+                }
             });
         }
         Background.represent += 1;
+        Background.represent %= Players.length;
+        // 해당 부분 state 로 구현하기
     }
     return (
         <div>

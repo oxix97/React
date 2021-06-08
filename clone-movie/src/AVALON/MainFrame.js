@@ -18,7 +18,6 @@ function MainFrame() {
                 <GameState>
                 </GameState>
             </GameFrame>
-            <VoteResult/>
         </PageFrame>
     )
 }

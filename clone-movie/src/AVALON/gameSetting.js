@@ -7,7 +7,7 @@ export const evils = ['Morgana', 'Assassin', 'Heresy', 'Modred'];
 export const merlinSight = ['Morgana', 'Assassin', 'Heresy'];
 export const percivalSight = ['Morgana', 'Merlin'];
 
-export const expeditionCount = {
+export const needPlayers = {
     _5P: [2, 3, 2, 3, 3],
     _6P: [2, 3, 4, 3, 4],
     _7P: [2, 3, 3, 4, 4],

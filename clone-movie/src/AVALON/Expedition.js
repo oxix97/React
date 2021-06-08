@@ -1,48 +1,47 @@
 import React, {useState} from "react";
-import {expeditionCount, Background} from "./gameSetting";
+import {needPlayers} from "./gameSetting";
 import {Players} from "./gameSetting";
 import {withRouter} from 'react-router-dom';
 
-function Expedition({history}, props) {
+function Expedition({history}) {
     let temp = [];
     switch (Players.length) {
         case 5 :
-            temp = expeditionCount._5P;
+            temp = needPlayers._5P;
             break;
         case 6:
-            temp = expeditionCount._6P;
+            temp = needPlayers._6P;
             break;
         case 7:
-            temp = expeditionCount._7P;
+            temp = needPlayers._7P;
             break;
         case 8:
         case 9:
         case 10:
-            temp = expeditionCount._8to10P;
+            temp = needPlayers._8to10P;
             break;
         default:
             alert('error');
     }
-    const [stage, setStage] = useState(0);
-    const [count, setCount] = useState(0);
+    const [expeditionStage, setExpeditionStage] = useState(0);
+    const [playerCount, setPlayerCount] = useState(0);
     const [voteStage, setVoteStage] = useState(0);
     const [isClick, setIsClick] = useState(true);
 
     const onChange = e => {
         Players[e.target.value].selected = e.target.checked;
-        e.target.checked ? setCount(count + 1) : setCount(count - 1);
+        e.target.checked ? setPlayerCount(playerCount + 1) : setPlayerCount(playerCount - 1);
     }
 
     const onClick = () => {
-        if (count === temp[stage]) {
+        if (playerCount === temp[expeditionStage]) {
             setVoteStage(voteStage + 1);
             history.push({
                 pathname: '/result',
-                index: ''
             });
             setIsClick(false);
         } else {
-            alert(`${temp[stage]}명을 선택해야합니다.`);
+            alert(`${temp[expeditionStage]}명을 선택해야합니다.`);
         }
     }
     return (

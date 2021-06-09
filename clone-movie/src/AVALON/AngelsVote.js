@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import {useLocation} from 'react-router-dom'
+import {Background, Players} from "./gameSetting";
+
 function AngelsVote({history},props) {
     const [isClick,setIsClick] = useState(false);
     const onClick = e =>{
+        Background.vote.push(e.target.value);
         setIsClick(true);
-        console.log(e.target.value)
     }
     return(
         <div>

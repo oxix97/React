@@ -1,9 +1,8 @@
 import MerlinPlayer from "./MerlinPlayer";
 import PercivalPlayer from "./PercivalPlayer";
-import React, {useState} from "react";
-import {Players, Background} from "./gameSetting";
+import React from "react";
+import {Players,Background} from "./gameSetting";
 import styled from "styled-components";
-import Expedition from "./Expedition";
 import {withRouter} from "react-router-dom";
 
 const Frame = styled.div`

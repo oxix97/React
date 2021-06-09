@@ -15,8 +15,7 @@ function MainFrame() {
             <UserList/>
             <PlayerInfo/>
             <GameFrame>
-                <GameState>
-                </GameState>
+                <GameState/>
             </GameFrame>
         </PageFrame>
     )

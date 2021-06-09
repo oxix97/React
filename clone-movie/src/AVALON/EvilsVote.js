@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import {withRouter} from "react-router-dom";
+import {Background, Players} from "./gameSetting";
 
 function EvilsVote({history},props) {
     const [isClick,setIsClick] = useState(false);
     const onClick = e =>{
-        console.log(e.target.value)
+        Background.vote.push(e.target.value);
         setIsClick(true);
     }
     return(

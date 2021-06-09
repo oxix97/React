@@ -41,6 +41,20 @@ export const GameState = styled.div`
 `
 export const PublicFrame = styled.div`
     display : flex;
-    flex-direction : column;
-    border : 3px solid blue;   
+    flex-direction : row;
+
+    flex-wrap : wrap;
+`
+export const Circle = styled.div`
+    display : flex;
+    border-radius : 70%;
+    flex-direction : flex-end;
+    flex-wrap : wrap;
+    padding : 20px;
+    border : 2px solid black;
+    background : ${props => props.color};
+`
+export const VoteStageFrame = styled.div`
+    display : flex;
+    justify-content : flex-end;
 `

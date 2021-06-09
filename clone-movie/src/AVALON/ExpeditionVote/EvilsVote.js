@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import {Background, Players} from "./gameSetting";
+import {withRouter} from "react-router-dom";
+import {Background, Players} from "../gameSetting";
 
-function AngelsVote({history},props) {
+function EvilsVote({history},props) {
     const [isClick,setIsClick] = useState(false);
     const onClick = e =>{
         Background.vote.push(e.target.value);
@@ -12,8 +13,11 @@ function AngelsVote({history},props) {
             <button onClick={onClick} value={'success'} disabled={isClick}>
                 성공
             </button>
+            <button onClick={onClick} value={'fail'} disabled={isClick}>
+                실패
+            </button>
         </div>
     )
 }
 
-export default AngelsVote;
+export default withRouter(EvilsVote);

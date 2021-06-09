@@ -1,9 +1,9 @@
-import MerlinPlayer from "./MerlinPlayer";
-import PercivalPlayer from "./PercivalPlayer";
+import MerlinPlayer from "../Ability/MerlinPlayer";
 import React from "react";
-import {Players,Background} from "./gameSetting";
+import {Players,Background} from "../gameSetting";
 import styled from "styled-components";
 import {withRouter} from "react-router-dom";
+import PercivalPlayer from "../Ability/PercivalPlayer";
 
 const Frame = styled.div`
     display : flex;

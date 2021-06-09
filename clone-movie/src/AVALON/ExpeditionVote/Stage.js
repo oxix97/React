@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {angels, Background, Players} from "./gameSetting";
+import {angels, Background, Players} from "../gameSetting";
 import AngelsVote from "./AngelsVote";
 import EvilsVote from "./EvilsVote";
 
@@ -8,12 +8,24 @@ function Stage({history}, props) {
     const stage = Background.expeditionStage;
     const onClick = () => {
         setIsClick(true)
+        if (Background.expeditionStage === 3) {
+            if (Background.vote.filter(element => 'fail' === element).length >= 2) {
+                Background.takeStage[stage] = 'fail';
+            } else {
+                Background.takeStage[stage] = 'success';
+            }
+        } else {
+            Background.vote.includes('fail') ?
+                Background.takeStage[stage] = 'fail' :
+                Background.takeStage[stage] = 'success';
+        }
         Background.expeditionStage += 1;
+
     }
     const push = () => {
         history.push({
             pathname: '/main',
-            vote : stage,
+            vote: stage,
         })
     }
     return (
@@ -51,8 +63,8 @@ function Stage({history}, props) {
                         </div>
                     : null
             }
-            <button onClick={push}>돌아 가기</button>
             {Background.vote = []}
+            <button onClick={push}>돌아 가기</button>
         </div>
     )
 }

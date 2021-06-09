@@ -1,8 +1,9 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {
-    Setting,Main,Result,Stage
-} from'./AVALON/index'
+    Setting, Main, Result, Stage
+} from './AVALON/index'
+
 function App() {
     return (
         <Switch>

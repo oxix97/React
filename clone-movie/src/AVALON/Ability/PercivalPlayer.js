@@ -1,13 +1,14 @@
 import React from "react";
-import {merlinSight, Players} from "./gameSetting";
+import {Players, percivalSight} from "../gameSetting";
 
-function MerlinPlayer() {
+
+function PercivalPlayer() {
     return(
         <div>
             {
                 Players.map((user,index)=>(
                     <div key={index}>
-                        {merlinSight.includes(user.role) ? user.nickname : null}
+                        {percivalSight.includes(user.role) ? user.nickname : null}
                     </div>
                 ))
             }
@@ -15,4 +16,4 @@ function MerlinPlayer() {
     )
 }
 
-export default MerlinPlayer;
+export default PercivalPlayer

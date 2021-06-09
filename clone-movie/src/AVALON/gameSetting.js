@@ -13,13 +13,14 @@ export const needPlayers = {
     _7P: [2, 3, 3, 4, 4],
     _8to10P: [3, 4, 4, 5, 5],
 }
+export const voteStageColor = ['white','white','white','white','red'];
+
 export const Background = {
-    voteStage : 1,
-    expeditionStage : 1,
+    voteStage : 0,
+    expeditionStage : 0,
     represent : 0,
     vote : [],
-    angelsPoint : [],
-    evilsPoint : [],
+    takeStage : [],
 }
 
 export const Players = [
@@ -34,15 +35,34 @@ export const Players = [
     // {nickname: 'user9', role: '', vote: '', toGo: '',selected : false},
 ]
 
-const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin']
+const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin'];
 const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
 
 function GameSetting({history}) {
+    switch (Players.length) {
+        case 5 :
+            Background.takeStage = needPlayers._5P;
+            break;
+        case 6:
+            Background.takeStage = needPlayers._6P;
+            break;
+        case 7:
+            Background.takeStage = needPlayers._7P;
+            break;
+        case 8:
+        case 9:
+        case 10:
+            Background.takeStage = needPlayers._8to10P;
+            break;
+        default:
+            alert('error');
+    }
     const onClick = () => {
-        if (Players.length >= 5) {
+        const PlayersNumber = Players.length;
+        if (PlayersNumber >= 5) {
             const temp = [
                 ...mustHaveRoles,
-                ...expandRoles.slice(0, Players.length - 5),
+                ...expandRoles.slice(0, PlayersNumber - 5),
             ];
             const roles = shuffle(temp);
             Players.map((user, index) => {

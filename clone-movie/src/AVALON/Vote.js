@@ -42,7 +42,7 @@ function Vote(props) {
                         disabled={click}
                         value={vote}>
                         확인
-                    </button>
+                    </button>]
                 </div>
             }
         </div>

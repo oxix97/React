@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {
-    Setting, Main, Result, Stage
+    Setting, Main, Result, Stage, End
 } from './AVALON/index'
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
             <Route exact path={'/main'} component={Main}/>
             <Route exact path={'/result'} component={Result}/>
             <Route exact path={'/expedition'} component={Stage}/>
+            <Route exact path={'/endGame'} component={End}/>
         </Switch>
     )
 }

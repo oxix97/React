@@ -1,37 +1,38 @@
-import React, {useState} from "react";
-import {angels, Background, Players} from '../Ability/gameSetting'
+import React, {useContext, useState} from "react";
+import {angels} from '../Ability/gameSetting'
 import AngelsVote from "./AngelsVote";
 import EvilsVote from "./EvilsVote";
+import {PlayState, UserState} from "../../App";
 
-function Stage({history}, props) {
+function Stage({history}) {
     const [isClick, setIsClick] = useState(false);
-    const stage = Background.expeditionStage;
+    const gameState = useContext(PlayState)
+    const userState = useContext(UserState)
     const onClick = () => {
         setIsClick(true)
-        if (Background.expeditionStage === 3) {
-            if (Background.vote.filter(element => 'fail' === element).length >= 2) {
-                Background.takeStage[stage] = 'fail';
+        if (gameState.expeditionStage === 3) {
+            if (gameState.vote.filter(element => 'fail' === element).length >= 2) {
+                gameState.takeStage[gameState.expeditionStage] = 'fail';
             } else {
-                Background.takeStage[stage] = 'success';
+                gameState.takeStage[gameState.expeditionStage] = 'success';
             }
         } else {
-            Background.vote.includes('fail') ?
-                Background.takeStage[stage] = 'fail' :
-                Background.takeStage[stage] = 'success';
+            gameState.vote.includes('fail') ?
+                gameState.takeStage[gameState.expeditionStage] = 'fail' :
+                gameState.takeStage[gameState.expeditionStage] = 'success';
         }
-        Background.expeditionStage += 1;
-
+        gameState.expeditionStage += 1;
     }
     const push = () => {
+        gameState.vote = []
         history.push({
             pathname: '/main',
-            vote: stage,
         })
     }
     return (
         <div>
             {
-                Players.map((user, index) => (
+                userState.map((user, index) => (
                     <ul key={index}>
                         {user.selected ?
                             <div>
@@ -50,20 +51,19 @@ function Stage({history}, props) {
             <button onClick={onClick} disabled={isClick}>결과 보기</button>
             {
                 isClick ?
-                    stage !== 4 ?
+                    gameState.expeditionStage !== 4 ?
                         <div>
-                            {Background.vote.includes('fail') ? '원정 실패' : '원정 성공'}
-                            <div>성공 개수 : {Background.vote.filter(element => 'success' === element).length}</div>
-                            <div>실패 개수 :{Background.vote.filter(element => 'fail' === element).length}</div>
+                            {gameState.vote.includes('fail') ? '원정 실패' : '원정 성공'}
+                            <div>성공 개수 : {gameState.vote.filter(element => 'success' === element).length}</div>
+                            <div>실패 개수 :{gameState.vote.filter(element => 'fail' === element).length}</div>
                         </div> :
                         <div>
-                            {Players.length >= 7 && Background.vote.filter(element => 'fail' === element).length >= 2 ? '원정 실패' : '원정 성공'}
-                            <div>성공 개수 : {Background.vote.filter(element => 'success' === element).length}</div>
-                            <div>실패 개수 :{Background.vote.filter(element => 'fail' === element).length}</div>
+                            {userState.length >= 7 && gameState.vote.filter(element => 'fail' === element).length >= 2 ? '원정 실패' : '원정 성공'}
+                            <div>성공 개수 : {gameState.vote.filter(element => 'success' === element).length}</div>
+                            <div>실패 개수 :{gameState.vote.filter(element => 'fail' === element).length}</div>
                         </div>
                     : null
             }
-            {Background.vote = []}
             <button onClick={push}>돌아 가기</button>
         </div>
     )

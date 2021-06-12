@@ -1,32 +1,32 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
+import {Background, needPlayers, Players} from "../Ability/gameSetting"
 import {withRouter} from 'react-router-dom';
-import {PlayState, UserState} from "../../App";
 
 function Expedition({history}) {
     const [playerCount, setPlayerCount] = useState(0);
     const [voteStage, setVoteStage] = useState(0);
     const [isClick, setIsClick] = useState(true);
-    const gameState = useContext(PlayState)
-    const userState = useContext(UserState)
+    const takeStage = Background.takeStage;
+    const expeditionStage = Background.expeditionStage;
     const onChange = e => {
-        userState[e.target.value].selected = e.target.checked;
+        Players[e.target.value].selected = e.target.checked;
         e.target.checked ? setPlayerCount(playerCount + 1) : setPlayerCount(playerCount - 1);
     }
     const onClick = () => {
-        if (playerCount === gameState.takeStage[gameState.expeditionStage]) {
+        if (playerCount === takeStage[expeditionStage]) {
             setVoteStage(voteStage + 1);
             history.push({
                 pathname: '/result',
             });
             setIsClick(false);
         } else {
-            alert(`${gameState.takeStage[gameState.expeditionStage]}명을 선택해야합니다.`);
+            alert(`${takeStage[expeditionStage]}명을 선택해야합니다.`);
         }
     }
     return (
         <div>{
             isClick ?
-                userState.map((user, index) => (
+                Players.map((user, index) => (
                     <ul key={index}>
                         <label>{user.nickname}
                             <input

@@ -1,40 +1,34 @@
-import React, {useContext, useState} from "react";
-import {useHistory} from "react-router-dom";
-import {UserState} from "../../App";
+import React, {useState} from "react";
+import {Players} from "./gameSetting";
+import {useLocation,useHistory} from "react-router-dom";
 
 function AssassinPlayer() {
     const history = useHistory()
-    const userState = useContext(UserState)
-    const [kill, setKill] = useState('');
+    const [kill,setKill] = useState('');
     const onChange = e => {
         setKill(e.target.value);
     };
     const onClick = e => {
-        const value = e.target.value
         history.push({
-            pathname: '/endGame',
-            state: {
-                value: value
+            pathname : '/endGame',
+            state : {
+                value : e.target.value,
             }
         })
     };
-    return (
+    return(
         <div>
-            <h3>멀린을 찾으세요</h3>
-            {userState.map((user, index) => (
-                <label key={index}>
-                    {user.nickname}
+            {Players.map((user,index)=>(
+                <label key={index}>{user.nickname}
                     <input type="radio"
                            name={'vote'}
                            value={user.role}
                            onChange={onChange}
                     />
-                    <br/>
                 </label>
             ))}
             <button onClick={onClick} value={kill}>암살</button>
         </div>
     )
 }
-
 export default AssassinPlayer;

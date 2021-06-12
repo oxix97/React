@@ -1,15 +1,12 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
+import {Background, Players}from "../Ability/gameSetting"
 import PlayerInfo from "../MainPage/PlayerInfo";
 import Vote from "./Vote";
 import {Title} from "../MainPage/Styled";
 import {withRouter} from "react-router-dom";
 import Expedition from "./Expedition";
-import {PlayState, UserState} from "../../App";
-
 
 function ExpeditionVote({history}) {
-    const gameState = useContext(PlayState)
-    const userState = useContext(UserState)
     const [isClick, setIsClick] = useState(false);
     const onClick = () => {
         setIsClick(true);
@@ -17,32 +14,32 @@ function ExpeditionVote({history}) {
     const nextPage = () => {
         let agree = 0;
         let oppose = 0;
-        userState.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
+        Players.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
         if (agree >= oppose) {
-            gameState.voteStage = 0;
+            Background.voteStage = 0;
             history.push({
                 pathname: '/expedition',
                 state: {
-                    vote: gameState.voteStage,
+                    vote: Background.voteStage,
                 }
             })
         } else {
-            if (gameState.voteStage === 4) {
-                gameState.takeStage[gameState.expeditionStage] = 'fail';
-                gameState.expeditionStage += 1;
-                gameState.voteStage = 0;
+            if (Background.voteStage === 4) {
+                Background.takeStage[Background.expeditionStage] = 'fail';
+                Background.expeditionStage += 1;
+                Background.voteStage = 0;
             } else {
-                gameState.voteStage += 1;
+                Background.voteStage += 1;
             }
             history.push({
                 pathname: '/main',
                 state: {
-                    vote: gameState.voteStage,
+                    vote: Background.voteStage,
                 }
             });
         }
-        gameState.represent += 1;
-        gameState.represent %= userState.length;
+        Background.represent += 1;
+        Background.represent %= Players.length;
         // 해당 부분 state 로 구현하기
     }
     return (
@@ -50,7 +47,7 @@ function ExpeditionVote({history}) {
             <PlayerInfo/>
             <Expedition/>
             <Title>
-                {userState.map((user, index) => <Vote key={index} index={index}/>)}
+                {Players.map((user, index) => <Vote key={index} index={index}/>)}
             </Title>
             <br/>
             <button onClick={onClick}>결과</button>
@@ -58,7 +55,7 @@ function ExpeditionVote({history}) {
             {
                 isClick ?
                     <div>
-                        {userState.map((user, index) => (
+                        {Players.map((user, index) => (
                             <ul key={index}>
                                 <li>{`nickname : ${user.nickname}`}</li>
                                 <li>{`vote : ${user.toGo === 'agree' ? '찬성' : '반대'}`}</li>

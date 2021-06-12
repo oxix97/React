@@ -1,11 +1,11 @@
-import React, {useContext} from "react";
+import React from "react";
 import {useLocation} from 'react-router-dom';
-import {UserState} from "../../App";
+import {Players} from "../Ability/gameSetting";
+
 
 function GameEnd() {
     const location = useLocation();
-    const value = location.state.value
-    const userState = useContext(UserState)
+    const value = location.state.value;
     return (
         <div>
             {
@@ -13,7 +13,7 @@ function GameEnd() {
                     <h3>악마가 승리하였습니다.</h3> :
                     <h3>천사가 승리하였습니다.</h3>
             }
-            {userState.map((user, index) => (
+            {Players.map((user, index) => (
                 <div key={index}>
                     <li>{user.nickname} : {user.role}</li>
                     <br/>

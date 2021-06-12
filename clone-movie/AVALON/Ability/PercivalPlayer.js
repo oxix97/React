@@ -1,14 +1,12 @@
-import React, {useContext} from "react";
-import {percivalSight} from "./gameSetting";
-import {UserState} from "../../App";
+import React from "react";
+import {Players, percivalSight} from "./gameSetting";
 
 
 function PercivalPlayer() {
-    const userState = useContext(UserState)
-    return (
+    return(
         <div>
             {
-                userState.map((user, index) => (
+                Players.map((user,index)=>(
                     <div key={index}>
                         {percivalSight.includes(user.role) ? user.nickname : null}
                     </div>

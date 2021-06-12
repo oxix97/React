@@ -1,4 +1,4 @@
-import React, {createContext} from "react";
+import React from "react";
 import shuffle from 'lodash.shuffle';
 
 
@@ -65,7 +65,6 @@ function GameSetting({history}) {
                 ...expandRoles.slice(0, PlayersNumber - 5),
             ];
             const roles = shuffle(temp);
-            // eslint-disable-next-line array-callback-return
             Players.map((user, index) => {
                 user.role = roles[index];
             });

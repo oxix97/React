@@ -1,6 +1,7 @@
-import React, {useContext} from "react";
+import React from "react";
 import {
-    PageFrame, UserList,
+    Frame, PageFrame,
+    RoleList, UserList,
     GameFrame, GameState
 } from "./Styled";
 
@@ -8,21 +9,18 @@ import AssassinPlayer from "../Ability/AssassinPlayer";
 import PlayerInfo from "./PlayerInfo";
 import ExpeditionStage from "./ExpeditionStage";
 import VoteStage from "./VoteStage";
+import {Background,Players} from "../Ability/gameSetting"
 import GameEnd from "./GameEnd";
-import {PlayState, UserState} from "../../App";
 
 function MainFrame() {
-    const gameState = useContext(PlayState)
-    const playerState = useContext(UserState)
-    const angels = gameState.takeStage.filter(element => 'success' === element).length;
-    const evils = gameState.takeStage.filter(element => 'fail' === element).length;
-
+    const angels = Background.takeStage.filter(element => 'success' === element).length;
+    const evils = Background.takeStage.filter(element => 'fail' === element).length;
     return (
         <PageFrame>
             {angels === 3 || evils === 3 ?
                 <div>
-                    {angels === 3 ?
-                        playerState.map(e => e.role === 'Assassin') ? <AssassinPlayer/> : null
+                    {angels===3 ?
+                        Players.map(e=>e.role==='Assassin') ? <AssassinPlayer/> : null
                         :
                         <GameEnd/>}
                 </div> :

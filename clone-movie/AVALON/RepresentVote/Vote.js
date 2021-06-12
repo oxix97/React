@@ -1,8 +1,7 @@
-import React, {useContext, useState} from "react";
-import {UserState} from "../../App";
+import React, {useState} from "react";
+import {Players} from "../Ability/gameSetting";
 
 function Vote(props) {
-    const userState = useContext(UserState)
     const [vote, setVote] = useState('agree');
     const [click, setClick] = useState(false);
     const onChange = e => {
@@ -15,7 +14,7 @@ function Vote(props) {
         } else if (e.target.value === 'oppose') {
             setVote('oppose')
         }
-        userState[props.index].toGo = vote;
+        Players[props.index].toGo = vote;
         setClick(true);
     };
 

@@ -1,13 +1,12 @@
-import React, {useContext} from "react";
+import React from "react";
+import {Players, Background, needPlayers} from "../Ability/gameSetting"
 import {PublicFrame, Frame} from "./Styled";
-import {PlayState} from "../../App";
 
 function ExpeditionStage() {
-    const gameState = useContext(PlayState);
     return (
         <PublicFrame>
             {
-                gameState.takeStage.map((stage, index) => (
+                Background.takeStage.map((stage, index) => (
                     <Frame key={index}>
                         {stage}
                     </Frame>

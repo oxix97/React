@@ -1,11 +1,9 @@
-import React, {useContext} from "react";
+import React from "react";
 import {VoteStageFrame, Circle} from "./Styled";
-import {voteStageColor} from "../Ability/gameSetting"
-import {PlayState} from "../../App";
+import {Background, needPlayers, voteStageColor} from "../Ability/gameSetting"
 
-function VoteStage() {
-    const gameState = useContext(PlayState)
-    const colors = voteStageColor.slice(gameState.voteStage, 5);
+function VoteStage(props) {
+    const colors = voteStageColor.slice(Background.voteStage, 5);
     return (
         <VoteStageFrame>
             {

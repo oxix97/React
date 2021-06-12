@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {Background} from "../Ability/gameSetting"
+import {Background, Players} from "../Ability/gameSetting"
 
-function AngelsVote() {
+function AngelsVote({history},props) {
     const [isClick,setIsClick] = useState(false);
     const onClick = e =>{
         Background.vote.push(e.target.value);

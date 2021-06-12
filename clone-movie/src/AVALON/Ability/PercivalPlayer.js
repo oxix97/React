@@ -1,5 +1,5 @@
 import React from "react";
-import {Players, percivalSight} from "../gameSetting";
+import {Players, percivalSight} from "./gameSetting";
 
 
 function PercivalPlayer() {

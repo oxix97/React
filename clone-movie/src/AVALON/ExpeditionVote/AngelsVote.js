@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Background, Players} from "../gameSetting";
+import {Background, Players} from "../Ability/gameSetting"
 
 function AngelsVote({history},props) {
     const [isClick,setIsClick] = useState(false);

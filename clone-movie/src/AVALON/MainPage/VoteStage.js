@@ -1,6 +1,6 @@
 import React from "react";
-import {VoteStageFrame, Circle} from "../Styled";
-import {Background, needPlayers, voteStageColor} from "../gameSetting";
+import {VoteStageFrame, Circle} from "./Styled";
+import {Background, needPlayers, voteStageColor} from "../Ability/gameSetting"
 
 function VoteStage(props) {
     const colors = voteStageColor.slice(Background.voteStage, 5);

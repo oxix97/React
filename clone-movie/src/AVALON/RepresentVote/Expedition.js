@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Background, needPlayers, Players} from "../gameSetting";
+import {Background, needPlayers, Players} from "../Ability/gameSetting"
 import {withRouter} from 'react-router-dom';
 
 function Expedition({history}) {

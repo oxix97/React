@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Players} from "./gameSetting";
+import {Players} from "../Ability/gameSetting";
 
 function Vote(props) {
     const [vote, setVote] = useState('agree');

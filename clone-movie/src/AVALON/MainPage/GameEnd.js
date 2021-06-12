@@ -1,6 +1,7 @@
 import React from "react";
 import {useLocation} from 'react-router-dom';
-import {Players} from "./gameSetting";
+import {Players} from "../Ability/gameSetting";
+
 
 function GameEnd({history}) {
     const location = useLocation();

@@ -3,14 +3,14 @@ import {
     Frame, PageFrame,
     RoleList, UserList,
     GameFrame, GameState
-} from "../Styled";
+} from "./Styled";
 
 import AssassinPlayer from "../Ability/AssassinPlayer";
 import PlayerInfo from "./PlayerInfo";
 import ExpeditionStage from "./ExpeditionStage";
 import VoteStage from "./VoteStage";
-import {Background,Players} from "../gameSetting";
-import GameEnd from "../GameEnd";
+import {Background,Players} from "../Ability/gameSetting"
+import GameEnd from "./GameEnd";
 
 function MainFrame() {
     const angels = Background.takeStage.filter(element => 'success' === element).length;

@@ -1,5 +1,5 @@
 import React from "react";
-import {merlinSight, Players} from "../gameSetting";
+import {merlinSight, Players} from './gameSetting';
 
 function MerlinPlayer() {
     return(

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {withRouter} from "react-router-dom";
-import {Background, Players} from "../gameSetting";
+import {Background, Players} from "../Ability/gameSetting"
 
 function EvilsVote({history},props) {
     const [isClick,setIsClick] = useState(false);

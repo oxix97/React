@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Players} from "../gameSetting";
+import {Players} from "./gameSetting";
 import {useLocation,useHistory} from "react-router-dom";
 
 function AssassinPlayer() {

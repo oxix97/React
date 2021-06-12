@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {angels, Background, Players} from "../gameSetting";
+import {angels, Background, Players} from '../Ability/gameSetting'
 import AngelsVote from "./AngelsVote";
 import EvilsVote from "./EvilsVote";
 

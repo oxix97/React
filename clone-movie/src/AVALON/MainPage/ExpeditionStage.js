@@ -1,6 +1,6 @@
 import React from "react";
-import {Players, Background, needPlayers} from "../gameSetting";
-import {PublicFrame, Frame} from "../Styled";
+import {Players, Background, needPlayers} from "../Ability/gameSetting"
+import {PublicFrame, Frame} from "./Styled";
 
 function ExpeditionStage() {
     return (

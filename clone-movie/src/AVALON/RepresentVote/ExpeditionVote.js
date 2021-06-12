@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {Background, Players} from "../gameSetting";
+import {Background, Players}from "../Ability/gameSetting"
 import PlayerInfo from "../MainPage/PlayerInfo";
-import Vote from "../Vote";
-import {Title} from "../Styled";
+import Vote from "./Vote";
+import {Title} from "../MainPage/Styled";
 import {withRouter} from "react-router-dom";
 import Expedition from "./Expedition";
 

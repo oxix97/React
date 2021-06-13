@@ -1,8 +1,8 @@
 import React, {useContext, useState} from "react";
-import {angels} from '../Ability/gameSetting'
+import {angels} from '../gameSetting'
 import AngelsVote from "./AngelsVote";
 import EvilsVote from "./EvilsVote";
-import {PlayState, UserState} from "../../App";
+import {UserState,PlayState} from "../gameSetting";
 
 function Stage({history}) {
     const [isClick, setIsClick] = useState(false);

@@ -1,10 +1,11 @@
-import React, {useState} from "react";
-import {Background} from "../Ability/gameSetting"
+import React, {useContext, useState} from "react";
+import {UserState,PlayState} from "../gameSetting";
 
 function AngelsVote() {
+    const gameState = useContext(PlayState)
     const [isClick,setIsClick] = useState(false);
     const onClick = e =>{
-        Background.vote.push(e.target.value);
+        gameState.vote.push(e.target.value);
         setIsClick(true);
     }
     return(

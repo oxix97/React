@@ -1,4 +1,4 @@
-import React, {createContext} from "react";
+import React, {createContext, useContext} from "react";
 import shuffle from 'lodash.shuffle';
 
 
@@ -13,17 +13,17 @@ export const needPlayers = {
     _7P: [2, 3, 3, 4, 4],
     _8to10P: [3, 4, 4, 5, 5],
 }
-export const voteStageColor = ['white','white','white','white','red'];
+export const voteStageColor = ['white', 'white', 'white', 'white', 'red'];
 
-export const Background = {
-    voteStage : 0,
-    expeditionStage : 0,
-    represent : 0,
-    vote : [],
-    takeStage : [],
+const Background = {
+    voteStage: 0,
+    expeditionStage: 0,
+    represent: 0,
+    vote: [],
+    takeStage: [],
 }
 
-export const Players = [
+const Players = [
     {nickname: 'user1', role: '', vote: '', toGo: '', selected: false},
     {nickname: 'user2', role: '', vote: '', toGo: '', selected: false},
     {nickname: 'user3', role: '', vote: '', toGo: '', selected: false},
@@ -37,28 +37,33 @@ export const Players = [
 
 const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin'];
 const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
+export const PlayState = createContext(Background);
+export const UserState = createContext(Players);
 
 function GameSetting({history}) {
-    switch (Players.length) {
+    const gameState = useContext(PlayState)
+    const userState = useContext(UserState)
+
+    switch (userState.length) {
         case 5 :
-            Background.takeStage = needPlayers._5P;
+            gameState.takeStage = needPlayers._5P;
             break;
         case 6:
-            Background.takeStage = needPlayers._6P;
+            gameState.takeStage = needPlayers._6P;
             break;
         case 7:
-            Background.takeStage = needPlayers._7P;
+            gameState.takeStage = needPlayers._7P;
             break;
         case 8:
         case 9:
         case 10:
-            Background.takeStage = needPlayers._8to10P;
+            gameState.takeStage = needPlayers._8to10P;
             break;
         default:
             alert('error');
     }
     const onClick = () => {
-        const PlayersNumber = Players.length;
+        const PlayersNumber = userState.length;
         if (PlayersNumber >= 5) {
             const temp = [
                 ...mustHaveRoles,
@@ -66,7 +71,7 @@ function GameSetting({history}) {
             ];
             const roles = shuffle(temp);
             // eslint-disable-next-line array-callback-return
-            Players.map((user, index) => {
+            userState.map((user, index) => {
                 user.role = roles[index];
             });
             history.push({

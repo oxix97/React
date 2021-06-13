@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {useLocation} from 'react-router-dom';
-import {UserState} from "../../App";
+import {UserState,PlayState} from "../gameSetting";
 
 function GameEnd() {
     const location = useLocation();

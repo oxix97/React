@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import {useHistory} from "react-router-dom";
-import {UserState} from "../../App";
+import {UserState,PlayState} from "../gameSetting";
 
 function AssassinPlayer() {
     const history = useHistory()

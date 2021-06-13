@@ -3,7 +3,7 @@ import React, {useContext} from "react";
 import styled from "styled-components";
 import {withRouter} from "react-router-dom";
 import PercivalPlayer from "../Ability/PercivalPlayer";
-import {PlayState, UserState} from "../../App";
+import {UserState,PlayState} from "../gameSetting";
 
 const Frame = styled.div`
     display : flex;

@@ -1,17 +1,17 @@
-import React, {createContext} from 'react';
+import React, {createContext, useContext} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {
     Setting, Main, Result, Stage, End
 } from './AVALON/index'
-import {Background, Players} from "./AVALON/Ability/gameSetting";
+import {PlayState,UserState} from "./AVALON/gameSetting";
 // export const AppContext = createContext()
-export const PlayState= createContext();
-export const UserState = createContext();
 
 function App() {
+    const game = useContext(PlayState)
+    const user = useContext(UserState)
     return (
-        <PlayState.Provider value={Background}>
-            <UserState.Provider value={Players}>
+        <PlayState.Provider value={game}>
+            <UserState.Provider value={user}>
                 <Switch>
                     <Route exact path={'/'} component={Setting}/>
                     <Route exact path={'/main'} component={Main}/>

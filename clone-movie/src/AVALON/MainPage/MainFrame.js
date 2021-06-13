@@ -9,7 +9,7 @@ import PlayerInfo from "./PlayerInfo";
 import ExpeditionStage from "./ExpeditionStage";
 import VoteStage from "./VoteStage";
 import GameEnd from "./GameEnd";
-import {PlayState, UserState} from "../../App";
+import {UserState,PlayState} from "../gameSetting";
 
 function MainFrame() {
     const gameState = useContext(PlayState)

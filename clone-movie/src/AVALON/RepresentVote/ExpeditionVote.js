@@ -4,7 +4,7 @@ import Vote from "./Vote";
 import {Title} from "../MainPage/Styled";
 import {withRouter} from "react-router-dom";
 import Expedition from "./Expedition";
-import {PlayState, UserState} from "../../App";
+import {UserState,PlayState} from "../gameSetting";
 
 
 function ExpeditionVote({history}) {

@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import {withRouter} from 'react-router-dom';
-import {PlayState, UserState} from "../../App";
+import {UserState,PlayState} from "../gameSetting";
 
 function Expedition({history}) {
     const [playerCount, setPlayerCount] = useState(0);

@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {PublicFrame, Frame} from "./Styled";
-import {PlayState} from "../../App";
+import {UserState,PlayState} from "../gameSetting";
 
 function ExpeditionStage() {
     const gameState = useContext(PlayState);

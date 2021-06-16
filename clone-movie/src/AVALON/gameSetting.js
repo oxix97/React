@@ -82,9 +82,7 @@ function GameSetting({history}) {
         }
     };
     return (
-        <div>
-            <button onClick={onClick}>게임 시작</button>
-        </div>
+        <button onClick={onClick}>게임 시작</button>
     )
 }
 

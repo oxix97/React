@@ -4,6 +4,7 @@ import {
     Setting, Main, Result, Stage, End
 } from './AVALON/index'
 import {PlayState,UserState} from "./AVALON/gameSetting";
+import Avalon from "./AVALON/Avalon";
 // export const AppContext = createContext()
 
 function App() {
@@ -12,13 +13,7 @@ function App() {
     return (
         <PlayState.Provider value={game}>
             <UserState.Provider value={user}>
-                <Switch>
-                    <Route exact path={'/'} component={Setting}/>
-                    <Route exact path={'/main'} component={Main}/>
-                    <Route exact path={'/result'} component={Result}/>
-                    <Route exact path={'/expedition'} component={Stage}/>
-                    <Route exact path={'/endGame'} component={End}/>
-                </Switch>
+                <Avalon/>
             </UserState.Provider>
         </PlayState.Provider>
     )

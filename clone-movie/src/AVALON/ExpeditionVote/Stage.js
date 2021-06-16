@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import {angels} from '../gameSetting'
 import AngelsVote from "./AngelsVote";
 import EvilsVote from "./EvilsVote";
-import {UserState,PlayState} from "../gameSetting";
+import {UserState, PlayState} from "../gameSetting";
 
 function Stage({history}) {
     const [isClick, setIsClick] = useState(false);
@@ -10,18 +10,21 @@ function Stage({history}) {
     const userState = useContext(UserState)
     const onClick = () => {
         setIsClick(true)
-        if (gameState.expeditionStage === 3) {
+        if (gameState.expeditionStage === 3 && userState.length>=7) {
             if (gameState.vote.filter(element => 'fail' === element).length >= 2) {
                 gameState.takeStage[gameState.expeditionStage] = 'fail';
             } else {
-                gameState.takeStage[gameState.expeditionStage] = 'success';
+                gameState.takeStage[gameState.expeditionStage] = 'success'
             }
         } else {
             gameState.vote.includes('fail') ?
                 gameState.takeStage[gameState.expeditionStage] = 'fail' :
-                gameState.takeStage[gameState.expeditionStage] = 'success';
+                gameState.takeStage[gameState.expeditionStage] = 'success'
         }
+        console.log(gameState.takeStage)
+        console.log(userState.length)
         gameState.expeditionStage += 1;
+
     }
     const push = () => {
         gameState.vote = []
@@ -51,7 +54,7 @@ function Stage({history}) {
             <button onClick={onClick} disabled={isClick}>결과 보기</button>
             {
                 isClick ?
-                    gameState.expeditionStage !== 4 ?
+                    gameState.expeditionStage !== 3 ?
                         <div>
                             {gameState.vote.includes('fail') ? '원정 실패' : '원정 성공'}
                             <div>성공 개수 : {gameState.vote.filter(element => 'success' === element).length}</div>

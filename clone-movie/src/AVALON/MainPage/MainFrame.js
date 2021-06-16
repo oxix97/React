@@ -9,7 +9,7 @@ import PlayerInfo from "./PlayerInfo";
 import ExpeditionStage from "./ExpeditionStage";
 import VoteStage from "./VoteStage";
 import GameEnd from "./GameEnd";
-import {UserState,PlayState} from "../gameSetting";
+import {UserState, PlayState} from "../gameSetting";
 
 function MainFrame() {
     const gameState = useContext(PlayState)
@@ -19,23 +19,17 @@ function MainFrame() {
 
     return (
         <PageFrame>
-            {angels === 3 || evils === 3 ?
-                <div>
-                    {angels === 3 ?
-                        playerState.map(e => e.role === 'Assassin') ? <AssassinPlayer/> : null
-                        :
-                        <GameEnd/>}
-                </div> :
-                <div>
-                    <ExpeditionStage/>
-                    <VoteStage name={'hello'}/>
-                    <UserList/>
-                    <PlayerInfo/>
-                    <GameFrame>
-                        <GameState/>
-                    </GameFrame>
-                </div>
-            }
+            {angels === 3 ? playerState.map(e => e.role === 'Assassin') ? <AssassinPlayer/> : null : null}
+            {evils === 3 ? <GameEnd/> : null}
+            <div>
+                <ExpeditionStage/>
+                <VoteStage name={'hello'}/>
+                <UserList/>
+                <PlayerInfo/>
+                <GameFrame>
+                    <GameState/>
+                </GameFrame>
+            </div>
         </PageFrame>
     )
 }

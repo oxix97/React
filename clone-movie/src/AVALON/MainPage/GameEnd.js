@@ -1,15 +1,15 @@
 import React, {useContext, useState} from "react";
 import {useLocation} from 'react-router-dom';
-import {UserState, PlayState} from "../gameSetting";
+import {UserState} from "../gameSetting";
 
 function GameEnd() {
     const userState = useContext(UserState)
     const location = useLocation();
-    const [value, setValue] = useState('');
+    let value
     try {
-        setValue(location.state.value)
+        value = location.state.value
     } catch {
-        setValue('Evil_Win')
+        value = 'Evil_Win'
     }
     return (
         <div>

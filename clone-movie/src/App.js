@@ -5,7 +5,6 @@ import {
 } from './AVALON/index'
 import {PlayState,UserState} from "./AVALON/gameSetting";
 import Avalon from "./AVALON/Avalon";
-// export const AppContext = createContext()
 
 function App() {
     const game = useContext(PlayState)

@@ -21,6 +21,9 @@ function MainFrame() {
         <PageFrame>
             {angels === 3 ? playerState.map(e => e.role === 'Assassin') ? <AssassinPlayer/> : null : null}
             {evils === 3 ? <GameEnd/> : null}
+            {
+                angels!==3 && evils!==3
+            }
             <div>
                 <ExpeditionStage/>
                 <VoteStage name={'hello'}/>

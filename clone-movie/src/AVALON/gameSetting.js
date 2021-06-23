@@ -1,7 +1,6 @@
 import React, {createContext, useContext} from "react";
 import shuffle from 'lodash.shuffle';
 
-
 export const angels = ['Merlin', 'Percival', 'Citizen'];
 export const evils = ['Morgana', 'Assassin', 'Heresy', 'Modred'];
 export const merlinSight = ['Morgana', 'Assassin', 'Heresy'];
@@ -37,6 +36,7 @@ const Players = [
 
 const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin'];
 const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
+
 export const PlayState = createContext(Background);
 export const UserState = createContext(Players);
 

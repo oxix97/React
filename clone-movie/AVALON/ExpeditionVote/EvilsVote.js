@@ -1,15 +1,15 @@
 import React, {useContext, useState} from "react";
 import {withRouter} from "react-router-dom";
-import {UserState, PlayState} from "../gameSetting";
+import {UserState,PlayState} from "../gameSetting";
 
-function EvilsVote() {
+function EvilsVote({history},props) {
     const gameState = useContext(PlayState)
-    const [isClick, setIsClick] = useState(false);
-    const onClick = e => {
+    const [isClick,setIsClick] = useState(false);
+    const onClick = e =>{
         gameState.vote.push(e.target.value);
         setIsClick(true);
     }
-    return (
+    return(
         <div>
             <button onClick={onClick} value={'success'} disabled={isClick}>
                 성공
@@ -21,4 +21,4 @@ function EvilsVote() {
     )
 }
 
-export default (EvilsVote);
+export default withRouter(EvilsVote);

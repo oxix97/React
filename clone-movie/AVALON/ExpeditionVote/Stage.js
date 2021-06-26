@@ -10,7 +10,7 @@ function Stage({history}) {
     const userState = useContext(UserState)
     const onClick = () => {
         setIsClick(true)
-        if (gameState.expeditionStage === 3 && userState.length >= 7) {
+        if (gameState.expeditionStage === 3 && userState.length>=7) {
             if (gameState.vote.filter(element => 'fail' === element).length >= 2) {
                 gameState.takeStage[gameState.expeditionStage] = 'fail';
             } else {
@@ -54,7 +54,7 @@ function Stage({history}) {
             <button onClick={onClick} disabled={isClick}>결과 보기</button>
             {
                 isClick ?
-                    gameState.expeditionStage !== 4 ?
+                    gameState.expeditionStage !== 3 ?
                         <div>
                             {gameState.vote.includes('fail') ? '원정 실패' : '원정 성공'}
                             <div>성공 개수 : {gameState.vote.filter(element => 'success' === element).length}</div>

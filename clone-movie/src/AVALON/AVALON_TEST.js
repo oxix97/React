@@ -133,7 +133,6 @@ function AVALON_TEST() {
         )
     }
 
-
     if (page === MAIN_FRAME) {
         const colors = voteStageColor.slice(game.voteStage, 5);
         const clicked = () => {
@@ -264,7 +263,6 @@ function AVALON_TEST() {
                                         <div>성공 개수 : {game.vote.filter(element => 'success' === element).length}</div>
                                         <div>실패 개수 :{game.vote.filter(element => 'fail' === element).length}</div>
                                     </div>
-
                             }
                         </div>
                         <button onClick={() => ((nextPage)(setPage(MAIN_FRAME)))}>다음</button>

@@ -3,6 +3,7 @@ import React, {useContext} from 'react';
 import {PlayState,UserState} from "./AVALON/gameSetting";
 import Avalon from "./AVALON/Avalon";
 import AVALON_TEST from "./AVALON/AVALON_TEST";
+import ReducerTest from "./Hook/Reducer/ReducerTest";
 
 function App() {
     const game = useContext(PlayState)
@@ -13,7 +14,8 @@ function App() {
         //         <Avalon/>
         //     </UserState.Provider>
         // </PlayState.Provider>
-        <AVALON_TEST/>
+        // <AVALON_TEST/>
+        <ReducerTest/>
     )
 }
 

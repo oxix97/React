@@ -29,6 +29,7 @@ function AVALON_TEST() {
     useEffect(() => {
 
     })
+
     const voteOnChange = e => {
         user[e.target.value].selected = e.target.checked;
         e.target.checked ? setPlayerCount(playerCount + 1) : setPlayerCount(playerCount - 1);
@@ -91,6 +92,16 @@ function AVALON_TEST() {
                 game.takeStage[game.expeditionStage] = 'success'
         }
         game.expeditionStage += 1;
+    }
+    function reducer(state,action) {
+        switch (action.type) {
+            case START:
+            case MAIN_FRAME:
+            case VOTE :
+            case EXPEDITION:
+            case ASSASSIN:
+            case END_GAME:
+        }
     }
     if (page === START) {
         switch (user.length) {

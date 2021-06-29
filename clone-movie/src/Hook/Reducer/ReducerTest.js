@@ -1,13 +1,15 @@
 import React, {useReducer} from "react";
 
 const initialState = {count: 0};
+
 //const initialState = {page : 0}
-function logic(state,action){
+function logic(state, action) {
     switch (action.type) {
         case "START":
 
     }
 }
+
 function reducer(state, action) {
     switch (action.type) {
         case "INCREMENT":
@@ -30,13 +32,13 @@ function reducer(state, action) {
     }
 }
 
-function Counter({step = 5, min = 0, max = 11}) {
+function Counter({step = 2, min = 0, max = 11}) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
         <>
             <p>
-                단계: {step}, 최소: {min}, 최대: {max}
+                단계: {step}, 최대: {max},최소: {min}
             </p>
             <h2>{state.count}</h2>
             <button onClick={() => dispatch({type: "INCREMENT", step, max})}>

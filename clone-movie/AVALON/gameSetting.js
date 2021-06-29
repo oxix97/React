@@ -34,56 +34,9 @@ const Players = [
     // {nickname: 'user9', role: '', vote: '', toGo: '',selected : false},
 ]
 
-const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin'];
-const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
+export const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin'];
+export const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
 
 export const PlayState = createContext(Background);
 export const UserState = createContext(Players);
-
-function GameSetting({history}) {
-    const gameState = useContext(PlayState)
-    const userState = useContext(UserState)
-
-    switch (userState.length) {
-        case 5 :
-            gameState.takeStage = needPlayers._5P;
-            break;
-        case 6:
-            gameState.takeStage = needPlayers._6P;
-            break;
-        case 7:
-            gameState.takeStage = needPlayers._7P;
-            break;
-        case 8:
-        case 9:
-        case 10:
-            gameState.takeStage = needPlayers._8to10P;
-            break;
-        default:
-            alert('error');
-    }
-    const onClick = () => {
-        const PlayersNumber = userState.length;
-        if (PlayersNumber >= 5) {
-            const temp = [
-                ...mustHaveRoles,
-                ...expandRoles.slice(0, PlayersNumber - 5),
-            ];
-            const roles = shuffle(temp);
-            // eslint-disable-next-line array-callback-return
-            userState.map((user, index) => {
-                user.role = roles[index];
-            });
-            history.push({
-                pathname: '/main'
-            })
-        } else {
-            alert('error')
-        }
-    };
-    return (
-        <button onClick={onClick}>게임 시작</button>
-    )
-}
-
-export default GameSetting;
+//리듀서 사용 , 스토어 써서

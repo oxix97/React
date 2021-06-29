@@ -12,7 +12,7 @@ export const Title = styled.div`
 `
 export const Frame = styled.div`
     display : flex;
-    flex-direction : column;
+    flex-direction : row;
     flex-wrap : wrap;
     border : 5px solid ${props => props.color};
     margin : 15px auto;
@@ -57,4 +57,12 @@ export const Circle = styled.div`
 export const VoteStageFrame = styled.div`
     display : flex;
     justify-content : flex-end;
+`
+export const User = styled.div`
+    display : flex;
+    flex-direction : column;
+    flex-wrap : wrap;
+    margin : 0 auto;
+    border 3px solid black;
+    padding : 5px;
 `

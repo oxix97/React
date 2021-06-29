@@ -4,20 +4,12 @@ import styled from "styled-components";
 import {withRouter} from "react-router-dom";
 import PercivalPlayer from "../Ability/PercivalPlayer";
 import {UserState,PlayState} from "../gameSetting";
+import {User} from "./Styled";
 
 const Frame = styled.div`
     display : flex;
     flex-direction : row;
     flex-wrap : wrap;
-`
-
-const User = styled.div`
-    display : flex;
-    flex-direction : column;
-    flex-wrap : wrap;
-    margin : 0 auto;
-    border 3px solid black;
-    padding : 5px;
 `
 
 const PlayerInfo = ({history}) => {

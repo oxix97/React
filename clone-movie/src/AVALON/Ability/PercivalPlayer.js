@@ -1,10 +1,10 @@
 import React, {useContext} from "react";
-import {UserState,percivalSight} from "../gameSetting";
+import {Player,percivalSight} from "../gameSetting";
 
 
 
 function PercivalPlayer() {
-    const userState = useContext(UserState)
+    const userState = useContext(Player)
     return (
         <div>
             {

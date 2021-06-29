@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {UserState, PlayState, needPlayers, mustHaveRoles, expandRoles, voteStageColor, angels} from "./gameSetting";
+import {Game, Player, needPlayers, mustHaveRoles, expandRoles, voteStageColor, angels} from "./gameSetting";
 import {Circle, Frame, PublicFrame, Title, User, VoteStageFrame} from "./MainPage/Styled";
 import shuffle from "lodash.shuffle";
 import MerlinPlayer from "./Ability/MerlinPlayer";
@@ -16,8 +16,8 @@ const ASSASSIN = 4;
 const END_GAME = 5;
 
 function AVALON_TEST() {
-    const user = useContext(UserState)
-    const game = useContext(PlayState)
+    const user = useContext(Player)
+    const game = useContext(Game)
     const [mainFrameClick, setMainFrameClick] = useState(false)
     const [playerCount, setPlayerCount] = useState(0);
     const [voteCount, setVoteCount] = useState(0);
@@ -194,7 +194,6 @@ function AVALON_TEST() {
                     }
                 </PublicFrame>
             </>
-
         );
     }
     if (page === VOTE) {
@@ -202,7 +201,7 @@ function AVALON_TEST() {
             setVoteResult(true)
         }
         return (
-            <>
+            <div>
                 <div>VOTE</div>
                 {!voteResult ?
                     <div>
@@ -221,7 +220,7 @@ function AVALON_TEST() {
                         <button onClick={() => ((votePage)(setVoteResult(false)))}>다음</button>
                     </div>
                 }
-            </>
+            </div>
         )
     }
 

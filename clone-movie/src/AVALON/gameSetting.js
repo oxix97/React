@@ -17,6 +17,8 @@ export const needPlayers = {
     _8to10P: [3, 4, 4, 5, 5],
 }
 export const voteStageColor = ['white', 'white', 'white', 'white', 'red'];
+export const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin'];
+export const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
 
 const Games = {
     voteStage: 0,
@@ -38,9 +40,6 @@ const Players = [
     // {nickname: 'user9', role: '', vote: '', toGo: '',selected : false},
 ]
 
-export const mustHaveRoles = ['Merlin', 'Percival', 'Citizen', 'Morgana', 'Assassin'];
-export const expandRoles = ['Citizen', 'Heresy', 'Citizen', 'Modred', 'Citizen'];
-
 export const Game = createContext(Games);
 export const Player = createContext(Players);
 
@@ -55,7 +54,6 @@ const END_GAME = 5;
 function Store() {
     const user = useContext(Player)
     const game = useContext(Game)
-
     const [mainFrameClick, setMainFrameClick] = useState(false)
     const [playerCount, setPlayerCount] = useState(0);
     const [voteCount, setVoteCount] = useState(0);
@@ -202,7 +200,7 @@ function Store() {
             ))
         }
         const frameClick = () => {
-            !mainFrameClick ?
+            mainFrameClick === false ?
                 user.map((user, index) => (
                     <User key={index}>
                         <ul>
@@ -269,5 +267,5 @@ function Store() {
     }
 
 }
-
+export default Store
 //리듀서 사용 , 스토어 써서

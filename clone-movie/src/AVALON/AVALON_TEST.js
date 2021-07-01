@@ -143,7 +143,6 @@ function AVALON_TEST() {
             <button onClick={onClick}>게임 시작</button>
         )
     }
-
     if (page === MAIN_FRAME) {
         const colors = voteStageColor.slice(game.voteStage, 5);
         const clicked = () => {
@@ -153,7 +152,6 @@ function AVALON_TEST() {
         return (
             <>
                 <div>Main</div>
-
                 <PublicFrame>
                     {
                         game.takeStage.map((stage, index) => (

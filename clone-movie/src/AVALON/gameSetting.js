@@ -51,34 +51,6 @@ const EXPEDITION = 3;
 const ASSASSIN = 4;
 const END_GAME = 5;
 
-const initialState = {
-    mainFrameClick: false,
-    playCount: 0,
-    voteCount: 0,
-    voteResult: false,
-    expedition: false,
-    winner: '',
-    page: START,
-    kill: '',
-}
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "mainFrameClick":
-            return {
-                mainFrameClick: true
-            }
-        case "playCount" :
-        case "voteCount":
-        case "voteResult":
-        case "expedition":
-        case "winner":
-        case "page":
-        case "kill":
-        default :
-            return state
-    }
-}
-
 // const reducerView = ()
 
 export function Store() {

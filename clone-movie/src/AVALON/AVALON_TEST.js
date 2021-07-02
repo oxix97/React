@@ -62,11 +62,7 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export default AVALON_TEST
-
 function AVALON_TEST({initialState}) {
-
-
     const user = useContext(PlayerContext)
     const game = useContext(GameContext)
     const [state, dispatch] = useReducer(reducer, initialState)
@@ -341,3 +337,5 @@ function AVALON_TEST({initialState}) {
         )
     }
 }
+
+export default AVALON_TEST

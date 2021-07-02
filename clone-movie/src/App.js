@@ -14,8 +14,8 @@ function App() {
         //         <Avalon/>
         //     </UserState.Provider>
         // </PlayState.Provider>
-        // <AVALON_TEST/>
-        <ReducerTest/>
+        <AVALON_TEST/>
+        // <ReducerTest/>
     )
 }
 

@@ -47,18 +47,21 @@ function reducer(state, action) {
                     Math.floor(Math.random() * (action.max - action.min)) + action.min
             };
         case "mainFrameClick":
-            console.log(action.str)
+            console.log(action.number)
             return {
                 mainFrameClick: true,
             }
+        case "CONSOLE":
+            console.log(initialState)
+            return initialState
         default:
             throw new Error("Unsupported action type:", action.type);
     }
 }
 
-function Counter({step = 2, min = 0, max = 11,str='dispatch'}) {
+function Counter({step = 2, min = 0, max = 11, str = 'dispatch'}) {
     const [state, dispatch] = useReducer(reducer, initialState);
-
+    const number = 10
     return (
         <>
             <p>
@@ -74,8 +77,13 @@ function Counter({step = 2, min = 0, max = 11,str='dispatch'}) {
             <button onClick={() => dispatch({type: "RANDOM", min, max})}>
                 무작위
             </button>
+
             <button onClick={() => dispatch({type: "RESET"})}>초기화</button>
-            <button onClick={() => dispatch({type: "mainFrameClick",str})}>Click</button>
+            <button onClick={() => dispatch({type: "mainFrameClick", number})}>Click</button>
+            <button onClick={() => dispatch({type: "CONSOLE"})}>console</button>
+            {
+                state.count===3 ? <h3>{state.count}</h3> : null
+            }
         </>
     );
 }

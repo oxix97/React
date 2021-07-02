@@ -1,9 +1,10 @@
-import React, {createContext, useContext, useState} from "react";
+import React, {createContext, useContext, useReducer, useState} from "react";
 import shuffle from 'lodash.shuffle';
 import {Circle, Frame, Title, User} from "./MainPage/Styled";
 import MerlinPlayer from "./Ability/MerlinPlayer";
 import PercivalPlayer from "./Ability/PercivalPlayer";
 import Vote from './RepresentVote/Vote'
+import {createStore} from "redux";
 
 export const angels = ['Merlin', 'Percival', 'Citizen'];
 export const evils = ['Morgana', 'Assassin', 'Heresy', 'Modred'];
@@ -40,8 +41,8 @@ const Players = [
     // {nickname: 'user9', role: '', vote: '', toGo: '',selected : false},
 ]
 
-export const Game = createContext(Games);
-export const Player = createContext(Players);
+export const GameContext = createContext(Games);
+export const PlayerContext = createContext(Players);
 
 const START = 0;
 const MAIN_FRAME = 1;
@@ -50,10 +51,39 @@ const EXPEDITION = 3;
 const ASSASSIN = 4;
 const END_GAME = 5;
 
+const initialState = {
+    mainFrameClick: false,
+    playCount: 0,
+    voteCount: 0,
+    voteResult: false,
+    expedition: false,
+    winner: '',
+    page: START,
+    kill: '',
+}
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case "mainFrameClick":
+            return {
+                mainFrameClick: true
+            }
+        case "playCount" :
+        case "voteCount":
+        case "voteResult":
+        case "expedition":
+        case "winner":
+        case "page":
+        case "kill":
+        default :
+            return state
+    }
+}
 
-function Store() {
-    const user = useContext(Player)
-    const game = useContext(Game)
+// const reducerView = ()
+
+export function Store() {
+    const user = useContext(PlayerContext)
+    const game = useContext(GameContext)
     const [mainFrameClick, setMainFrameClick] = useState(false)
     const [playerCount, setPlayerCount] = useState(0);
     const [voteCount, setVoteCount] = useState(0);
@@ -62,23 +92,6 @@ function Store() {
     const [winner, setWinner] = useState('')
     const [page, setPage] = useState(START);
     const [kill, setKill] = useState('')
-
-    function Winner() {
-        return (
-            <>
-                <h1>{winner}</h1>
-                <h3>ENDGAME</h3>
-                <hr/>
-                {user.map((player, index) => (
-                    <ul key={index}>
-                        <p>player_nickname : <b>{player.nickname}</b></p>
-                        <p>role : <b>{player.role}</b></p>
-                        <hr/>
-                    </ul>
-                ))}
-            </>
-        )
-    }
 
     const voteOnChange = e => {
         user[e.target.value].selected = e.target.checked;
@@ -93,6 +106,15 @@ function Store() {
         } else {
             alert(`${game.takeStage[game.expeditionStage]}명을 선택해야합니다.`);
         }
+    }
+    const mainFrameClicked = () => {
+        setMainFrameClick(true)
+    }
+    const setVoteTrue = () => {
+        setVoteResult(true)
+    }
+    const setVoteFalse = () => {
+        setVoteResult(false)
     }
     const votePage = () => {
         let agree = 0;
@@ -143,129 +165,12 @@ function Store() {
         }
         game.expeditionStage += 1;
     }
-
-    const playerLengthSelect = () => {
-        switch (user.length) {
-            case 5 :
-                game.takeStage = needPlayers._5P;
-                break;
-            case 6:
-                game.takeStage = needPlayers._6P;
-                break;
-            case 7:
-                game.takeStage = needPlayers._7P;
-                break;
-            case 8:
-            case 9:
-            case 10:
-                game.takeStage = needPlayers._8to10P;
-                break;
-            default:
-                alert('error');
-        }
+    const assassinOnChange = e => {
+        setKill(e.target.value)
     }
-    const gameStart = () => {
-        const PlayersNumber = user.length;
-        if (PlayersNumber >= 5) {
-            const temp = [
-                ...mustHaveRoles,
-                ...expandRoles.slice(0, PlayersNumber - 5),
-            ];
-            const roles = shuffle(temp);
-            // eslint-disable-next-line array-callback-return
-            user.map((user, index) => {
-                user.role = roles[index];
-            });
-            setPage(MAIN_FRAME)
-        } else {
-            alert('error')
-        }
+    const killPlayer = () => {
+        const win = kill === 'merlin' ? '악의 승리' : '선의 승리'
+        setWinner(win)
+        setPage(END_GAME)
     }
-    //----------START 부분 끝
-    const View = () => {
-        const colors = voteStageColor.slice(game.voteStage, 5);
-        const clicked = () => {
-            setMainFrameClick(true)
-        }
-        const stageView = () => {
-            game.takeStage.map((stage, index) => (
-                <Frame key={index}>
-                    <h3>{stage}</h3>
-                </Frame>
-            ))
-        }
-        const voteView = () => {
-            colors.map((color, index) => (
-                <Circle color={color} key={index}/>
-            ))
-        }
-        const frameClick = () => {
-            mainFrameClick === false ?
-                user.map((user, index) => (
-                    <User key={index}>
-                        <ul>
-                            <li>{`nickname : ${user.nickname}`}</li>
-                            <li>{`role : ${user.role}`}</li>
-                            <br/>
-                            {user.role === 'Merlin' ?
-                                <MerlinPlayer index={index}/> : null
-                            }
-                            {user.role === 'Percival' ?
-                                <PercivalPlayer index={index}/> : null
-                            }
-                        </ul>
-                        {index === game.represent ? <button onClick={clicked}>원정 인원 정하기</button> : null}
-                    </User>
-                )) :
-                <div>
-                    {user.map((user, index) => (
-                        <ul key={index}>
-                            <label>{user.nickname}
-                                <input
-                                    onChange={voteOnChange}
-                                    type="checkbox"
-                                    name={'checkbox'}
-                                    value={index}/>
-                            </label>
-                        </ul>
-                    ))}
-                    <button onClick={voteOnClick}>결정</button>
-                </div>
-        }
-        //MAIN FRAME 단계 끝
-
-        const voteStage = () => {
-            const resultClick = () => {
-                setVoteResult(true)
-            }
-            return (
-                <div>
-                    <div>VOTE</div>
-                    {!voteResult ?
-                        <div>
-                            <Title>
-                                {user.map((user, index) => <Vote key={index} index={index}/>)}
-                            </Title>
-                            <button onClick={resultClick}>결과</button>
-                        </div> :
-                        <div>
-                            {user.map((user, index) => (
-                                <ul key={index}>
-                                    <li>{`nickname : ${user.nickname}`}</li>
-                                    <li>{`vote : ${user.toGo === 'agree' ? '찬성' : '반대'}`}</li>
-                                </ul>
-                            ))}
-                            <button onClick={() => ((votePage)(setVoteResult(false)))}>다음</button>
-                        </div>
-                    }
-                </div>
-            )
-        }
-        // VOTE 끝
-
-        //view, action 을 어캐 나누지?? 점심에 물어봐야지
-    }
-
-}
-export default Store
-//리듀서 사용 , 스토어 써서
+}//리듀서 사용 , 스토어 써서

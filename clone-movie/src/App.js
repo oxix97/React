@@ -7,8 +7,7 @@ import ReducerTest from "./Hook/Reducer/ReducerTest";
 import StartView from "./AVALON/gamePage/StartView";
 
 function App() {
-    const game = useContext(Game)
-    const user = useContext(Player)
+
     return (
         // <PlayState.Provider value={game}>
         //     <UserState.Provider value={user}>
@@ -16,8 +15,7 @@ function App() {
         //     </UserState.Provider>
         // </PlayState.Provider>
         // <AVALON_TEST/>
-        // <ReducerTest/>
-        <StartView/>
+        <ReducerTest/>
     )
 }
 

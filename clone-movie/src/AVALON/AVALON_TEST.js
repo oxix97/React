@@ -1,5 +1,12 @@
-import React, {useContext, useEffect, useState} from "react";
-import {Game, Player, needPlayers, mustHaveRoles, expandRoles, voteStageColor, angels} from "./gameSetting";
+import React, {useContext, useState} from "react";
+import {
+    needPlayers,
+    mustHaveRoles,
+    expandRoles,
+    voteStageColor,
+    angels,
+    PlayerContext, GameContext
+} from "./gameSetting";
 import {Circle, Frame, PublicFrame, Title, User, VoteStageFrame} from "./MainPage/Styled";
 import shuffle from "lodash.shuffle";
 import MerlinPlayer from "./Ability/MerlinPlayer";
@@ -7,6 +14,8 @@ import PercivalPlayer from "./Ability/PercivalPlayer";
 import Vote from "./RepresentVote/Vote";
 import AngelsVote from "./ExpeditionVote/AngelsVote";
 import EvilsVote from "./ExpeditionVote/EvilsVote";
+import TakeStage from "./gamePage/mainView/TakeStage";
+import VoteStage from "./MainPage/VoteStage";
 
 const START = 0;
 const MAIN_FRAME = 1;
@@ -15,9 +24,55 @@ const EXPEDITION = 3;
 const ASSASSIN = 4;
 const END_GAME = 5;
 
-function AVALON_TEST() {
-    const user = useContext(Player)
-    const game = useContext(Game)
+const initialState = {
+    mainFrameClick: false,
+    playCount: 0,
+    voteCount: 0,
+    voteResult: false,
+    expedition: false,
+    winner: '',
+    page: START,
+    kill: '',
+}
+
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case "mainFrameClick":
+            return {
+                mainFrameClick: true
+            }
+        case "playCount" :
+            return {
+                // playCount: onChange인데 이걸 어케 구현하지??
+            }
+        case "voteCount":
+
+        case "voteResult":
+            return {
+                voteResult: true
+            }
+        case "expedition":
+            return {
+                expedition: true
+            }
+
+        case "winner":
+            return state.winner = action.type
+
+        case "page":
+
+        case "kill":
+
+        default :
+            return state
+    }
+}
+
+export default AVALON_TEST
+
+function AVALON_TEST({initialState}) {
+    const user = useContext(PlayerContext)
+    const game = useContext(GameContext)
     const [mainFrameClick, setMainFrameClick] = useState(false)
     const [playerCount, setPlayerCount] = useState(0);
     const [voteCount, setVoteCount] = useState(0);
@@ -26,9 +81,6 @@ function AVALON_TEST() {
     const [winner, setWinner] = useState('')
     const [page, setPage] = useState(START);
     const [kill, setKill] = useState('')
-    useEffect(() => {
-
-    })
 
     const voteOnChange = e => {
         user[e.target.value].selected = e.target.checked;
@@ -43,6 +95,15 @@ function AVALON_TEST() {
         } else {
             alert(`${game.takeStage[game.expeditionStage]}명을 선택해야합니다.`);
         }
+    }
+    const mainFrameClicked = () => {
+        setMainFrameClick(true)
+    }
+    const setVoteTrue = () => {
+        setVoteResult(true)
+    }
+    const setVoteFalse = () =>{
+        setVoteResult(false)
     }
     const votePage = () => {
         let agree = 0;
@@ -93,15 +154,13 @@ function AVALON_TEST() {
         }
         game.expeditionStage += 1;
     }
-    function reducer(state,action) {
-        switch (action.type) {
-            case START:
-            case MAIN_FRAME:
-            case VOTE :
-            case EXPEDITION:
-            case ASSASSIN:
-            case END_GAME:
-        }
+    const assassinOnChange = e => {
+        setKill(e.target.value)
+    }
+    const killPlayer = () => {
+        const win = kill === 'merlin' ? '악의 승리' : '선의 승리'
+        setWinner(win)
+        setPage(END_GAME)
     }
     if (page === START) {
         switch (user.length) {
@@ -144,30 +203,11 @@ function AVALON_TEST() {
         )
     }
     if (page === MAIN_FRAME) {
-        const colors = voteStageColor.slice(game.voteStage, 5);
-        const clicked = () => {
-            setMainFrameClick(true)
-        }
-
         return (
             <>
                 <div>Main</div>
-                <PublicFrame>
-                    {
-                        game.takeStage.map((stage, index) => (
-                            <Frame key={index}>
-                                <h3>{stage}</h3>
-                            </Frame>
-                        ))
-                    }
-                </PublicFrame>
-                <VoteStageFrame>
-                    {
-                        colors.map((color, index) => (
-                            <Circle color={color} key={index}/>
-                        ))
-                    }
-                </VoteStageFrame>
+                <TakeStage/>
+                <VoteStage/>
                 <PublicFrame>
                     {!mainFrameClick ?
                         user.map((user, index) => (
@@ -183,7 +223,7 @@ function AVALON_TEST() {
                                         <PercivalPlayer index={index}/> : null
                                     }
                                 </ul>
-                                {index === game.represent ? <button onClick={clicked}>원정 인원 정하기</button> : null}
+                                {index === game.represent ? <button onClick={mainFrameClicked}>원정 인원 정하기</button> : null}
                             </User>
                         )) :
                         <div>
@@ -206,9 +246,6 @@ function AVALON_TEST() {
         );
     }
     if (page === VOTE) {
-        const result = () => {
-            setVoteResult(true)
-        }
         return (
             <div>
                 <div>VOTE</div>
@@ -217,7 +254,7 @@ function AVALON_TEST() {
                         <Title>
                             {user.map((user, index) => <Vote key={index} index={index}/>)}
                         </Title>
-                        <button onClick={result}>결과</button>
+                        <button onClick={setVoteTrue}>결과</button>
                     </div> :
                     <div>
                         {user.map((user, index) => (
@@ -226,7 +263,7 @@ function AVALON_TEST() {
                                 <li>{`vote : ${user.toGo === 'agree' ? '찬성' : '반대'}`}</li>
                             </ul>
                         ))}
-                        <button onClick={() => ((votePage)(setVoteResult(false)))}>다음</button>
+                        <button onClick={() => ((votePage)(setVoteFalse))}>다음</button>
                     </div>
                 }
             </div>
@@ -234,7 +271,6 @@ function AVALON_TEST() {
     }
 
     if (page === EXPEDITION) {
-
         return (
             <>
                 {!expedition ?
@@ -280,14 +316,6 @@ function AVALON_TEST() {
         )
     }
     if (page === ASSASSIN) {
-        const onChange = e => {
-            setKill(e.target.value)
-        }
-        const killPlayer = () => {
-            const win = kill === 'merlin' ? '악의 승리' : '선의 승리'
-            setWinner(win)
-            setPage(END_GAME)
-        }
         return (
             <>
                 <h3>ASSASSIN</h3>
@@ -297,7 +325,7 @@ function AVALON_TEST() {
                         <input type="radio"
                                name={'vote'}
                                value={user.role}
-                               onChange={onChange}
+                               onChange={assassinOnChange}
                         />
                         <br/>
                     </label>
@@ -323,5 +351,3 @@ function AVALON_TEST() {
         )
     }
 }
-
-export default AVALON_TEST

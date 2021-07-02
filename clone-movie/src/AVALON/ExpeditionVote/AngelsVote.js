@@ -1,8 +1,8 @@
 import React, {useContext, useState} from "react";
-import {Game,Player} from "../gameSetting";
+import {GameContext,PlayerContext} from "../gameSetting";
 
 function AngelsVote() {
-    const gameState = useContext(Game)
+    const gameState = useContext(GameContext)
     const [isClick,setIsClick] = useState(false);
     const onClick = e =>{
         gameState.vote.push(e.target.value);

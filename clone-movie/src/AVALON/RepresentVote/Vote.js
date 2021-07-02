@@ -1,8 +1,7 @@
 import React, {useContext, useState} from "react";
-import {Game,Player} from "../gameSetting";
-
+import {GameContext,PlayerContext} from "../gameSetting";
 function Vote(props) {
-    const userState = useContext(Player)
+    const userState = useContext(PlayerContext)
     const [vote, setVote] = useState('agree');
     const [click, setClick] = useState(false);
     const onChange = e => {

@@ -154,7 +154,10 @@ function AVALON_TEST() {
         dispatch({type: "winner", winner})
         dispatch({type: "page", page})
     }
-    if (state.page === START_FRAME) {
+
+    const gameStart = () => {
+        const PlayersNumber = user.length;
+        const page = MAIN_FRAME
         switch (user.length) {
             case 5 :
                 game.takeStage = needPlayers._5P;
@@ -173,39 +176,30 @@ function AVALON_TEST() {
             default:
                 alert('error');
         }
-        const onClick = () => {
-            const PlayersNumber = user.length;
-            const page = MAIN_FRAME
-            if (PlayersNumber >= 5) {
-                const temp = [
-                    ...mustHaveRoles,
-                    ...expandRoles.slice(0, PlayersNumber - 5),
-                ];
-                const roles = shuffle(temp);
-                // eslint-disable-next-line array-callback-return
-                user.map((user, index) => {
-                    user.role = roles[index];
-                });
-                dispatch({type: "page", page})
-                console.log(state.page)
-            } else {
-                alert('error')
-            }
-        };
+        if (PlayersNumber >= 5) {
+            const temp = [
+                ...mustHaveRoles,
+                ...expandRoles.slice(0, PlayersNumber - 5),
+            ];
+            const roles = shuffle(temp);
+            // eslint-disable-next-line array-callback-return
+            user.map((user, index) => {
+                user.role = roles[index];
+            });
+            dispatch({type: "page", page})
+            console.log(state.page)
+        } else {
+            alert('error')
+        }
+    };
+    if (state.page === START_FRAME) {
         return (
-            <button onClick={onClick}>게임 시작</button>
+            <button onClick={gameStart}>게임 시작</button>
         )
     }
     if (state.page === MAIN_FRAME) {
-        const click = () => {
-            const mainFrameClick = true
-            dispatch({type: "mainFrameClick", mainFrameClick})
-            console.log(state.page)
-            console.log(state.mainFrameClick)
-        }
         return (
             <>
-                <button onClick={click}>click</button>
                 <div>Main</div>
                 <TakeStage/>
                 <VoteStage/>

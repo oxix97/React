@@ -12,20 +12,7 @@ const initialState = {
     count: 0,
     test: false
 }
-// const reducer = (state = initialState, action) => {
-//     switch (action.type) {
-//
-//         case "playCount" :
-//         case "voteCount":
-//         case "voteResult":
-//         case "expedition":
-//         case "winner":
-//         case "page":
-//         case "kill":
-//         default :
-//             return state
-//     }
-// }
+
 function reducer(state, action) {
     switch (action.type) {
         case "INCREMENT":
@@ -82,7 +69,7 @@ function Counter({step = 2, min = 0, max = 11, str = 'dispatch'}) {
             <button onClick={() => dispatch({type: "mainFrameClick", number})}>Click</button>
             <button onClick={() => dispatch({type: "CONSOLE"})}>console</button>
             {
-                state.count===3 ? <h3>{state.count}</h3> : null
+                state.count === 3 ? <h3>{state.count}</h3> : <h3>not 3</h3>
             }
         </>
     );

@@ -1,4 +1,4 @@
-import React, {useContext, useReducer, useState} from "react";
+import React, {useContext, useEffect, useReducer, useState} from "react";
 import {
     needPlayers,
     mustHaveRoles,
@@ -23,7 +23,6 @@ const VOTE_FRAME = 2;
 const EXPEDITION_FRAME = 3;
 const ASSASSIN_FRAME = 4;
 const END_GAME_FRAME = 5;
-const setTrue = true
 const setFalse = false
 
 const initialState = {
@@ -37,35 +36,37 @@ const initialState = {
     kill: '',
 }
 
-const reducer = (state = initialState, action) => {
+const reducer = (state, action) => {
+    console.log(state)
     switch (action.type) {
         case "mainFrameClick":
-            return {mainFrameClick: action.mainFrameClick}
+            return {...state, mainFrameClick: action.mainFrameClick}
         case "playerCheckedNumber" :
-            return {playerCheckedNumber: state.playerCheckedNumber + action.playerCheckedNumber}
+            return {...state, playerCheckedNumber: state.playerCheckedNumber + action.playerCheckedNumber}
         case "checkedReset":
-            return {playerCheckedNumber: 0}
+            return {...state, playerCheckedNumber: 0}
         case "voteCount":
-            return {voteCount: action.voteCount}
+            return {...state, voteCount: action.voteCount}
         case "voteResult":
-            return {voteResult: action.voteResult}
+            return {...state, voteResult: action.voteResult}
         case "expedition":
-            return {expedition: action.expedition}
+            return {...state, expedition: action.expedition}
         case "winner":
-            return {winner: action.winner}
+            return {...state, winner: action.winner}
         case "page":
-            return {page: action.page}
+            return {...state, page: action.page}
         case "kill":
-            return {kill: action.killedPlayer}
+            return {...state, kill: action.killedPlayer}
         default :
             return state
     }
 }
 
-function AVALON_TEST({initialState}) {
+function AVALON_TEST() {
     const user = useContext(PlayerContext)
     const game = useContext(GameContext)
     const [state, dispatch] = useReducer(reducer, initialState)
+
     const voteOnChange = e => {
         user[e.target.value].selected = e.target.checked;
         const playerCheckedNumber = e.target.checked ? 1 : -1
@@ -84,7 +85,8 @@ function AVALON_TEST({initialState}) {
         }
     }
     const mainFrameClicked = () => {
-        dispatch({type: "mainFrameClick", setTrue})
+        const mainFrameClick = true
+        dispatch({type: "mainFrameClick", mainFrameClick})
     }
     const votePage = () => {
         let agree = 0;
@@ -95,6 +97,7 @@ function AVALON_TEST({initialState}) {
             game.voteStage = 0;
             dispatch({type: "page", page})
         } else {
+            const page = MAIN_FRAME
             if (game.voteStage === 4) {
                 game.takeStage[game.expeditionStage] = 'fail';
                 game.expeditionStage += 1;
@@ -102,28 +105,32 @@ function AVALON_TEST({initialState}) {
             } else {
                 game.voteStage += 1;
             }
-            dispatch({type: "page", MAIN_FRAME})
+            dispatch({type: "page", page})
         }
         game.represent += 1;
         game.represent %= user.length;
         nextPage()
     }
     const nextPage = () => {
+        const expedition = false
         const angelCount = game.takeStage.filter(element => 'success' === element).length;
         const evilCount = game.takeStage.filter(element => 'fail' === element).length;
         if (angelCount === 3) {
-            dispatch({type: "page", ASSASSIN_FRAME})
+            const page = ASSASSIN_FRAME
+            dispatch({type: "page", page})
         }
         if (evilCount === 3) {
+            const page = END_GAME_FRAME
             const winner = 'EVILS_WIN'
             dispatch({type: "winner", winner})
-            dispatch({type: "page", END_GAME_FRAME})
+            dispatch({type: "page", page})
         }
-        dispatch({type: "expedition", setFalse})
+        dispatch({type: "expedition", expedition})
         game.vote = []
     }
     const expeditionClick = () => {
-        dispatch({type: "expedition", setTrue})
+        const expedition = true
+        dispatch({type: "expedition", expedition})
         if (game.expeditionStage === 4 && user.length >= 7) {
             if (game.vote.filter(element => 'fail' === element).length >= 2) {
                 game.takeStage[game.expeditionStage] = 'fail';
@@ -142,9 +149,10 @@ function AVALON_TEST({initialState}) {
         dispatch({type: "kill", killedPlayer})
     }
     const killPlayer = () => {
+        const page = END_GAME_FRAME
         const winner = state.killedPlayer === 'merlin' ? '악의 승리' : '선의 승리'
         dispatch({type: "winner", winner})
-        dispatch({type: "page", END_GAME_FRAME})
+        dispatch({type: "page", page})
     }
     if (state.page === START_FRAME) {
         switch (user.length) {
@@ -179,6 +187,7 @@ function AVALON_TEST({initialState}) {
                     user.role = roles[index];
                 });
                 dispatch({type: "page", page})
+                console.log(state.page)
             } else {
                 alert('error')
             }
@@ -188,8 +197,15 @@ function AVALON_TEST({initialState}) {
         )
     }
     if (state.page === MAIN_FRAME) {
+        const click = () => {
+            const mainFrameClick = true
+            dispatch({type: "mainFrameClick", mainFrameClick})
+            console.log(state.page)
+            console.log(state.mainFrameClick)
+        }
         return (
             <>
+                <button onClick={click}>click</button>
                 <div>Main</div>
                 <TakeStage/>
                 <VoteStage/>
@@ -232,6 +248,7 @@ function AVALON_TEST({initialState}) {
         );
     }
     if (state.page === VOTE_FRAME) {
+        const voteResult = true
         return (
             <div>
                 <div>VOTE</div>
@@ -240,7 +257,7 @@ function AVALON_TEST({initialState}) {
                         <Title>
                             {user.map((user, index) => <Vote key={index} index={index}/>)}
                         </Title>
-                        <button onClick={() => dispatch({type: "voteResult", setTrue})}>결과</button>
+                        <button onClick={() => dispatch({type: "voteResult", voteResult})}>결과</button>
                     </div> :
                     <div>
                         {user.map((user, index) => (
@@ -280,21 +297,19 @@ function AVALON_TEST({initialState}) {
                         <button onClick={expeditionClick}>Click</button>
                     </div> :
                     <div>
-                        <div>
-                            {
-                                game.expeditionStage === 4 && user.length >= 7 ?
-                                    <div>
-                                        {game.vote.filter(element => 'fail' === element).length >= 2 ? '원정 실패' : '원정 성공'}
-                                        <div>성공 개수 : {game.vote.filter(element => 'success' === element).length}</div>
-                                        <div>실패 개수 :{game.vote.filter(element => 'fail' === element).length}</div>
-                                    </div> :
-                                    <div>
-                                        {game.vote.includes('fail') ? '원정 실패' : '원정 성공'}
-                                        <div>성공 개수 : {game.vote.filter(element => 'success' === element).length}</div>
-                                        <div>실패 개수 :{game.vote.filter(element => 'fail' === element).length}</div>
-                                    </div>
-                            }
-                        </div>
+                        {
+                            game.expeditionStage === 4 && user.length >= 7 ?
+                                <div>
+                                    {game.vote.filter(element => 'fail' === element).length >= 2 ? '원정 실패' : '원정 성공'}
+                                    <div>성공 개수 : {game.vote.filter(element => 'success' === element).length}</div>
+                                    <div>실패 개수 :{game.vote.filter(element => 'fail' === element).length}</div>
+                                </div> :
+                                <div>
+                                    {game.vote.includes('fail') ? '원정 실패' : '원정 성공'}
+                                    <div>성공 개수 : {game.vote.filter(element => 'success' === element).length}</div>
+                                    <div>실패 개수 :{game.vote.filter(element => 'fail' === element).length}</div>
+                                </div>
+                        }
                         <button onClick={() => ((nextPage)(dispatch({type: "page", page})))}>다음</button>
                     </div>
                 }

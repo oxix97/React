@@ -1,13 +1,12 @@
-import React, {useContext, useEffect, useReducer, useState} from "react";
+import React, {useContext , useReducer} from "react";
 import {
     needPlayers,
     mustHaveRoles,
     expandRoles,
-    voteStageColor,
     angels,
     PlayerContext, GameContext
 } from "./gameSetting";
-import {Circle, Frame, PublicFrame, Title, User, VoteStageFrame} from "./MainPage/Styled";
+import {PublicFrame, Title, User} from "./MainPage/Styled";
 import shuffle from "lodash.shuffle";
 import MerlinPlayer from "./Ability/MerlinPlayer";
 import PercivalPlayer from "./Ability/PercivalPlayer";
@@ -23,7 +22,6 @@ const VOTE_FRAME = 2;
 const EXPEDITION_FRAME = 3;
 const ASSASSIN_FRAME = 4;
 const END_GAME_FRAME = 5;
-const setFalse = false
 
 const initialState = {
     mainFrameClick: false,
@@ -36,7 +34,7 @@ const initialState = {
     kill: '',
 }
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
     console.log(state)
     switch (action.type) {
         case "mainFrameClick":
@@ -242,7 +240,7 @@ function AVALON_TEST() {
         );
     }
     if (state.page === VOTE_FRAME) {
-        const voteResult = true
+        let voteResult = true
         return (
             <div>
                 <div>VOTE</div>
@@ -254,13 +252,15 @@ function AVALON_TEST() {
                         <button onClick={() => dispatch({type: "voteResult", voteResult})}>결과</button>
                     </div> :
                     <div>
-                        {user.map((user, index) => (
-                            <ul key={index}>
-                                <li>{`nickname : ${user.nickname}`}</li>
-                                <li>{`vote : ${user.toGo === 'agree' ? '찬성' : '반대'}`}</li>
-                            </ul>
-                        ))}
-                        <button onClick={() => ((votePage)(dispatch({type: "voteResult", setFalse})))}>다음</button>
+                        {voteResult = false}
+                        {
+                            user.map((user, index) => (
+                                <ul key={index}>
+                                    <li>{`nickname : ${user.nickname}`}</li>
+                                    <li>{`vote : ${user.toGo === 'agree' ? '찬성' : '반대'}`}</li>
+                                </ul>
+                            ))}
+                        <button onClick={() => ((votePage)(dispatch({type: "voteResult", voteResult})))}>다음</button>
                     </div>
                 }
             </div>

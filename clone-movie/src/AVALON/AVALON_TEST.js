@@ -1,4 +1,4 @@
-import React, {useContext , useReducer} from "react";
+import React, {useContext, useReducer} from "react";
 import {
     needPlayers,
     mustHaveRoles,
@@ -15,15 +15,35 @@ import AngelsVote from "./ExpeditionVote/AngelsVote";
 import EvilsVote from "./ExpeditionVote/EvilsVote";
 import TakeStage from "./gamePage/mainView/TakeStage";
 import VoteStage from "./MainPage/VoteStage";
+import {findAllByDisplayValue} from "@testing-library/react";
 
 const START_FRAME = 0;
 const MAIN_FRAME = 1;
+const MAIN_PLAYER = 11;
+const MAIN_VOTE = 12;
 const VOTE_FRAME = 2;
 const EXPEDITION_FRAME = 3;
 const ASSASSIN_FRAME = 4;
 const END_GAME_FRAME = 5;
 
 const initialState = {
+    playerData: [
+        {nickname: 'user1', role: '', vote: '', toGo: '', selected: false},
+        {nickname: 'user2', role: '', vote: '', toGo: '', selected: false},
+        {nickname: 'user3', role: '', vote: '', toGo: '', selected: false},
+        {nickname: 'user4', role: '', vote: '', toGo: '', selected: false},
+        {nickname: 'user5', role: '', vote: '', toGo: '', selected: false},
+        // {nickname: 'user6', role: '', vote: '', toGo: '',selected : false},
+        // {nickname: 'user7', role: '', vote: '', toGo: '',selected : false},
+        // {nickname: 'user8', role: '', vote: '', toGo: '',selected : false},
+        // {nickname: 'user9', role: '', vote: '', toGo: '',selected : false},
+    ],
+    voteStage: 0,
+    expeditionStage: 0,
+    represent: 0,
+    vote: [],
+    takeStage: [],
+
     mainFrameClick: false,
     playerCheckedNumber: 0,
     voteCount: 0,
@@ -33,7 +53,6 @@ const initialState = {
     page: START_FRAME,
     kill: '',
 }
-
 export const reducer = (state, action) => {
     console.log(state)
     switch (action.type) {
@@ -83,8 +102,8 @@ function AVALON_TEST() {
         }
     }
     const mainFrameClicked = () => {
-        const mainFrameClick = true
-        dispatch({type: "mainFrameClick", mainFrameClick})
+        const page = MAIN_VOTE
+        dispatch({type: "page", page})
     }
     const votePage = () => {
         let agree = 0;
@@ -155,7 +174,7 @@ function AVALON_TEST() {
 
     const gameStart = () => {
         const PlayersNumber = user.length;
-        const page = MAIN_FRAME
+        const page = MAIN_PLAYER
         switch (user.length) {
             case 5 :
                 game.takeStage = needPlayers._5P;
@@ -193,6 +212,52 @@ function AVALON_TEST() {
     if (state.page === START_FRAME) {
         return (
             <button onClick={gameStart}>게임 시작</button>
+        )
+    }
+    if (state.page === MAIN_PLAYER) {
+        return (
+            <>
+                <h3>MAIN_PLAYER</h3>
+                <TakeStage/>
+                <VoteStage/>
+                {user.map((user, index) => (
+                    <User key={index}>
+                        <ul>
+                            <li>{`nickname : ${user.nickname}`}</li>
+                            <li>{`role : ${user.role}`}</li>
+                            <br/>
+                            {user.role === 'Merlin' ?
+                                <MerlinPlayer index={index}/> : null
+                            }
+                            {user.role === 'Percival' ?
+                                <PercivalPlayer index={index}/> : null
+                            }
+                        </ul>
+                        {index === game.represent ?
+                            <button onClick={mainFrameClicked}>원정 인원 정하기</button> : null}
+                    </User>
+                ))}
+            </>
+        )
+    }
+    if (state.page === MAIN_VOTE) {
+        return (
+            <div>
+                <TakeStage/>
+                <VoteStage/>
+                {user.map((user, index) => (
+                    <ul key={index}>
+                        <label>{user.nickname}
+                            <input
+                                onChange={voteOnChange}
+                                type="checkbox"
+                                name={'checkbox'}
+                                value={index}/>
+                        </label>
+                    </ul>
+                ))}
+                <button onClick={voteOnClick}>결정</button>
+            </div>
         )
     }
     if (state.page === MAIN_FRAME) {

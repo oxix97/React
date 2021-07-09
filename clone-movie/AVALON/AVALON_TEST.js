@@ -8,12 +8,15 @@ import Vote from "./RepresentVote/Vote";
 import AngelsVote from "./ExpeditionVote/AngelsVote";
 import EvilsVote from "./ExpeditionVote/EvilsVote";
 
-const START = 0;
-const MAIN_FRAME = 1;
-const VOTE = 2;
-const EXPEDITION = 3;
-const ASSASSIN = 4;
-const END_GAME = 5;
+export const START_FRAME = 'START_FRAME'
+export const MAIN_FRAME = 'MAIN_FRAME'
+export const MAIN_SELECT_PLAYER = 'MAIN_SELECT_PLAYER'
+export const VOTE_FRAME = 'VOTE_FRAME'
+export const VOTE_RESULT = 'VOTE_RESULT'
+export const EXPEDITION_FRAME = 'EXPEDITION_FRAME'
+export const EXPEDITION_RESULT = 'EXPEDITION_RESULT'
+export const ASSASSIN_FRAME = 'ASSASSIN_FRAME'
+export const END_GAME_FRAME = 'END_GAME_FRAME'
 
 function AVALON_TEST() {
     const user = useContext(UserState)
@@ -24,7 +27,7 @@ function AVALON_TEST() {
     const [voteResult, setVoteResult] = useState(false)
     const [expedition, setExpedition] = useState(false);
     const [winner, setWinner] = useState('')
-    const [page, setPage] = useState(START);
+    const [page, setPage] = useState(START_FRAME);
     const [kill, setKill] = useState('')
     useEffect(() => {
 
@@ -38,7 +41,7 @@ function AVALON_TEST() {
             setVoteCount(voteCount + 1);
             setMainFrameClick(false);
             setPlayerCount(0)
-            setPage(VOTE)
+            setPage(VOTE_FRAME)
         } else {
             alert(`${game.takeStage[game.expeditionStage]}명을 선택해야합니다.`);
         }
@@ -49,7 +52,7 @@ function AVALON_TEST() {
         user.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
         if (agree >= oppose) {
             game.voteStage = 0;
-            setPage(EXPEDITION)
+            setPage(EXPEDITION_FRAME)
         } else {
             if (game.voteStage === 4) {
                 game.takeStage[game.expeditionStage] = 'fail';
@@ -68,11 +71,11 @@ function AVALON_TEST() {
         const angelCount = game.takeStage.filter(element => 'success' === element).length;
         const evilCount = game.takeStage.filter(element => 'fail' === element).length;
         if (angelCount === 3) {
-            setPage(ASSASSIN)
+            setPage(ASSASSIN_FRAME)
         }
         if (evilCount === 3) {
             setWinner('EVILS_WIN')
-            setPage(END_GAME)
+            setPage(END_GAME_FRAME)
         }
         setExpedition(false)
         game.vote = []
@@ -92,7 +95,7 @@ function AVALON_TEST() {
         }
         game.expeditionStage += 1;
     }
-    if (page === START) {
+    if (page === START_FRAME) {
         switch (user.length) {
             case 5 :
                 game.takeStage = needPlayers._5P;
@@ -132,13 +135,31 @@ function AVALON_TEST() {
             <button onClick={onClick}>게임 시작</button>
         )
     }
+    if (page === MAIN_SELECT_PLAYER) {
 
+        return (
+            <div>
+                <h3>{page}</h3>
+                {user.map((user, index) => (
+                    <ul key={index}>
+                        <label>{user.nickname}
+                            <input
+                                onChange={voteOnChange}
+                                type="checkbox"
+                                name={'checkbox'}
+                                value={index}/>
+                        </label>
+                    </ul>
+                ))}
+                <button onClick={voteOnClick}>결정</button>
+            </div>
+        )
+    }
     if (page === MAIN_FRAME) {
         const colors = voteStageColor.slice(game.voteStage, 5);
         const clicked = () => {
-            setMainFrameClick(true)
-        }
-
+            setPage(MAIN_SELECT_PLAYER)
+        };
         return (
             <>
                 <div>Main</div>
@@ -160,8 +181,8 @@ function AVALON_TEST() {
                     }
                 </VoteStageFrame>
                 <PublicFrame>
-                    {!mainFrameClick ?
-                        user.map((user, index) => (
+                    {
+                        user.map((user,index)=>(
                             <User key={index}>
                                 <ul>
                                     <li>{`nickname : ${user.nickname}`}</li>
@@ -176,28 +197,14 @@ function AVALON_TEST() {
                                 </ul>
                                 {index === game.represent ? <button onClick={clicked}>원정 인원 정하기</button> : null}
                             </User>
-                        )) :
-                        <div>
-                            {user.map((user, index) => (
-                                <ul key={index}>
-                                    <label>{user.nickname}
-                                        <input
-                                            onChange={voteOnChange}
-                                            type="checkbox"
-                                            name={'checkbox'}
-                                            value={index}/>
-                                    </label>
-                                </ul>
-                            ))}
-                            <button onClick={voteOnClick}>결정</button>
-                        </div>
+                        ))
                     }
                 </PublicFrame>
             </>
 
         );
     }
-    if (page === VOTE) {
+    if (page === VOTE_FRAME) {
         const result = () => {
             setVoteResult(true)
         }
@@ -225,7 +232,7 @@ function AVALON_TEST() {
         )
     }
 
-    if (page === EXPEDITION) {
+    if (page === EXPEDITION_FRAME) {
 
         return (
             <>
@@ -271,14 +278,14 @@ function AVALON_TEST() {
             </>
         )
     }
-    if (page === ASSASSIN) {
+    if (page === ASSASSIN_FRAME) {
         const onChange = e => {
             setKill(e.target.value)
         }
         const killPlayer = () => {
             const win = kill === 'merlin' ? '악의 승리' : '선의 승리'
             setWinner(win)
-            setPage(END_GAME)
+            setPage(END_GAME_FRAME)
         }
         return (
             <>
@@ -298,7 +305,7 @@ function AVALON_TEST() {
             </>
         )
     }
-    if (page === END_GAME) {
+    if (page === END_GAME_FRAME) {
         return (
             <>
                 <h1>{winner}</h1>
@@ -314,6 +321,11 @@ function AVALON_TEST() {
             </>
         )
     }
+    return(
+        <div>
+
+        </div>
+    )
 }
 
 export default AVALON_TEST

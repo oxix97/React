@@ -1,11 +1,12 @@
 import React, {useContext, useState} from "react";
-import {GameContext,PlayerContext} from "../gameSetting";
+import {initContext} from "../AVALON_Reducer";
 
 function AngelsVote() {
-    const gameState = useContext(GameContext)
+    const game = useContext(initContext)
     const [isClick,setIsClick] = useState(false);
     const onClick = e =>{
-        gameState.vote.push(e.target.value);
+        console.log('성공')
+        game.vote.push(e.target.value);
         setIsClick(true);
     }
     return(

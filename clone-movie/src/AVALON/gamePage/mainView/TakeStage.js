@@ -1,9 +1,9 @@
 import React, {useContext} from "react";
 import {Frame, PublicFrame} from "../../MainPage/Styled";
-import {GameContext} from "../../gameSetting";
+import {initContext} from "../../AVALON_Reducer";
 
 function TakeStage() {
-    const game = useContext(GameContext)
+    const game = useContext(initContext)
     return(
         <PublicFrame>
             {

@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useReducer} from "react";
 import shuffle from 'lodash.shuffle';
+import {reducer} from "./AVALON_Reducer";
 
 
 export const angels = ['Merlin', 'Percival', 'Citizen'];
@@ -58,31 +59,6 @@ export const GameContext = createContext(Games);
 export const PlayerContext = createContext(Players);
 export const InitState = createContext(initialState)
 
-const reducer = (state, action) => {
-    console.log(state)
-    switch (action.type) {
-        case "mainFrameClick":
-            return {...state, mainFrameClick: action.mainFrameClick}
-        case "playerCheckedNumber" :
-            return {...state, playerCheckedNumber: state.playerCheckedNumber + action.playerCheckedNumber}
-        case "checkedReset":
-            return {...state, playerCheckedNumber: 0}
-        case "voteCount":
-            return {...state, voteCount: action.voteCount}
-        case "voteResult":
-            return {...state, voteResult: action.voteResult}
-        case "expedition":
-            return {...state, expedition: action.expedition}
-        case "winner":
-            return {...state, winner: action.winner}
-        case "page":
-            return {...state, page: action.page}
-        case "kill":
-            return {...state, kill: action.killedPlayer}
-        default :
-            return state
-    }
-}
 const Store = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
     const game = useContext(GameContext)

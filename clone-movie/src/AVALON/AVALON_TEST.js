@@ -15,7 +15,7 @@ import AngelsVote from "./ExpeditionVote/AngelsVote";
 import EvilsVote from "./ExpeditionVote/EvilsVote";
 import TakeStage from "./gamePage/mainView/TakeStage";
 import VoteStage from "./MainPage/VoteStage";
-import {findAllByDisplayValue} from "@testing-library/react";
+import {initContext} from "../AVALON_BACKUP/gameSetting";
 
 const START_FRAME = 0;
 const MAIN_FRAME = 1;
@@ -79,9 +79,11 @@ export const reducer = (state, action) => {
     }
 }
 
-function AVALON_TEST() {
+const AVALON_TEST = ({Store}) => {
+
     const user = useContext(PlayerContext)
     const game = useContext(GameContext)
+
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const voteOnChange = e => {
@@ -171,7 +173,6 @@ function AVALON_TEST() {
         dispatch({type: "winner", winner})
         dispatch({type: "page", page})
     }
-
     const gameStart = () => {
         const PlayersNumber = user.length;
         const page = MAIN_PLAYER

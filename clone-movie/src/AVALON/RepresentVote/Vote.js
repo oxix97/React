@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
-import {GameContext,PlayerContext} from "../gameSetting";
+import {initContext} from "../AVALON_Reducer";
 function Vote(props) {
-    const userState = useContext(PlayerContext)
+    const game = useContext(initContext)
     const [vote, setVote] = useState('agree');
     const [click, setClick] = useState(false);
     const onChange = e => {
@@ -14,7 +14,7 @@ function Vote(props) {
         } else if (e.target.value === 'oppose') {
             setVote('oppose')
         }
-        userState[props.index].toGo = vote;
+        game.playerData[props.index].toGo = vote;
         setClick(true);
     };
 

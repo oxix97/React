@@ -66,7 +66,7 @@ export const func = {
     setPage: 'setPage',
     initVote: 'initFVote'
 }
-const initState = {
+export const initState = {
     playerData: [
         {nickname: 'user1', role: '', vote: '', toGo: '', selected: false},
         {nickname: 'user2', role: '', vote: '', toGo: '', selected: false},
@@ -92,4 +92,4 @@ const initState = {
 }
 export const PlayState = createContext(Background);
 export const UserState = createContext(Players);
-export const initContext = createContext(initState)
+export const InitContext = createContext(initState)

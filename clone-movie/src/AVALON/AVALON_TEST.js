@@ -16,6 +16,7 @@ import EvilsVote from "./ExpeditionVote/EvilsVote";
 import TakeStage from "./gamePage/mainView/TakeStage";
 import VoteStage from "./MainPage/VoteStage";
 import {initContext} from "../AVALON_BACKUP/gameSetting";
+import {Pages} from "./AVALON_BETA_Reducer";
 
 const START_FRAME = 0;
 const MAIN_FRAME = 1;
@@ -43,7 +44,6 @@ const initialState = {
     represent: 0,
     vote: [],
     takeStage: [],
-
     mainFrameClick: false,
     playerCheckedNumber: 0,
     voteCount: 0,
@@ -91,7 +91,7 @@ const AVALON_TEST = ({Store}) => {
         const playerCheckedNumber = e.target.checked ? 1 : -1
         dispatch({type: "playerCheckedNumber", playerCheckedNumber})
     }
-    const voteOnClick = () => {
+    const voteOnClick = e => {
         if (state.playerCheckedNumber === game.takeStage[game.expeditionStage]) {
             const voteCount = state.voteCount + 1
             const page = VOTE_FRAME
@@ -173,9 +173,10 @@ const AVALON_TEST = ({Store}) => {
         dispatch({type: "winner", winner})
         dispatch({type: "page", page})
     }
-    const gameStart = () => {
+    const gameStart = (data) => {
         const PlayersNumber = user.length;
         const page = MAIN_PLAYER
+        console.log(`data : ${data}`)
         switch (user.length) {
             case 5 :
                 game.takeStage = needPlayers._5P;
@@ -211,8 +212,9 @@ const AVALON_TEST = ({Store}) => {
         }
     };
     if (state.page === START_FRAME) {
+        const data = Pages.MAIN_VOTE
         return (
-            <button onClick={gameStart}>게임 시작</button>
+            <button onClick={()=>gameStart(data)}>게임 시작</button>
         )
     }
     if (state.page === MAIN_PLAYER) {

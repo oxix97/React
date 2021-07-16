@@ -1,12 +1,13 @@
 import shuffle from "lodash.shuffle";
 import {expandRoles, mustHaveRoles, needPlayers} from "../AVALON_BACKUP/gameSetting";
 import {useReducer} from "react";
-import {func, Pages,initContext,reducer} from "./AVALON_BETA_Reducer";
+import {func, initContext, Pages, reducer} from "./AVALON_BETA_Reducer";
 
-export const GameStart = ({state}) => {
+export const GameStart = () => {
     const [state, dispatch] = useReducer(reducer, initContext)
     let takeStage = 0
-    switch (state.playerData.length) {
+    const players = state.playerData.length
+    switch (players) {
         case 5 :
             takeStage = needPlayers._5P;
             break;
@@ -31,71 +32,122 @@ export const GameStart = ({state}) => {
             ...expandRoles.slice(0, PlayersNumber - 5),
         ];
         const roles = shuffle(temp);
-        const result = {takeStage: takeStage, roles: roles, setPage: Pages.MAIN_FRAME}
+        const result = {takeStage: takeStage, roles: roles, page: Pages.MAIN_FRAME}
         dispatch({type: func.gameStart, result})
     } else {
         alert('error')
     }
 };
-
+export const SetPage = (pages) => {
+    const [state, dispatch] = useReducer(reducer, initContext);
+    dispatch({type: func.setPage, page: pages})
+}
 export const VoteOnChange = e => {
     const [state, dispatch] = useReducer(reducer, initContext)
-    user[e.target.value].selected = e.target.checked;
-    e.target.checked ? setPlayerCount(playerCount + 1) : setPlayerCount(playerCount - 1);
+    const playerCount = e.target.checked ? 1 : -1
+    const index = e.target.value
+    const checked = e.target.checked
+    dispatch({type: func.voteOnChange, index: index, playerCount: playerCount, checked: checked})
 }
-export const voteOnClick = () => {
-    if (playerCount === game.takeStage[game.expeditionStage]) {
-        setVoteCount(voteCount + 1);
-        setPlayerCount(0)
-        setPage(VOTE_FRAME)
+export const VoteOnClick = () => {
+    const [state, dispatch] = useReducer(reducer, initContext)
+    if (state.playerCount === state.takeStage[state.expeditionStage]) {
+        const voteCount = state.voteCount + 1
+        const playerCount = 0
+        const page = Pages.VOTE_FRAME
+        dispatch({type: func.voteOnClick, voteCount: voteCount, playerCount: playerCount, page: page})
     } else {
-        alert(`${game.takeStage[game.expeditionStage]}명을 선택해야합니다.`);
+        alert(`${state.takeStage[state.expeditionStage]}명을 선택해야합니다.`);
     }
 }
-export const votePage = () => {
-    let agree = 0;
-    let oppose = 0;
-    user.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
+export const VotePage = () => {
+    const [state, dispatch] = useReducer(reducer, initContext)
+    const agree = state.playerData.filter(element => 'agree' === element).length
+    const oppose = state.playerData.filter(element => 'oppose' === element).length
+    let expeditionStage, index = state.expeditionStage
+    let page = ''
+    let voteStage = 0
+    const takeStageFail = 'fail'
+
     if (agree >= oppose) {
-        game.voteStage = 0;
-        setPage(EXPEDITION_FRAME)
+        voteStage = 0
+        page = Pages.EXPEDITION_FRAME
     } else {
-        if (game.voteStage === 4) {
-            game.takeStage[game.expeditionStage] = 'fail';
-            game.expeditionStage += 1;
-            game.voteStage = 0;
+        if (state.voteStage === 4) {
+            expeditionStage = state.expeditionStage + 1
+            voteStage = 0
         } else {
-            game.voteStage += 1;
+            // state.voteStage += 1;
+            voteStage = state.voteStage + 1
         }
-        setPage(MAIN_FRAME)
+        page = Pages.MAIN_FRAME
     }
-    game.represent += 1;
-    game.represent %= user.length;
-    nextPage()
+    const represent = (state.represent + 1) % state.playerData.length
+    NextPage()
+    dispatch({
+        type: func.votePage,
+        index: index,
+        page: page,
+        voteStage: voteStage,
+        expeditionStage: expeditionStage,
+        takeStageFail: takeStageFail,
+        represent: represent
+    })
 }
-export const nextPage = () => {
-    const angelCount = game.takeStage.filter(element => 'success' === element).length;
-    const evilCount = game.takeStage.filter(element => 'fail' === element).length;
+export const NextPage = () => {
+    const [state, dispatch] = useReducer(reducer, initContext)
+    const angelCount = state.takeStage.filter(element => 'success' === element).length;
+    const evilCount = state.takeStage.filter(element => 'fail' === element).length;
+    let page = ''
+    const winner = 'EVILS_WIN'
     if (angelCount === 3) {
-        setPage(ASSASSIN_FRAME)
+        page = Pages.ASSASSIN_FRAME
     }
     if (evilCount === 3) {
-        setWinner('EVILS_WIN')
-        setPage(END_GAME_FRAME)
+        page = Pages.END_GAME_FRAME
     }
-    game.vote = []
+    const vote = []
+    dispatch({
+        type: func.nextPage,
+        vote: vote,
+        page: page,
+        winner: winner
+    })
 }
-export const expeditionClick = () => {
-    if (game.expeditionStage === 4 && user.length >= 7) {
-        if (game.vote.filter(element => 'fail' === element).length >= 2) {
-            game.takeStage[game.expeditionStage] = 'fail';
+export const ExpeditionClick = () => {
+    const [state, dispatch] = useReducer(reducer, initContext)
+    let value = ''
+    if (state.expeditionStage === 4 && state.playerData.length >= 7) {
+        if (state.vote.filter(element => 'fail' === element).length >= 2) {
+            state.takeStage[state.expeditionStage] = 'fail';
+            value = 'fail'
         } else {
-            game.takeStage[game.expeditionStage] = 'success'
+            state.takeStage[state.expeditionStage] = 'success'
+            value = 'success'
         }
     } else {
-        game.vote.includes('fail') ?
-            game.takeStage[game.expeditionStage] = 'fail' :
-            game.takeStage[game.expeditionStage] = 'success'
+        state.vote.includes('fail') ?
+            value = 'fail' :
+            value = 'success'
     }
-    game.expeditionStage += 1;
+    const expeditionStage = state.expeditionStage
+    const nextExpeditionStage = state.expeditionStage + 1
+    dispatch({
+        type: func.expeditionClick,
+        value: value,
+        expeditionStage: expeditionStage,
+        nextExpeditionStage: nextExpeditionStage
+    })
+}
+export const KillPlayer = () => {
+    const [state, dispatch] = useReducer(reducer, initContext)
+    const targetPlayer = SelectPlayer.toString()
+    const winner = targetPlayer === 'Merlin' ? 'ANGELS_WIN' : 'EVILS_WIN'
+    dispatch({type: func.killPlayer, winner: winner, page: Pages.END_GAME_FRAME})
+}
+export const SelectPlayer = e => {
+    return e.target.value
+}
+export default {
+    GameStart,
 }

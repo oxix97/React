@@ -4,6 +4,7 @@ export const PageFrame = styled.div`
     display: flex;
     flex-direction : column;
     justify-content : flex-start;
+    background : ${props => props.color}
 `
 export const Title = styled.div`
     display : flex;
@@ -57,20 +58,6 @@ export const VoteStageFrame = styled.div`
     display : flex;
     justify-content : flex-end;
 `
-
-export const PlayerList = styled.div`
-    display : flex;
-    justify-content : flex-end;
-    flex-direction : column;
-`
-export const Column = styled.div`
-    display : flex;
-    justify-content : flex-end;
-`
-export const Player = styled.div`
-    display: flex;
-    flex-direction : column;
-`
 export const User = styled.div`
     display : flex;
     flex-direction : column;
@@ -79,3 +66,9 @@ export const User = styled.div`
     border 3px solid black;
     padding : 5px;
 `
+export const PlayerList = styled.div`
+        display : flex;
+        flex-direction : column;
+        justify-content : flex-end;
+        
+    `

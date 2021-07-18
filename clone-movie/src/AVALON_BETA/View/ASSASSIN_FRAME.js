@@ -12,12 +12,12 @@ function ASSASSIN_FRAME() {
                     <input type="radio"
                            name={'vote'}
                            value={user.role}
-                           onChange={() => game.selectPlayer}
+                           onChange={game.selectPlayer}
                     />
                     <br/>
                 </label>
             ))}
-            <button onClick={() => game.killPlayer}>kill</button>
+            <button onClick={game.killPlayer}>kill</button>
         </>
     )
 }

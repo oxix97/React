@@ -187,6 +187,7 @@ const Store = ({children}) => {
         const gameArr = {...gameState}
         const angelCount = gameArr.takeStage.filter(element => 'success' === element).length;
         const evilCount = gameArr.takeStage.filter(element => 'fail' === element).length;
+        gameArr.page = prop
         if (angelCount === 3) {
             gameArr.page = Pages.ASSASSIN_FRAME
         }
@@ -195,7 +196,6 @@ const Store = ({children}) => {
             gameArr.page = Pages.END_GAME_FRAME
         }
         gameArr.vote = []
-        gameArr.page = prop
         setGameState(gameArr)
     }
     const expeditionClick = () => {
@@ -213,6 +213,7 @@ const Store = ({children}) => {
         }
         gameArr.expeditionStage += 1
         gameArr.page = Pages.EXPEDITION_RESULT
+        gameArr.voteStage = 0
         gameArr.usingPlayers.map((user) => {
             user.selected = false
         })

@@ -2,7 +2,6 @@ import React, {useContext} from "react";
 import {angels, GameContext} from "../Store";
 import AngelsVote from "../Ability/AngelsVote";
 import EvilsVote from "../Ability/EvilsVote";
-import {Pages} from "../MVC/AVALON_Reducer";
 
 function EXPEDITION_FRAME() {
     const game = useContext(GameContext)

@@ -5,6 +5,9 @@ import EvilsVote from "../Ability/EvilsVote";
 
 function EXPEDITION_FRAME() {
     const game = useContext(GameContext)
+    game.gameState.usingPlayers.map((user, index) => {
+        console.log(`${user.selected}`)
+    })
     return (
         <>
             <div>
@@ -24,7 +27,7 @@ function EXPEDITION_FRAME() {
                         </ul>
                     ))
                 }
-                <button onClick={() => game.expeditionClick}>결과</button>
+                <button onClick={game.expeditionClick}>결과</button>
             </div>
         </>
     );

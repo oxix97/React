@@ -97,6 +97,8 @@ const Store = ({children}) => {
         winner: '',
         page: Pages.START_FRAME,
         kill: '',
+        index: 0,
+        checked: false,
     })
     const gameStart = () => {
         console.log('gameStart')
@@ -126,35 +128,11 @@ const Store = ({children}) => {
                 ...expandRoles.slice(0, playersNumber - 5),
             ];
             const roles = shuffle(temp)
-            // peers.forEach((i) => {
-            //     playerArr.push({
-            //         nickname: i.nickname, // nickname
-            //         role: roles[i], // role
-            //         vote: '', // 대표자 선정 찬반 투표
-            //         toGo: '', // 원정에 선정된 사람은 true, 그렇지 않으면 false
-            //         selected: false, // 대표자가 선정
-            //     })
-            // })
-            // playerArr.forEach(() => {
-            //     gameArr.push({
-            //         voteStage: 0, //5-voteStage 재투표 가능횟수
-            //         expeditionStage: 0, //게임 expedition 진행 상황
-            //         represent: 0, //원정 인원 정하는 대표자 index
-            //         vote: [], //원정 성공 여부 투표함
-            //         takeStage: gameTable, //인원에 맞는 게임 스테이지 설정
-            //         playerCount: 0, // 대표자가 원정에 보낼 인원 수
-            //         voteCount: 0, //
-            //         winner: '',
-            //         page: Pages.START_FRAME,
-            //         kill: '',
-            //     })
-            // })
-            const halt = true
-            // sendDataToPeers(GAME, {game: AVALON, nickname, peers, data: {gameArr, playerArr,}})
-            gameState.usingPlayers.map((user, index) => {
+            const usingPlayer = gameState.usingPlayers
+            usingPlayer.map((user, index) => {
                 user.role = roles[index]
             })
-            setGameState({...gameState, page: Pages.MAIN_FRAME, takeStage: gameTable})
+            setGameState({...gameState, page: Pages.MAIN_FRAME, takeStage: gameTable, usingPlayers: usingPlayer})
         } else {
             alert(`${playersNumber}명입니다. ${5 - playersNumber}명이 더 필요합니다.`)
         }
@@ -164,10 +142,20 @@ const Store = ({children}) => {
         const playerCount = e.target.checked ? gameState.playerCount + 1 : gameState.playerCount - 1
         const index = e.target.value
         const checked = e.target.checked
-        console.log(`index : ${index}, checked : ${checked}`)
         // dispatch({type: func.voteOnChange, index: index, playerCount: playerCount, checked: checked})
         // sendDataToPeers(GAME, {game: AVALON, nickname, peers, data: {playerCount, index, checked}})
-        setGameState({...gameState, index: index, playerCount: playerCount, checked: checked})
+        const usingPlayers = gameState.usingPlayers
+        usingPlayers[index].selected = checked
+        console.log(`index : ${index}, checked : ${checked}`)
+        console.log(`playerCount : ${gameState.playerCount}`)
+        console.log(`voteCount : ${gameState.voteCount}`)
+        setGameState({
+            ...gameState,
+            index: index,
+            playerCount: playerCount,
+            checked: checked,
+            usingPlayers: usingPlayers
+        })
     }
     const voteOnClick = () => {
         console.log('voteOnClick')
@@ -182,14 +170,15 @@ const Store = ({children}) => {
             alert(`${gameState.takeStage[gameState.expeditionStage]}명을 선택해야합니다.`);
         }
     }
-    const votePage = () => {
+    const votePage = (prop) => {
         console.log('votePage')
         let agree = 0;
         let oppose = 0;
         gameState.usingPlayers.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
         let expeditionStage, index = gameState.expeditionStage
         let voteStage = 0
-        let page = ''
+        let stageFail = ''
+        let page = prop
         if (agree >= oppose) {
             voteStage = 0
             page = Pages.EXPEDITION_FRAME
@@ -197,10 +186,7 @@ const Store = ({children}) => {
             if (gameState.voteStage === 4) {
                 expeditionStage = gameState.expeditionStage + 1
                 voteStage = 0
-                setGameState({
-                    ...gameState,
-                    takeStage: 'fail'
-                })
+                stageFail = 'fail'
             } else {
                 // state.voteStage += 1;
                 voteStage = gameState.voteStage + 1
@@ -223,16 +209,22 @@ const Store = ({children}) => {
             page: page,
             voteStage: voteStage,
             expeditionStage: expeditionStage,
-            represent: represent
+            represent: represent,
+            stageFail: stageFail,
+            voteCount: 0,
         })
-        setPage(page)
-        nextPage()
+        console.log('nextPage' + page)
+        nextPage(page)
     }
-    const nextPage = () => {
-        console.log('nextPage')
+    const nextPage = (props) => {
         const angelCount = gameState.takeStage.filter(element => 'success' === element).length;
         const evilCount = gameState.takeStage.filter(element => 'fail' === element).length;
-        let page = ''
+        const usingPlayers = gameState.usingPlayers
+        usingPlayers.map((user, index) => {
+            user.selected = false
+        })
+        let page = props
+        const vote = []
         const winner = 'EVILS_WIN'
         if (angelCount === 3) {
             page = Pages.ASSASSIN_FRAME
@@ -240,7 +232,6 @@ const Store = ({children}) => {
         if (evilCount === 3) {
             page = Pages.END_GAME_FRAME
         }
-        const vote = []
         // sendDataToPeers(GAME, {
         //     game: AVALON, nickname, peers,
         //     data: {
@@ -249,12 +240,21 @@ const Store = ({children}) => {
         //         winner: winner,
         //     }
         // })
-        setGameState({
-            ...gameState,
-            vote: vote,
-            winner: winner
-        })
-        setPage(page)
+        page === Pages.MAIN_FRAME && page === Pages.EXPEDITION_FRAME ?
+            setGameState({
+                ...gameState,
+                vote: vote,
+                page: page,
+                represent: (gameState.represent + 1) % usingPlayers.length,
+                voteCount: 0,
+                playerCount: 0,
+                usingPlayers: usingPlayers
+            }) :
+            setGameState({
+                ...gameState,
+                winner: winner,
+                page: page
+            })
     }
     const expeditionClick = () => {
         let value = ''
@@ -271,7 +271,6 @@ const Store = ({children}) => {
                 value = 'fail' :
                 value = 'success'
         }
-        const expeditionStage = gameState.expeditionStage
         const nextExpeditionStage = gameState.expeditionStage + 1
         // sendDataToPeers(GAME, {
         //     game: AVALON, nickname, peers,
@@ -281,11 +280,13 @@ const Store = ({children}) => {
         //         nextExpeditionStage: nextExpeditionStage,
         //     }
         // })
+        const takeStage = gameState.takeStage
+        takeStage[gameState.expeditionStage] = value
         setGameState({
             ...gameState,
-            value: value,
-            expeditionStage: expeditionStage,
-            nextExpeditionStage: nextExpeditionStage
+            takeStage: takeStage,
+            expeditionStage: nextExpeditionStage,
+            page: Pages.EXPEDITION_RESULT,
         })
     }
     const killPlayer = () => {
@@ -332,7 +333,6 @@ const Store = ({children}) => {
                 {children}
             </GameContext.Provider>
         </PlayerContext.Provider>
-
     )
 }
 export {PlayerContext, Store, GameContext}

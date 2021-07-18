@@ -13,7 +13,7 @@ function VOTE_FRAME() {
                 <Title>
                     {game.gameState.usingPlayers.map((user, index) => <Vote key={index} index={index}/>)}
                 </Title>
-                <button onClick={() => game.setPage(Pages.VOTE_RESULT)}>결과</button>
+                <button onClick={() => game.setPage(Pages.VOTE_RESULT)}>투표 결과</button>
             </div>
         </>
     )

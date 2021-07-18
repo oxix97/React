@@ -26,7 +26,6 @@ const Games = {
 
 //**--------------------**
     playerCount: 0,
-    voteCount: 0,
     voteResult: false,
     expedition: false,
     winner: '',
@@ -93,31 +92,31 @@ const Store = ({children}) => {
         vote: [], //원정 성공 여부 투표함
         takeStage: [], //인원에 맞는 게임 스테이지 설정
         playerCount: 0, // 대표자가 원정에 보낼 인원 수
-        voteCount: 0, //
         winner: '',
         page: Pages.START_FRAME,
         kill: '',
         index: 0,
         checked: false,
+        voteCount: 0
     })
     const gameStart = () => {
         console.log('gameStart')
-        const playersNumber = gameState.usingPlayers.length
-        let gameTable = []
+        const gameArr = {...gameState}
+        const playersNumber = gameArr.usingPlayers.length
         switch (playersNumber) {
             case 5 :
-                gameTable = needPlayers._5P;
+                gameArr.takeStage = needPlayers._5P;
                 break;
             case 6:
-                gameTable = needPlayers._6P;
+                gameArr.takeStage = needPlayers._6P;
                 break;
             case 7:
-                gameTable = needPlayers._7P;
+                gameArr.takeStage = needPlayers._7P;
                 break;
             case 8:
             case 9:
             case 10:
-                gameTable = needPlayers._8to10P;
+                gameArr.takeStage = needPlayers._8to10P;
                 break;
             default:
                 console.log('error')
@@ -125,174 +124,106 @@ const Store = ({children}) => {
         if (playersNumber >= 5) {
             const temp = [
                 ...mustHaveRoles,
-                ...expandRoles.slice(0, playersNumber - 5),
+                ...expandRoles.slice(0, gameArr.usingPlayers.length - 5),
             ];
             const roles = shuffle(temp)
-            const usingPlayer = gameState.usingPlayers
-            usingPlayer.map((user, index) => {
+            gameArr.usingPlayers.map((user, index) => {
                 user.role = roles[index]
             })
-            setGameState({...gameState, page: Pages.MAIN_FRAME, takeStage: gameTable, usingPlayers: usingPlayer})
+            gameArr.page = Pages.MAIN_FRAME
+            setGameState(gameArr)
         } else {
             alert(`${playersNumber}명입니다. ${5 - playersNumber}명이 더 필요합니다.`)
         }
     };
     const voteOnChange = e => { //사용자 선택 e
+        const gameArr = {...gameState}
         console.log('voteOnChange')
-        const playerCount = e.target.checked ? gameState.playerCount + 1 : gameState.playerCount - 1
-        const index = e.target.value
-        const checked = e.target.checked
-        // dispatch({type: func.voteOnChange, index: index, playerCount: playerCount, checked: checked})
-        // sendDataToPeers(GAME, {game: AVALON, nickname, peers, data: {playerCount, index, checked}})
-        const usingPlayers = gameState.usingPlayers
-        usingPlayers[index].selected = checked
-        console.log(`index : ${index}, checked : ${checked}`)
-        console.log(`playerCount : ${gameState.playerCount}`)
-        console.log(`voteCount : ${gameState.voteCount}`)
-        setGameState({
-            ...gameState,
-            index: index,
-            playerCount: playerCount,
-            checked: checked,
-            usingPlayers: usingPlayers
-        })
+        console.log(`index : ${e.target.value} , check : ${e.target.checked}`)
+        console.log(`playerCount : ${gameArr.playerCount}`)
+        gameArr.usingPlayers[e.target.value].selected = e.target.checked
+        e.target.checked ? ++gameArr.playerCount : --gameArr.playerCount
+        setGameState(gameArr)
     }
     const voteOnClick = () => {
         console.log('voteOnClick')
-        if (gameState.playerCount === gameState.takeStage[gameState.expeditionStage]) {
-            const voteCount = gameState.voteCount + 1
-            const playerCount = 0
+        const gameArr = {...gameState}
+        if (gameArr.playerCount === gameArr.takeStage[gameArr.expeditionStage]) {
+            gameArr.voteCount += 1
+            gameArr.playerCount = 0
             // dispatch({type: func.voteOnClick, voteCount: voteCount, playerCount: playerCount, page: page})
             // sendDataToPeers(GAME, {game: AVALON, nickname, peers, data: {voteCount, playerCount}})
-            setGameState({...gameState, voteCount: voteCount, playerCount: playerCount})
-            setPage(Pages.VOTE_FRAME)
+            gameArr.page = Pages.VOTE_FRAME
+            setGameState(gameArr)
         } else {
-            alert(`${gameState.takeStage[gameState.expeditionStage]}명을 선택해야합니다.`);
+            alert(`${gameArr.takeStage[gameArr.expeditionStage]}명을 선택해야합니다.`);
         }
     }
-    const votePage = (prop) => {
+    const votePage = () => {
         console.log('votePage')
+        console.log(gameState)
+        const gameArr = {...gameState}
         let agree = 0;
         let oppose = 0;
-        gameState.usingPlayers.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
-        let expeditionStage, index = gameState.expeditionStage
-        let voteStage = 0
-        let stageFail = ''
-        let page = prop
+        gameArr.usingPlayers.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
         if (agree >= oppose) {
-            voteStage = 0
-            page = Pages.EXPEDITION_FRAME
+            gameArr.page = Pages.EXPEDITION_FRAME
         } else {
-            if (gameState.voteStage === 4) {
-                expeditionStage = gameState.expeditionStage + 1
-                voteStage = 0
-                stageFail = 'fail'
+            if (gameArr.voteStage === 4) {
+                gameArr.takeStage[gameArr.expeditionStage] = 'fail'
+                gameArr.expeditionStage += 1
+                gameArr.voteStage = 0
             } else {
-                // state.voteStage += 1;
-                voteStage = gameState.voteStage + 1
+                gameArr.voteStage += 1
             }
-            page = Pages.MAIN_FRAME
+            gameArr.page = Pages.MAIN_FRAME
         }
-        const represent = (gameState.represent + 1) % gameState.usingPlayers.length
-        // sendDataToPeers(GAME, {
-        //     game: AVALON, nickname, peers, data: {
-        //         index: index,
-        //         page: page,
-        //         voteStage: voteStage,
-        //         expeditionStage: expeditionStage,
-        //         represent: represent
-        //     }
-        // })
-        setGameState({
-            ...gameState,
-            index: index,
-            page: page,
-            voteStage: voteStage,
-            expeditionStage: expeditionStage,
-            represent: represent,
-            stageFail: stageFail,
-            voteCount: 0,
-        })
-        console.log('nextPage' + page)
-        nextPage(page)
+        gameArr.represent += 1
+        gameArr.represent %= gameArr.usingPlayers.length
+        nextPage(gameArr.page)
+        setGameState(gameArr)
     }
-    const nextPage = (props) => {
-        const angelCount = gameState.takeStage.filter(element => 'success' === element).length;
-        const evilCount = gameState.takeStage.filter(element => 'fail' === element).length;
-        const usingPlayers = gameState.usingPlayers
-        usingPlayers.map((user, index) => {
-            user.selected = false
-        })
-        let page = props
-        const vote = []
-        const winner = 'EVILS_WIN'
+    const nextPage = (prop) => {
+        const gameArr = {...gameState}
+        const angelCount = gameArr.takeStage.filter(element => 'success' === element).length;
+        const evilCount = gameArr.takeStage.filter(element => 'fail' === element).length;
         if (angelCount === 3) {
-            page = Pages.ASSASSIN_FRAME
+            gameArr.page = Pages.ASSASSIN_FRAME
         }
         if (evilCount === 3) {
-            page = Pages.END_GAME_FRAME
+            gameArr.winner = 'EVILS_WIN'
+            gameArr.page = Pages.END_GAME_FRAME
         }
-        // sendDataToPeers(GAME, {
-        //     game: AVALON, nickname, peers,
-        //     data: {
-        //         vote: vote,
-        //         page: page,
-        //         winner: winner,
-        //     }
-        // })
-        page === Pages.MAIN_FRAME && page === Pages.EXPEDITION_FRAME ?
-            setGameState({
-                ...gameState,
-                vote: vote,
-                page: page,
-                represent: (gameState.represent + 1) % usingPlayers.length,
-                voteCount: 0,
-                playerCount: 0,
-                usingPlayers: usingPlayers
-            }) :
-            setGameState({
-                ...gameState,
-                winner: winner,
-                page: page
-            })
+        gameArr.vote = []
+        gameArr.page = prop
+        setGameState(gameArr)
     }
     const expeditionClick = () => {
-        let value = ''
-        if (gameState.expeditionStage === 4 && gameState.playerData.length >= 7) {
-            if (gameState.vote.filter(element => 'fail' === element).length >= 2) {
-                gameState.takeStage[gameState.expeditionStage] = 'fail';
-                value = 'fail'
+        const gameArr = {...gameState}
+        if (gameArr.expeditionStage === 4 && gameArr.usingPlayers.length >= 7) {
+            if (gameArr.vote.filter(element => 'fail' === element).length >= 2) {
+                gameArr.takeStage[gameArr.expeditionStage] = 'fail';
             } else {
-                gameState.takeStage[gameState.expeditionStage] = 'success'
-                value = 'success'
+                gameArr.takeStage[gameArr.expeditionStage] = 'success'
             }
         } else {
-            gameState.vote.includes('fail') ?
-                value = 'fail' :
-                value = 'success'
+            gameArr.vote.includes('fail') ?
+                gameArr.takeStage[gameArr.expeditionStage] = 'fail' :
+                gameArr.takeStage[gameArr.expeditionStage] = 'success'
         }
-        const nextExpeditionStage = gameState.expeditionStage + 1
-        // sendDataToPeers(GAME, {
-        //     game: AVALON, nickname, peers,
-        //     data: {
-        //         value: value,
-        //         expeditionStage: expeditionStage,
-        //         nextExpeditionStage: nextExpeditionStage,
-        //     }
-        // })
-        const takeStage = gameState.takeStage
-        takeStage[gameState.expeditionStage] = value
-        setGameState({
-            ...gameState,
-            takeStage: takeStage,
-            expeditionStage: nextExpeditionStage,
-            page: Pages.EXPEDITION_RESULT,
+        gameArr.expeditionStage += 1
+        gameArr.page = Pages.EXPEDITION_RESULT
+        gameArr.usingPlayers.map((user) => {
+            user.selected = false
         })
+        setGameState(gameArr)
     }
     const killPlayer = () => {
+        const gameArr = {...gameState}
         const targetPlayer = selectPlayer.toString()
-        const winner = targetPlayer === 'Merlin' ? 'ANGELS_WIN' : 'EVILS_WIN'
-        setGameState({...gameState, winner: winner, page: Pages.END_GAME_FRAME})
+        targetPlayer === 'Merlin' ? gameArr.winner = '악의 승리' : gameArr.winnner = '선의 승리'
+        gameArr.page = Pages.END_GAME_FRAME
+        setGameState(gameArr)
     }
     const selectPlayer = e => {
         return e.target.value
@@ -301,7 +232,7 @@ const Store = ({children}) => {
         console.log(page)
         setGameState({
             ...gameState,
-            page: page
+            page: page,
         })
     }
     // useEffect(() => {

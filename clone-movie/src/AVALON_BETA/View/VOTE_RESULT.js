@@ -3,7 +3,6 @@ import {GameContext} from "../Store";
 import {Pages} from "../MVC/AVALON_Reducer";
 function VOTE_RESULT() {
     const game = useContext(GameContext)
-    const page = Pages.EXPEDITION_FRAME
     return (
         <div>
             {game.gameState.usingPlayers.map((user, index) => (
@@ -12,7 +11,7 @@ function VOTE_RESULT() {
                     <li>{`vote : ${user.toGo === 'agree' ? '찬성' : '반대'}`}</li>
                 </ul>
             ))}
-            <button onClick={()=>(game.votePage(page))}>다음</button>
+            <button onClick={()=>game.votePage(Pages.EXPEDITION_FRAME)}>다음</button>
         </div>
     )
 }

@@ -22,7 +22,7 @@ function EXPEDITION_RESULT() {
                         </div>
                 }
             </div>
-            <button onClick={game.nextPage(page)}>다음</button>
+            <button onClick={()=>game.nextPage(page)}>다음</button>
         </div>
     )
 }

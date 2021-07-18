@@ -7,8 +7,8 @@ import {Pages} from "../MVC/AVALON_Reducer";
 
 function MAIN_FRAME() {
     const game = useContext(GameContext)
-    const colors = voteStageColor.slice(game.voteStage, 5);
-    console.log(game.gameState.takeStage)
+    const colors = voteStageColor.slice(game.gameState.voteStage, 5);
+    console.log(game.gameState)
     return (
         <>
             <div>Main</div>

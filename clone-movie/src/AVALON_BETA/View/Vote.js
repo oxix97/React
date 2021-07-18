@@ -15,10 +15,11 @@ function Vote(props) {
         } else if (e.target.value === 'oppose') {
             setVote('oppose')
         }
-        game.gameState.usingPlayers[props.index].toGo = vote
+        const usingPlayers = game.gameState.usingPlayers
+        usingPlayers[props.index].toGo = vote
+        game.gameState.usingPlayers = usingPlayers
         setClick(true);
     };
-
     return (
         <div>
             {click ?

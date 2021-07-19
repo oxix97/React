@@ -24,42 +24,19 @@ import END_GAME from "./View/END_GAME_FRAME";
 
 function View() {
     const {gameState} = useContext(GameContext)
-    console.log(`view in ${gameState.component}`)
-    switch (gameState.component) {
-        case START_FRAME :
-            return <GameStart/>
-        case FRAME_MAIN:
-            return <MAIN/>
-        case MAIN_VOTE :
-            return <RESULT_MAIN/>
-        case VOTE_FRAME :
-            return <VOTE/>
-        case VOTE_RESULT:
-            return <RESULT_VOTE/>
-        case EXPEDITION_FRAME:
-            return <EXPEDITION/>
-        case EXPEDITION_RESULT:
-            return <RESULT_EXPEDITION/>
-        case ASSASSIN_FRAME :
-            return <ASSASSIN/>
-        case END_GAME_FRAME :
-            return <END_GAME/>
-        default :
-            return <div>error</div>
-    }
-    // return (
-    //     <>
-    //         {gameState.component === START_FRAME && <GameStart/>}
-    //         {gameState.component === FRAME_MAIN && <MAIN/>}
-    //         {gameState.component === MAIN_VOTE && <RESULT_MAIN/>}
-    //         {gameState.component === VOTE_FRAME && <VOTE/>}
-    //         {gameState.component === VOTE_RESULT && <RESULT_VOTE/>}
-    //         {gameState.component === EXPEDITION_FRAME && <EXPEDITION/>}
-    //         {gameState.component === EXPEDITION_RESULT && <RESULT_EXPEDITION/>}
-    //         {gameState.component === ASSASSIN_FRAME && <ASSASSIN/>}
-    //         {gameState.component === END_GAME_FRAME && <END_GAME/>}
-    //     </>
-    // )
+    return (
+        <>
+            {gameState.component === START_FRAME && <GameStart/>}
+            {gameState.component === FRAME_MAIN && <MAIN/>}
+            {gameState.component === MAIN_VOTE && <RESULT_MAIN/>}
+            {gameState.component === VOTE_FRAME && <VOTE/>}
+            {gameState.component === VOTE_RESULT && <RESULT_VOTE/>}
+            {gameState.component === EXPEDITION_FRAME && <EXPEDITION/>}
+            {gameState.component === EXPEDITION_RESULT && <RESULT_EXPEDITION/>}
+            {gameState.component === ASSASSIN_FRAME && <ASSASSIN/>}
+            {gameState.component === END_GAME_FRAME && <END_GAME/>}
+        </>
+    )
 }
 
 export default View

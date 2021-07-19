@@ -1,5 +1,4 @@
 import React from 'react';
-
 import AVALON_BETA from "./AVALON_BETA/AVALON_BETA";
 function App() {
     return (
@@ -8,8 +7,9 @@ function App() {
         //         <Avalon/>
         //     </UserState.Provider>
         // </PlayState.Provider>
-        <AVALON_BETA/>
+
         // <VIEW/>
+        <AVALON_BETA/>
     )
 }
 

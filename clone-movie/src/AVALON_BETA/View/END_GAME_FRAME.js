@@ -3,7 +3,6 @@ import {GameContext} from "../Store";
 
 function END_GAME_FRAME() {
     const game = useContext(GameContext)
-    console.log(game.gameState)
     return (
         <>
             <h1>{game.gameState.winner}</h1>

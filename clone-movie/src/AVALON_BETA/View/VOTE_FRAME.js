@@ -1,20 +1,19 @@
 import React, {useContext} from "react";
-import {Pages} from "../MVC/AVALON_Reducer";
-import {GameContext} from "../Store";
+import {GameContext, VOTE_RESULT} from "../Store";
 import {Title} from "../Styled";
 import Vote from "./Vote";
 
 function VOTE_FRAME() {
     const game = useContext(GameContext)
-    console.log(game.gameState)
     return (
         <>
             <div>VOTE</div>
             <div>
                 <Title>
-                    {game.gameState.usingPlayers.map((user, index) => <Vote key={index} index={index}/>)}
+                    {game.gameState.usingPlayers.map((user, index) =>
+                        <Vote key={index} index={index}/>)}
                 </Title>
-                <button onClick={() => game.setPage(Pages.VOTE_RESULT)}>투표 결과</button>
+                <button onClick={() => game.setComponent(VOTE_RESULT)}>투표 결과</button>
             </div>
         </>
     )

@@ -5,8 +5,6 @@ import EvilsVote from "../Ability/EvilsVote";
 
 function EXPEDITION_FRAME() {
     const game = useContext(GameContext)
-    console.log(game.gameState)
-
     return (
         <>
             <div>

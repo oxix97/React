@@ -15,7 +15,7 @@ export const ASSASSIN_KILL = 'ASSASSIN_KILL'
 const reducer = (state, {type, ...action}) => {
     const nickname = localStorage.getItem('nickname');
     console.log('dispatch: ', state, type, action)
-    switch (action) {
+    switch (type) {
         // case UPDATE_TIMER: {
         //     return { ...state, peers: action.peers }
         // }
@@ -26,7 +26,9 @@ const reducer = (state, {type, ...action}) => {
         // case UPDATE_TIMER:
         //     return { ...state, timer: state.timer + 1 };
         case SET_COMPONENT: {
-            return {...state, component: action.component}
+            const result = {...state,component:action.component}
+            console.log(`result : ${result}`)
+            return result
         }
         case START_FRAME:
         case MAIN_VOTE_ONCLICK:

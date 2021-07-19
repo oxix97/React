@@ -3,7 +3,7 @@ import {GameContext, VOTE_FRAME} from "../Store";
 import{MAIN_VOTE_ONCLICK} from "../MVC/AVALON_Reducer";
 
 function MAIN_VOTE() {
-    const {dispatch, ...gameState} = useContext(GameContext)
+    const {dispatch, gameState} = useContext(GameContext)
     const [playerCount, setPlayerCount] = useState(0)
     const gameArr = {...gameState}
     const onChange = e => {
@@ -17,7 +17,7 @@ function MAIN_VOTE() {
         if (playerCount === gameArr.takeStage[gameArr.expeditionStage]) {
             gameArr.voteCount += 1
             gameArr.vote = []
-            gameArr.page = VOTE_FRAME
+            gameArr.component = VOTE_FRAME
             console.log(gameArr)
             dispatch({type: MAIN_VOTE_ONCLICK, gameArr})
         } else {
@@ -26,8 +26,8 @@ function MAIN_VOTE() {
     }
     return (
         <div>
-            <h3>{"원정에 참여하는 인원 수 : " + gameArr.takeStage[gameArr.expeditionStage] + "명"}</h3>
-            {gameArr.usingPlayers.map((user, index) => (
+            <h3>{"원정에 참여하는 인원 수 : " + gameState.takeStage[gameState.expeditionStage] + "명"}</h3>
+            {gameState.usingPlayers.map((user, index) => (
                 <ul key={index}>
                     <label>{user.nickname}
                         <input

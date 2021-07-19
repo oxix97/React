@@ -3,8 +3,7 @@ import {GameContext} from "../Store";
 import {VOTE_ONCLICK} from "../MVC/AVALON_Reducer";
 
 function Vote(props) {
-    const {dispatch, ...gameState} = useContext(GameContext)
-
+    const {dispatch, gameState} = useContext(GameContext)
     const gameArr = {...gameState}
     const [vote, setVote] = useState('agree');
     const [click, setClick] = useState(false);

@@ -1,7 +1,6 @@
-import React, {useEffect, useReducer, useState} from "react";
+import React, {useEffect, useReducer, useMemo, useState} from "react";
 import shuffle from 'lodash.shuffle';
 import reducer, {EXPEDITION_CLICK, GAME_CHECK, SET_COMPONENT, VOTE_CHECK} from "./MVC/AVALON_Reducer";
-import MAIN_FRAME from "./View/MAIN_FRAME";
 
 export const START_FRAME = 'START_FRAME'
 export const FRAME_MAIN = 'FRAME_MAIN'
@@ -103,7 +102,6 @@ const initialData = {
     checked: false,
 }
 const GameContext = React.createContext('')
-const PlayerContext = React.createContext('')
 
 const Store = ({children}) => {
     const nickname = localStorage.getItem('nickname')
@@ -201,8 +199,9 @@ const Store = ({children}) => {
             gameArr.winner = 'EVILS_WIN'
             gameArr.component = END_GAME_FRAME
         }
+        console.log(`useEffect`)
         dispatch({type: GAME_CHECK, gameArr})
-    }, [gameState])
+    }, [gameState.expeditionStage])
     // useEffect(() => {
     //     if (peerData.type === GAME && peerData.game === AVALON) {
     //         const data = peerData.data
@@ -211,23 +210,18 @@ const Store = ({children}) => {
     //     }
     // }, [peerData])
     return (
-        <PlayerContext.Provider value={
+        <GameContext.Provider value={
             {
-                testPlayer,
-            }}>
-            <GameContext.Provider value={
-                {
-                    gameState,
-                    dispatch,
-                    gameStart,
-                    voteCheck,
-                    expeditionClick,
-                    setComponent,
-                }
-            }>
-                {children}
-            </GameContext.Provider>
-        </PlayerContext.Provider>
+                gameState,
+                dispatch,
+                gameStart,
+                voteCheck,
+                expeditionClick,
+                setComponent,
+            }
+        }>
+            {children}
+        </GameContext.Provider>
     )
 }
-export {PlayerContext, Store, GameContext}
+export {Store, GameContext}

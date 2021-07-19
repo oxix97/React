@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import {END_GAME_FRAME, GameContext} from "../Store";
 import {ASSASSIN_KILL} from "../MVC/AVALON_Reducer";
 function ASSASSIN_FRAME() {
-    const {dispatch, ...gameState} = useContext(GameContext)
+    const {dispatch, gameState} = useContext(GameContext)
     const onChange = e => {
         return e.target.value
     }
@@ -10,7 +10,7 @@ function ASSASSIN_FRAME() {
         const gameArr = {...gameState}
         const targetPlayer = onChange.toString()
         targetPlayer === 'Merlin' ? gameArr.winner = '악의 승리' : gameArr.winnner = '선의 승리'
-        gameArr.page = END_GAME_FRAME
+        gameArr.component = END_GAME_FRAME
         dispatch({type: ASSASSIN_KILL, gameArr})
     }
     return (

@@ -3,6 +3,7 @@ import {GameContext} from "../Store";
 
 function ASSASSIN_FRAME() {
     const game = useContext(GameContext)
+    console.log(game.gameState)
     return (
         <>
             <h3>ASSASSIN</h3>

@@ -3,6 +3,7 @@ import {GameContext} from "../Store";
 
 function GameStart() {
     const game = useContext(GameContext)
+    console.log(game.gameState)
     return (
         <button onClick={game.gameStart}>게임 시작</button>
     )

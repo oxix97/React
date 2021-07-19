@@ -3,6 +3,7 @@ import {GameContext} from "../Store";
 
 function MAIN_VOTE() {
     const game = useContext(GameContext)
+    console.log(game.gameState)
     return (
         <div>
             <h3>{"원정에 참여하는 인원 수 : " + game.gameState.takeStage[game.gameState.expeditionStage] + "명"}</h3>

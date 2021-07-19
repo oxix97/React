@@ -3,6 +3,7 @@ import {GameContext} from "../Store";
 import {Pages} from "../MVC/AVALON_Reducer";
 function VOTE_RESULT() {
     const game = useContext(GameContext)
+    console.log(game.gameState)
     return (
         <div>
             {game.gameState.usingPlayers.map((user, index) => (

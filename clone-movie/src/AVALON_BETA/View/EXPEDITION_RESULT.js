@@ -5,6 +5,7 @@ import {Pages} from "../MVC/AVALON_Reducer";
 function EXPEDITION_RESULT() {
     const game = useContext(GameContext)
     const page = Pages.MAIN_FRAME
+    console.log(game.gameState)
     return (
         <div>
             <div>

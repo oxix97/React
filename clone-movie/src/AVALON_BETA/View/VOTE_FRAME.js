@@ -6,6 +6,7 @@ import Vote from "./Vote";
 
 function VOTE_FRAME() {
     const game = useContext(GameContext)
+    console.log(game.gameState)
     return (
         <>
             <div>VOTE</div>

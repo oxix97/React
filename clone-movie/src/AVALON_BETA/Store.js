@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useReducer, useState, useEffect, useMemo} from "react";
+import React, {useState} from "react";
 import shuffle from 'lodash.shuffle';
 import {Pages} from "./MVC/AVALON_Reducer";
 
@@ -94,10 +94,8 @@ const Store = ({children}) => {
         playerCount: 0, // 대표자가 원정에 보낼 인원 수
         winner: '',
         page: Pages.START_FRAME,
-        kill: '',
         index: 0,
         checked: false,
-        voteCount: 0
     })
     const gameStart = () => {
         console.log('gameStart')

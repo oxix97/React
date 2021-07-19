@@ -36,7 +36,7 @@ function View() {
     }
     return (
         <div>
-            {}
+            error_page
         </div>
     )
 }

@@ -105,101 +105,103 @@ const GameContext = React.createContext('')
 const Store = ({children}) => {
     const nickname = localStorage.getItem('nickname')
     const [gameState, dispatch] = useReducer(reducer, initialData)
-    const gameStart = () => {
-        const gameArr = {...gameState}
-        const playersNumber = gameArr.usingPlayers.length
-        switch (playersNumber) {
-            case 5 :
-                gameArr.takeStage = needPlayers._5P;
-                break;
-            case 6:
-                gameArr.takeStage = needPlayers._6P;
-                break;
-            case 7:
-                gameArr.takeStage = needPlayers._7P;
-                break;
-            case 8:
-            case 9:
-            case 10:
-                gameArr.takeStage = needPlayers._8to10P;
-                break;
-            default:
-                alert('error')
-        }
-        if (playersNumber >= 5) {
-            const temp = [
-                ...mustHaveRoles,
-                ...expandRoles.slice(0, gameArr.usingPlayers.length - 5),
-            ];
-            const roles = shuffle(temp)
-            gameArr.usingPlayers.map((user, index) => {
-                user.role = roles[index]
-            })
-            gameArr.component = FRAME_MAIN
-            dispatch({type: START_FRAME, gameArr})
-            console.log(gameArr)
-        } else {
-            alert(`${playersNumber}명입니다. ${5 - playersNumber}명이 더 필요합니다.`)
-        }
-    }
-    const voteCheck = () => {
-        const gameArr = {...gameState}
-        let agree = 0;
-        let oppose = 0;
-        gameArr.usingPlayers.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
-        if (agree >= oppose) {
-            gameArr.component = EXPEDITION_FRAME
-        } else {
-            if (gameArr.voteStage === 4) {
-                gameArr.takeStage[gameArr.expeditionStage] = 'fail'
-                gameArr.expeditionStage += 1
-                gameArr.voteStage = 0
-            } else {
-                gameArr.voteStage += 1
-            }
-            gameArr.component = FRAME_MAIN
-        }
-        gameArr.represent += 1
-        gameArr.represent %= gameArr.usingPlayers.length
-        dispatch({type: VOTE_CHECK, gameArr})
-    }
-    const expeditionClick = () => {
-        const gameArr = {...gameState}
-        if (gameArr.expeditionStage === 4 && gameArr.usingPlayers.length >= 7) {
-            if (gameArr.vote.filter(element => 'fail' === element).length >= 2) {
-                gameArr.takeStage[gameArr.expeditionStage] = 'fail';
-            } else {
-                gameArr.takeStage[gameArr.expeditionStage] = 'success'
-            }
-        } else {
-            gameArr.vote.includes('fail') ?
-                gameArr.takeStage[gameArr.expeditionStage] = 'fail' :
-                gameArr.takeStage[gameArr.expeditionStage] = 'success'
-        }
-        gameArr.expeditionStage += 1
-        gameArr.component = EXPEDITION_RESULT
-        gameArr.voteStage = 0
-        gameArr.usingPlayers.map((user) => {
-            user.selected = false
-        })
-        dispatch({type: EXPEDITION_CLICK, gameArr})
-    }
-    const setComponent = (component) => {
-        dispatch({type: SET_COMPONENT, component: component})
-    }
+    console.log(gameState)
+    // const gameStart = () => {
+    //     const gameData = {...gameState}
+    //     const playersNumber = gameData.usingPlayers.length
+    //     switch (playersNumber) {
+    //         case 5 :
+    //             gameData.takeStage = needPlayers._5P;
+    //             break;
+    //         case 6:
+    //             gameData.takeStage = needPlayers._6P;
+    //             break;
+    //         case 7:
+    //             gameData.takeStage = needPlayers._7P;
+    //             break;
+    //         case 8:
+    //         case 9:
+    //         case 10:
+    //             gameData.takeStage = needPlayers._8to10P;
+    //             break;
+    //         default:
+    //             alert('error')
+    //     }
+    //     if (playersNumber >= 5) {
+    //         const temp = [
+    //             ...mustHaveRoles,
+    //             ...expandRoles.slice(0, gameData.usingPlayers.length - 5),
+    //         ];
+    //         const roles = shuffle(temp)
+    //         const usingPlayers = gameState.usingPlayers
+    //         usingPlayers.map((user, index) => {
+    //             user.role = roles[index]
+    //         })
+    //         gameData.component = FRAME_MAIN
+    //         dispatch({type: START_FRAME, gameData})
+    //         console.log(gameData)
+    //     } else {
+    //         alert(`${playersNumber}명입니다. ${5 - playersNumber}명이 더 필요합니다.`)
+    //     }
+    // }
+    // const voteCheck = () => {
+    //     const gameData = {...gameState}
+    //     let agree = 0;
+    //     let oppose = 0;
+    //     gameData.usingPlayers.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
+    //     if (agree >= oppose) {
+    //         gameData.component = EXPEDITION_FRAME
+    //     } else {
+    //         if (gameData.voteStage === 4) {
+    //             gameData.takeStage[gameData.expeditionStage] = 'fail'
+    //             gameData.expeditionStage += 1
+    //             gameData.voteStage = 0
+    //         } else {
+    //             gameData.voteStage += 1
+    //         }
+    //         gameData.component = FRAME_MAIN
+    //     }
+    //     gameData.represent += 1
+    //     gameData.represent %= gameData.usingPlayers.length
+    //     dispatch({type: VOTE_CHECK, gameData})
+    // }
+    // const expeditionClick = () => {
+    //     const gameData = {...gameState}
+    //     if (gameData.expeditionStage === 4 && gameData.usingPlayers.length >= 7) {
+    //         if (gameData.vote.filter(element => 'fail' === element).length >= 2) {
+    //             gameData.takeStage[gameData.expeditionStage] = 'fail';
+    //         } else {
+    //             gameData.takeStage[gameData.expeditionStage] = 'success'
+    //         }
+    //     } else {
+    //         gameData.vote.includes('fail') ?
+    //             gameData.takeStage[gameData.expeditionStage] = 'fail' :
+    //             gameData.takeStage[gameData.expeditionStage] = 'success'
+    //     }
+    //     gameData.expeditionStage += 1
+    //     gameData.component = EXPEDITION_RESULT
+    //     gameData.voteStage = 0
+    //     gameData.usingPlayers.map((user) => {
+    //         user.selected = false
+    //     })
+    //     dispatch({type: EXPEDITION_CLICK, gameData})
+    // }
+    // const setComponent = (component) => {
+    //     dispatch({type: SET_COMPONENT, component: component})
+    // }
     useEffect(() => {
-        const gameArr = {...gameState}
-        const angelCount = gameArr.takeStage.filter(element => 'success' === element).length;
-        const evilCount = gameArr.takeStage.filter(element => 'fail' === element).length;
+        const gameData = {...gameState}
+        const angelCount = gameData.takeStage.filter(element => 'success' === element).length;
+        const evilCount = gameData.takeStage.filter(element => 'fail' === element).length;
         if (angelCount === 3) {
-            gameArr.component = ASSASSIN_FRAME
+            gameData.component = ASSASSIN_FRAME
         }
         if (evilCount === 3) {
-            gameArr.winner = 'EVILS_WIN'
-            gameArr.component = END_GAME_FRAME
+            gameData.winner = 'EVILS_WIN'
+            gameData.component = END_GAME_FRAME
         }
         console.log(`useEffect`)
-        dispatch({type: GAME_CHECK, gameArr})
+        dispatch({type: GAME_CHECK, gameData})
     }, [gameState.expeditionStage])
     // useEffect(() => {
     //     if (peerData.type === GAME && peerData.game === AVALON) {
@@ -213,10 +215,10 @@ const Store = ({children}) => {
             {
                 gameState,
                 dispatch,
-                gameStart,
-                voteCheck,
-                expeditionClick,
-                setComponent,
+                // gameStart,
+                // voteCheck,
+                // expeditionClick,
+                // setComponent,
             }
         }>
             {children}

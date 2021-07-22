@@ -58,6 +58,7 @@ const reducer = (state, {type, ...action}) => {
             //     })
             // }) // 나를 제외한 모두 추가하기
             const playersNumber = gameData.usingPlayers.length //게임에 참여한 인원
+            console.log(`playersNumber : ${playersNumber}`)
             switch (playersNumber) {
                 case 5 :
                     gameData.takeStage = needPlayers._5P;
@@ -76,6 +77,7 @@ const reducer = (state, {type, ...action}) => {
                 default:
                     alert('error')
             } // 참여 인원별 원정 설정하기
+            console.log(`takeStage : ${gameData.takeStage}`)
             if (playersNumber >= 5) { // 5명 이상인 경우 직업설정
                 const temp = [
                     ...mustHaveRoles,
@@ -85,9 +87,14 @@ const reducer = (state, {type, ...action}) => {
                 gameData.usingPlayers.map((user, index) => {
                     user.role = roles[index]
                 })
-                gameData.component = FRAME_MAIN
                 // sendDataToPeers(GAME, {game: AVALON, nickname, peers, data: gameData})
-                return {...state, gameData}
+                gameData.component = FRAME_MAIN
+                return {
+                    ...state,
+                    component: gameData.component,
+                    usingPlayers: gameData.usingPlayers,
+                    takeStage: gameData.takeStage,
+                }
             } else { // 그렇지 않은 경우 몇명 더 필요한지 알림
                 alert(`${playersNumber}명입니다. ${5 - playersNumber}명이 더 필요합니다.`)
                 return null
@@ -114,7 +121,14 @@ const reducer = (state, {type, ...action}) => {
             gameData.represent += 1
             gameData.represent %= gameData.usingPlayers.length
             // sendDataToPeers(GAME, {game: AVALON, nickname, peers, data: gameData})
-            return {...state, gameData}
+            return {
+                ...state,
+                component: gameData.component,
+                usingPlayers: gameData.usingPlayers,
+                vote: gameData.vote,
+                represent: gameData.represent,
+                voteStage: gameData.voteStage
+            }
         }
 
         case EXPEDITION_CLICK : {
@@ -137,14 +151,28 @@ const reducer = (state, {type, ...action}) => {
                 user.selected = false
             })
             // sendDataToPeers(GAME, {game: AVALON, nickname, peers, data: gameData})
-            return {...state, gameData}
+            return {
+                ...state,
+                takeStage: gameData.takeStage,
+                expeditionStage: gameData.expeditionStage,
+                voteStage: gameData.voteStage,
+                usingPlayers: gameData.usingPlayers,
+                component: gameData.component,
+            }
+        }
+        case ASSASSIN_KILL : {
+            return {
+                ...state,
+                winner: action.winner,
+                component: action.component
+            }
         }
         case MAIN_VOTE_ONCLICK:
         case VOTE_ONCLICK :
         case GAME_CHECK:
         case VOTE_RESULT_CHECK:
-        case ASSASSIN_KILL :
-            return {...state, ...action.gameArr}
+
+            return {...state, ...action.gameData}
         default :
             return state
     }

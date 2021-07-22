@@ -6,7 +6,7 @@ function GameStart() {
     console.log(`dispatch : ${dispatch} , game : ${game}`)
     return (
         <div>
-            <button onClick={dispatch({type: START_FRAME})}>게임 시작</button>
+            <button onClick={()=>dispatch({type: START_FRAME})}>게임 시작</button>
         </div>
     )
 }

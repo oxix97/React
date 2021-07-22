@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
-import {EXPEDITION_FRAME, GameContext} from "../Store";
+import {GameContext} from "../Store";
+import {VOTE_CHECK} from "../MVC/AVALON_Reducer";
 
 function VOTE_RESULT() {
     const {gameState, dispatch} = useContext(GameContext)
@@ -12,7 +13,7 @@ function VOTE_RESULT() {
                     <li>{`vote : ${user.toGo === 'agree' ? '찬성' : '반대'}`}</li>
                 </ul>
             ))}
-            <button onClick={() => dispatch({type: EXPEDITION_FRAME})}>다음</button>
+            <button onClick={() => dispatch({type: VOTE_CHECK})}>다음</button>
         </div>
     )
 }

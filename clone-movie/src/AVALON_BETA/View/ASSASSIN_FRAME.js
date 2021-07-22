@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {END_GAME_FRAME, GameContext} from "../Store";
+import {angels, END_GAME_FRAME, GameContext} from "../Store";
 import {ASSASSIN_KILL} from "../MVC/AVALON_Reducer";
 
 function ASSASSIN_FRAME() {
@@ -10,13 +10,13 @@ function ASSASSIN_FRAME() {
     const onClick = () => {
         const targetPlayer = onChange.toString()
         const winner = targetPlayer === 'Merlin' ? '악의 승리' : '선의 승리'
-        const component = END_GAME_FRAME
-        dispatch({type: ASSASSIN_KILL, component: component, winner: winner})
+        dispatch({type: ASSASSIN_KILL, component: END_GAME_FRAME, winner: winner})
     }
     return (
         <>
             <h3>ASSASSIN</h3>
             {gameState.usingPlayers.map((user, index) => (
+                angels.includes(user.role)&&
                 <label key={index}>
                     {user.nickname}
                     <input type="radio"
@@ -27,6 +27,7 @@ function ASSASSIN_FRAME() {
                     <br/>
                 </label>
             ))}
+
             <button onClick={onClick}>kill</button>
         </>
     )

@@ -103,92 +103,9 @@ const initialData = {
 const GameContext = React.createContext('')
 
 const Store = ({children}) => {
-    const nickname = localStorage.getItem('nickname')
     const [gameState, dispatch] = useReducer(reducer, initialData)
     console.log(gameState)
-    // const gameStart = () => {
-    //     const gameData = {...gameState}
-    //     const playersNumber = gameData.usingPlayers.length
-    //     switch (playersNumber) {
-    //         case 5 :
-    //             gameData.takeStage = needPlayers._5P;
-    //             break;
-    //         case 6:
-    //             gameData.takeStage = needPlayers._6P;
-    //             break;
-    //         case 7:
-    //             gameData.takeStage = needPlayers._7P;
-    //             break;
-    //         case 8:
-    //         case 9:
-    //         case 10:
-    //             gameData.takeStage = needPlayers._8to10P;
-    //             break;
-    //         default:
-    //             alert('error')
-    //     }
-    //     if (playersNumber >= 5) {
-    //         const temp = [
-    //             ...mustHaveRoles,
-    //             ...expandRoles.slice(0, gameData.usingPlayers.length - 5),
-    //         ];
-    //         const roles = shuffle(temp)
-    //         const usingPlayers = gameState.usingPlayers
-    //         usingPlayers.map((user, index) => {
-    //             user.role = roles[index]
-    //         })
-    //         gameData.component = FRAME_MAIN
-    //         dispatch({type: START_FRAME, gameData})
-    //         console.log(gameData)
-    //     } else {
-    //         alert(`${playersNumber}명입니다. ${5 - playersNumber}명이 더 필요합니다.`)
-    //     }
-    // }
-    // const voteCheck = () => {
-    //     const gameData = {...gameState}
-    //     let agree = 0;
-    //     let oppose = 0;
-    //     gameData.usingPlayers.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
-    //     if (agree >= oppose) {
-    //         gameData.component = EXPEDITION_FRAME
-    //     } else {
-    //         if (gameData.voteStage === 4) {
-    //             gameData.takeStage[gameData.expeditionStage] = 'fail'
-    //             gameData.expeditionStage += 1
-    //             gameData.voteStage = 0
-    //         } else {
-    //             gameData.voteStage += 1
-    //         }
-    //         gameData.component = FRAME_MAIN
-    //     }
-    //     gameData.represent += 1
-    //     gameData.represent %= gameData.usingPlayers.length
-    //     dispatch({type: VOTE_CHECK, gameData})
-    // }
-    // const expeditionClick = () => {
-    //     const gameData = {...gameState}
-    //     if (gameData.expeditionStage === 4 && gameData.usingPlayers.length >= 7) {
-    //         if (gameData.vote.filter(element => 'fail' === element).length >= 2) {
-    //             gameData.takeStage[gameData.expeditionStage] = 'fail';
-    //         } else {
-    //             gameData.takeStage[gameData.expeditionStage] = 'success'
-    //         }
-    //     } else {
-    //         gameData.vote.includes('fail') ?
-    //             gameData.takeStage[gameData.expeditionStage] = 'fail' :
-    //             gameData.takeStage[gameData.expeditionStage] = 'success'
-    //     }
-    //     gameData.expeditionStage += 1
-    //     gameData.component = EXPEDITION_RESULT
-    //     gameData.voteStage = 0
-    //     gameData.usingPlayers.map((user) => {
-    //         user.selected = false
-    //     })
-    //     dispatch({type: EXPEDITION_CLICK, gameData})
-    // }
-    // const setComponent = (component) => {
-    //     dispatch({type: SET_COMPONENT, component: component})
-    // }
+
     useEffect(() => {
         const gameData = {...gameState}
         const angelCount = gameData.takeStage.filter(element => 'success' === element).length;
@@ -203,22 +120,12 @@ const Store = ({children}) => {
         console.log(`useEffect`)
         dispatch({type: GAME_CHECK, gameData})
     }, [gameState.expeditionStage])
-    // useEffect(() => {
-    //     if (peerData.type === GAME && peerData.game === AVALON) {
-    //         const data = peerData.data
-    //         (data)
-    //         setPlayerState([...data.playerArr])
-    //     }
-    // }, [peerData])
+
     return (
         <GameContext.Provider value={
             {
                 gameState,
                 dispatch,
-                // gameStart,
-                // voteCheck,
-                // expeditionClick,
-                // setComponent,
             }
         }>
             {children}

@@ -41,7 +41,7 @@ function END_GAME_FRAME() {
             ))}
             </Box>    
         </div>
-       
+    
     );
 }
 

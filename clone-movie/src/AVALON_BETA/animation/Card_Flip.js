@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { animated, useSpring, config } from "react-spring";
+import { animated, useSpring, useTransition, config } from "react-spring";
 
 import * as S from "../Styled";
 import { FrontImg } from "../Styled";
@@ -15,10 +15,45 @@ export default function Card_Flip(props) {
     transform: `rotateY(${isFlipped ? 0 : 180}deg)`,
     config: config.stiff,
   });
+  const CardList = [{ dealay: 200 }];
+  const [cards, setCards] = useState([]);
+
+  // METHOD 1. MOST SIMLE WAY TO ACHIEVE DELAY
+  const transition = useTransition(cards, {
+    from: {
+      opacity: 0,
+      x: 150,
+      y: 100,
+    },
+    enter: { opacity: 1, x: 10, y: 10 },
+    leave: { opacity: 0, x: 500, y: 500 },
+    trail: 150,
+  });
   const flip = () => setIsFlipped((prevState) => !prevState);
 
   return (
     <React.Fragment>
+      {/*<div>*/}
+      {/*    <button onClick={() => setCards(cards.length > 0 ? [] : CardList)}>*/}
+      {/*        {cards.length > 0 ? "unmount" : "mount"}*/}
+      {/*    </button>*/}
+      {/*    {transition(*/}
+      {/*        (style, item) =>*/}
+      {/*            props.role === 'Morgana' && item && (*/}
+      {/*                <animated.div*/}
+      {/*                    style={{*/}
+      {/*                        ...style,*/}
+      {/*                        border: "1px solid green",*/}
+      {/*                        padding: "10px",*/}
+      {/*                        width: "50px",*/}
+      {/*                        borderRadius: "5px"*/}
+      {/*                    }}*/}
+      {/*                >*/}
+      {/*                    card*/}
+      {/*                </animated.div>*/}
+      {/*            )*/}
+      {/*    )}*/}
+      {/*</div>*/}
       <S.CardWrapper onClick={flip}>
         <S.NicknameTag>{props.nickname}</S.NicknameTag>
         <AnimatedPokerBack

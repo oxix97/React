@@ -7,14 +7,8 @@ const EXPEDITION = 3;
 const ASSASSIN = 4;
 const END_GAME = 5;
 
-
 const Store = () => {
+  return <div></div>;
+};
 
-    return(
-        <div>
-
-        </div>
-    )
-}
-
-export default Store
+export default Store;

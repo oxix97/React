@@ -36,6 +36,7 @@
 디자인 패턴 중 하나로 Model, View, Controller 의 약자로 하나의 애플리케이션, 프로젝트를 구성할 때 구성 요소를 세 가지로 나눈 패턴을 의미한다.
 
 ---
+
 ![이미지](https://mblogthumb-phinf.pstatic.net/MjAxNzAzMjVfMjUw/MDAxNDkwNDM4NzI4MTIy.4ZtITJJKJW_Nj1gKST0BhKMAzqmMaYIj9PobYJMFD4Ig.xTHT-0qyRKXsA4nZ2xKPNeCxeU2-tLIc-4oyrWq5WBgg.PNG.jhc9639/mvc_role_diagram.png?type=w800)
 출처 : https://m.blog.naver.com/jhc9639/220967034588
 
@@ -46,16 +47,19 @@
 Controller는 여러개의 View를 선택할 수 있ㄷ는 1:n 구조이며 직접 업데이트 하지 않는다. (View는 Controller를 알지 못한다.)
 
 ---
+
 ### 장점
 
 MVC패턴의 장점은 널리 사용되고 있는 패턴이며 가장 단순하다. 보편적인 디자인 패턴이다.
 
 ---
+
 ### 단점
 
 View, Model 의 사이의 의존성이 높다. View, Model의 높은 의존성은 애플리케이션이 커질수록 복잡해지고 유지보수가 어려워 질 수 있다.
 
 ---
+
 ### Model
 
 애플리케이션의 정보 및 데이터를 의미한다. 또한 데이터 정보들의 가공을 책임지는 컴토넌트로 다음과 같은 규칙이 존재한다.
@@ -65,6 +69,7 @@ View, Model 의 사이의 의존성이 높다. View, Model의 높은 의존성�
 3. 변경이 일어나는 경우 이벤트를 발생시켜 전달해야 하며, 모델 변경 이벤트를 수신 받을 수 있는 방법을 구현해야 한다. 또한 재사용 가능하며 다른 인터페이스에서도 변하지 않아야 한다.
 
 ---
+
 ### View
 
 사용자 인터페이스 요소를 나타내며 입출력을 담당한다. 데이터를 기반으로 사용자들이 볼 수 있는 화면으로 다음과 같은 규칙이 존재한다.
@@ -74,6 +79,7 @@ View, Model 의 사이의 의존성이 높다. View, Model의 높은 의존성�
 3. 변경이 일어난 경우 변경을 알리는 방법을 구현해야 하며, 재사용하기 위한 설계를 쉽게 해야한다.
 
 ---
+
 ### Controller
 
 데이터와 사용자 인터페이스 사이의 다리 역할이며 사용자가 데이터 수정 요청하는 이벤트를 처리하는 역할로 다음과 같은 규칙이 존재한다.
@@ -82,11 +88,13 @@ View, Model 의 사이의 의존성이 높다. View, Model의 높은 의존성�
 2. Model, View를 모니터링 해야 한다.
 
 ---
+
 ### MVC 패턴을 쓰는 이유?
 
 서로 분리되어 각자의 역할을 집중할 수 있으며, 유지보수 및 확장성, 유연성, 중복 코딩을 방지 할 수 있어서 효율적이다. 결국 MVC 패턴은 어떻게 나눌 것인가?에 대한 해답의 가이드라인 이라고 할 수 있다.
 
 ---
+
 ### MVC 패턴의 문제점
 
 MVC 패턴에서 Controller는 Model의 데이터를 조회하거나 업데이트하는 역할을 한다. Model이 업데이트 되면, View는 화면에 반영한다.
@@ -95,7 +103,9 @@ View에서 Model로 전달하여 업데이트되고, 업데이트 된 View가 �
 
 ![이미지](https://blog.kakaocdn.net/dn/ALrHe/btqBTMSuHfN/ZlW9i9ET34e90APgCRChk1/img.png)
 출처 : https://beomy.tistory.com/44
+
 ---
+
 ### Flux
 
 Flux의 가장 큰 특징은 단방향 데이터 흐름이다. 데이터 흐름은 Dispatch -> Store -> View -> Action -> Dispatch ...
@@ -103,10 +113,11 @@ Flux의 가장 큰 특징은 단방향 데이터 흐름이다. 데이터 흐름�
 
 #### Dispatcher
 
-Flux의 모든 데이터 흐름을 관리하는 허브 역할을 하는 부분으로 Action이 발생되면 Dispatcher로 전달되어 진다. 전달된 Action을 보고, 등록된 콜백 함수를 실행하여 
+Flux의 모든 데이터 흐름을 관리하는 허브 역할을 하는 부분으로 Action이 발생되면 Dispatcher로 전달되어 진다. 전달된 Action을 보고, 등록된 콜백 함수를 실행하여
 Store에 데이터를 전달한다. Dispatcher는 전체 어플리케이션에서 한 개의 인스턴스만 사용된다.
 
 ---
+
 #### Store
 
 어플리케이션의 모든 상태 변경은 Store에 의해 결정이 된다. Dispatcher로 부터 메시지를 수신 받기 위해 Dispatcher에 콜백 함수를 등록해야 한다.
@@ -118,11 +129,13 @@ Store가 변경되면 View에 변경되었다는 사실을 알려주게 되여 S
 생성 이후에 호출된 생성자는 최초에 생성한 객체를 반환한다.
 
 ---
+
 #### View
 
 Flux의 View는 화면에 나타내는 것 이외에 자식 View로 데이터를 흘려 보내는 View Controller 역할도 함께 한다.
 
 ---
+
 #### Action
 
 Dispatcher에서 콜백 함수가 실행 되면 Store가 업데이트 되게 되는데, 해당 콜백 함수를 실행 할 경우 데이터가 담겨 있는 객체가 인수로 전달 되어야 한다.

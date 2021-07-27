@@ -1,11 +1,14 @@
-import React, {useContext, useState, useReducer} from "react";
-import Store, {GameContext, gameContext, PlayerContext, playerContext} from "../Store";
+import React, { useContext, useState, useReducer } from "react";
+import Store, {
+  GameContext,
+  gameContext,
+  PlayerContext,
+  playerContext,
+} from "../Store";
 import View from "../View";
 
 function AVALON_VIEW() {
-    return (
-        <View/>
-    );
+  return <View />;
 }
 
-export default AVALON_VIEW
+export default AVALON_VIEW;

@@ -1,180 +1,194 @@
-import React, {createContext} from "react";
-import {expandRoles, mustHaveRoles, needPlayers,} from "./gameSetting";
+import React, { createContext } from "react";
+import { expandRoles, mustHaveRoles, needPlayers } from "./gameSetting";
 
 import shuffle from "lodash.shuffle";
 
 export const Pages = {
-    START_FRAME: 'START_FRAME',
-    //
-    MAIN_FRAME: 'MAIN_FRAME',
-    MAIN_VOTE: 'MAIN_VOTE',
-    //
-    VOTE_FRAME: 'VOTE_FRAME',
-    VOTE_RESULT: 'VOTE_RESULT',
-    //
-    EXPEDITION_FRAME: 'EXPEDITION_FRAME',
-    EXPEDITION_RESULT: 'EXPEDITION_RESULT',
-    //
-    ASSASSIN_FRAME: 'ASSASSIN_FRAME',
-    //
-    END_GAME_FRAME: 'END_GAME_FRAME',
-}
+  START_FRAME: "START_FRAME",
+  //
+  MAIN_FRAME: "MAIN_FRAME",
+  MAIN_VOTE: "MAIN_VOTE",
+  //
+  VOTE_FRAME: "VOTE_FRAME",
+  VOTE_RESULT: "VOTE_RESULT",
+  //
+  EXPEDITION_FRAME: "EXPEDITION_FRAME",
+  EXPEDITION_RESULT: "EXPEDITION_RESULT",
+  //
+  ASSASSIN_FRAME: "ASSASSIN_FRAME",
+  //
+  END_GAME_FRAME: "END_GAME_FRAME",
+};
 export const func = {
-    gameStart: 'gameStart',
-    votePage: 'votePage',
-    nextPage: 'nextPage',
-    voteOnClick: 'voteOnClick',
-    voteResult: 'voteResult',
-    voteOnChange: 'voteOnChange',
-    expeditionClick: 'expeditionClick',
-    assassinOnChange: 'assassinOnChange',
-    killPlayer: 'killPlayer',
-    expeditionResult: 'expeditionResult',
-    setPage: 'setPage',
-    initVote: 'initFVote'
-}
+  gameStart: "gameStart",
+  votePage: "votePage",
+  nextPage: "nextPage",
+  voteOnClick: "voteOnClick",
+  voteResult: "voteResult",
+  voteOnChange: "voteOnChange",
+  expeditionClick: "expeditionClick",
+  assassinOnChange: "assassinOnChange",
+  killPlayer: "killPlayer",
+  expeditionResult: "expeditionResult",
+  setPage: "setPage",
+  initVote: "initFVote",
+};
 const initState = {
-    playerData: [
-        {nickname: 'user1', role: '', vote: '', toGo: '', selected: false},
-        {nickname: 'user2', role: '', vote: '', toGo: '', selected: false},
-        {nickname: 'user3', role: '', vote: '', toGo: '', selected: false},
-        {nickname: 'user4', role: '', vote: '', toGo: '', selected: false},
-        {nickname: 'user5', role: '', vote: '', toGo: '', selected: false},
-        //여기에 플레이어 데이터
-        // {nickname: 'user6', role: '', vote: '', toGo: '',selected : false},
-        // {nickname: 'user7', role: '', vote: '', toGo: '',selected : false},
-        // {nickname: 'user8', role: '', vote: '', toGo: '',selected : false},
-        // {nickname: 'user9', role: '', vote: '', toGo: '',selected : false},
-    ],
-    page: Pages.START_FRAME,
-    voteStage: 0,
-    represent: 0,
-    vote: [],
-    takeStage: [],
-    playerCount: 0,
-    voteCount: 0,
-    winner: '',
-    expeditionStage: 0,
-    kill: '',
-}
-export const initContext = createContext(initState)
+  playerData: [
+    { nickname: "user1", role: "", vote: "", toGo: "", selected: false },
+    { nickname: "user2", role: "", vote: "", toGo: "", selected: false },
+    { nickname: "user3", role: "", vote: "", toGo: "", selected: false },
+    { nickname: "user4", role: "", vote: "", toGo: "", selected: false },
+    { nickname: "user5", role: "", vote: "", toGo: "", selected: false },
+    //여기에 플레이어 데이터
+    // {nickname: 'user6', role: '', vote: '', toGo: '',selected : false},
+    // {nickname: 'user7', role: '', vote: '', toGo: '',selected : false},
+    // {nickname: 'user8', role: '', vote: '', toGo: '',selected : false},
+    // {nickname: 'user9', role: '', vote: '', toGo: '',selected : false},
+  ],
+  page: Pages.START_FRAME,
+  voteStage: 0,
+  represent: 0,
+  vote: [],
+  takeStage: [],
+  playerCount: 0,
+  voteCount: 0,
+  winner: "",
+  expeditionStage: 0,
+  kill: "",
+};
+export const initContext = createContext(initState);
 export const reducer = (state, action) => {
-    console.log(state)
-    switch (action.type) {
-        case func.initVote : {
-            state.playerCount = 0
-            state.vote = []
-            return {...state}
-        }
-        case func.setPage :
-            console.log(action.page)
-            return {...state, page: action.page, playerCount: 0}
-        case func.gameStart: {
-            const PlayersNumber = state.playerData.length;
-            switch (PlayersNumber) {
-                case 5 :
-                    state.takeStage = needPlayers._5P;
-                    break;
-                case 6:
-                    state.takeStage = needPlayers._6P;
-                    break;
-                case 7:
-                    state.takeStage = needPlayers._7P;
-                    break;
-                case 8:
-                case 9:
-                case 10:
-                    state.takeStage = needPlayers._8to10P;
-                    break;
-                default:
-                    alert('error');
-            }
-            if (PlayersNumber >= 5) {
-                const temp = [
-                    ...mustHaveRoles,
-                    ...expandRoles.slice(0, PlayersNumber - 5),
-                ];
-                const roles = shuffle(temp);
-                state.playerData.map((user, index) => {
-                    user.role = roles[index];
-                });
-                console.log(`-------------gameStart-------------`)
-                return {...state, page: Pages.MAIN_FRAME}
-            } else {
-                alert('error')
-                return {...state}
-            }
-        }
-        //checkbox check여부 확인하기
-        case func.voteOnChange : {
-            state.playerData[action.index].selected = !state.playerData[action.index].selected
-            const check = state.playerData[action.index].selected
-            const count = check ? state.playerCount + 1 : state.playerCount - 1
-            return {
-                ...state,
-                playerCount: count
-            }
-        }
-        case func.voteOnClick : {
-            if (state.playerCount === state.takeStage[state.expeditionStage]) {
-                const voteCount = state.voteCount + 1
-                return {...state, voteCount: voteCount, page: Pages.VOTE_FRAME}
-            } else {
-                alert(`${state.takeStage[state.expeditionStage]}명을 선택해야합니다.`);
-                return {...state}
-            }
-        }
-        case func.votePage : {
-            let agree = 0;
-            let oppose = 0;
-            state.playerData.map(e => e.toGo === 'agree' ? ++agree : ++oppose)
-            console.log(`agree : ${agree} , oppose : ${oppose}`)
-            state.represent += 1;
-            state.represent %= state.playerData.length;
-            if (agree >= oppose) {
-                state.voteStage = 0;
-                return {...state, page: Pages.EXPEDITION_FRAME}
-            } else if (agree < oppose) {
-                if (state.voteStage === 4) {
-                    state.takeStage[state.expeditionStage] = 'fail';
-                    state.expeditionStage += 1;
-                    state.voteStage = 0;
-                } else {
-                    state.voteStage += 1;
-                }
-                return {...state, page: Pages.MAIN_FRAME, playerCount: 0}
-            }
-            return {...state}
-        }
-        case func.nextPage : {
-            const angelCount = state.takeStage.filter(element => 'success' === element).length;
-            const evilCount = state.takeStage.filter(element => 'fail' === element).length;
-            if (angelCount === 3) {
-                return {...state, page: Pages.ASSASSIN_FRAME}
-            } else if (evilCount === 3) {
-                return {...state, page: Pages.END_GAME_FRAME, winner: 'EVILS_WIN'}
-            }
-            return {...state, page: Pages.MAIN_FRAME, playerCount: 0, vote: action.vote}
-        }
-        case func.expeditionClick : {
-            console.log(state.vote)
-            if (state.expeditionStage === 4 && state.playerData.length >= 7) {
-                if (state.vote.filter(element => 'fail' === element).length >= 2) {
-                    state.takeStage[state.expeditionStage] = 'fail';
-                } else {
-                    state.takeStage[state.expeditionStage] = 'success'
-                }
-            } else {
-                state.vote.includes('fail') ?
-                    state.takeStage[state.expeditionStage] = 'fail' :
-                    state.takeStage[state.expeditionStage] = 'success'
-            }
-            const expeditionStage = state.expeditionStage + 1
-            return {...state, expeditionStage: expeditionStage, page: Pages.EXPEDITION_RESULT}
-        }
-        default :
-            return {state}
+  console.log(state);
+  switch (action.type) {
+    case func.initVote: {
+      state.playerCount = 0;
+      state.vote = [];
+      return { ...state };
     }
+    case func.setPage:
+      console.log(action.page);
+      return { ...state, page: action.page, playerCount: 0 };
+    case func.gameStart: {
+      const PlayersNumber = state.playerData.length;
+      switch (PlayersNumber) {
+        case 5:
+          state.takeStage = needPlayers._5P;
+          break;
+        case 6:
+          state.takeStage = needPlayers._6P;
+          break;
+        case 7:
+          state.takeStage = needPlayers._7P;
+          break;
+        case 8:
+        case 9:
+        case 10:
+          state.takeStage = needPlayers._8to10P;
+          break;
+        default:
+          alert("error");
+      }
+      if (PlayersNumber >= 5) {
+        const temp = [
+          ...mustHaveRoles,
+          ...expandRoles.slice(0, PlayersNumber - 5),
+        ];
+        const roles = shuffle(temp);
+        state.playerData.map((user, index) => {
+          user.role = roles[index];
+        });
+        console.log(`-------------gameStart-------------`);
+        return { ...state, page: Pages.MAIN_FRAME };
+      } else {
+        alert("error");
+        return { ...state };
+      }
+    }
+    //checkbox check여부 확인하기
+    case func.voteOnChange: {
+      state.playerData[action.index].selected =
+        !state.playerData[action.index].selected;
+      const check = state.playerData[action.index].selected;
+      const count = check ? state.playerCount + 1 : state.playerCount - 1;
+      return {
+        ...state,
+        playerCount: count,
+      };
+    }
+    case func.voteOnClick: {
+      if (state.playerCount === state.takeStage[state.expeditionStage]) {
+        const voteCount = state.voteCount + 1;
+        return { ...state, voteCount: voteCount, page: Pages.VOTE_FRAME };
+      } else {
+        alert(`${state.takeStage[state.expeditionStage]}명을 선택해야합니다.`);
+        return { ...state };
+      }
+    }
+    case func.votePage: {
+      let agree = 0;
+      let oppose = 0;
+      state.playerData.map((e) => (e.toGo === "agree" ? ++agree : ++oppose));
+      console.log(`agree : ${agree} , oppose : ${oppose}`);
+      state.represent += 1;
+      state.represent %= state.playerData.length;
+      if (agree >= oppose) {
+        state.voteStage = 0;
+        return { ...state, page: Pages.EXPEDITION_FRAME };
+      } else if (agree < oppose) {
+        if (state.voteStage === 4) {
+          state.takeStage[state.expeditionStage] = "fail";
+          state.expeditionStage += 1;
+          state.voteStage = 0;
+        } else {
+          state.voteStage += 1;
+        }
+        return { ...state, page: Pages.MAIN_FRAME, playerCount: 0 };
+      }
+      return { ...state };
+    }
+    case func.nextPage: {
+      const angelCount = state.takeStage.filter(
+        (element) => "success" === element
+      ).length;
+      const evilCount = state.takeStage.filter(
+        (element) => "fail" === element
+      ).length;
+      if (angelCount === 3) {
+        return { ...state, page: Pages.ASSASSIN_FRAME };
+      } else if (evilCount === 3) {
+        return { ...state, page: Pages.END_GAME_FRAME, winner: "EVILS_WIN" };
+      }
+      return {
+        ...state,
+        page: Pages.MAIN_FRAME,
+        playerCount: 0,
+        vote: action.vote,
+      };
+    }
+    case func.expeditionClick: {
+      console.log(state.vote);
+      if (state.expeditionStage === 4 && state.playerData.length >= 7) {
+        if (state.vote.filter((element) => "fail" === element).length >= 2) {
+          state.takeStage[state.expeditionStage] = "fail";
+        } else {
+          state.takeStage[state.expeditionStage] = "success";
+        }
+      } else {
+        state.vote.includes("fail")
+          ? (state.takeStage[state.expeditionStage] = "fail")
+          : (state.takeStage[state.expeditionStage] = "success");
+      }
+      const expeditionStage = state.expeditionStage + 1;
+      return {
+        ...state,
+        expeditionStage: expeditionStage,
+        page: Pages.EXPEDITION_RESULT,
+      };
+    }
+    default:
+      return { state };
+  }
 };
 
 // export const reducer = (state, action) => {

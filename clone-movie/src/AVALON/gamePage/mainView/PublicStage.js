@@ -4,12 +4,12 @@ import VoteStage from "./VoteStage";
 import PlayerList from "./PlayerList";
 
 function PublicStage() {
-    return(
-        <div>
-            <TakeStage/>
-            <VoteStage/>
-            <PlayerList/>
-        </div>
-    )
+  return (
+    <div>
+      <TakeStage />
+      <VoteStage />
+      <PlayerList />
+    </div>
+  );
 }
-export default PublicStage
+export default PublicStage;

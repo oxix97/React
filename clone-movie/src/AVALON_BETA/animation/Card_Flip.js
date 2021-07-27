@@ -3,7 +3,6 @@ import { animated, useSpring, config } from "react-spring";
 
 import * as S from "../Styled";
 import { FrontImg } from "../Styled";
-import { A } from "react-select/dist/index-4bd03571.esm";
 
 const AnimatedPokerFront = animated(S.PokerFront);
 const AnimatedPokerBack = animated(S.PokerBack);
@@ -19,14 +18,14 @@ export default function Card_Flip(props) {
   const flip = () => setIsFlipped((prevState) => !prevState);
 
   return (
-    <div>
+    <React.Fragment>
       <S.CardWrapper onClick={flip}>
-        <h2>{props.nickname}</h2>
+        <S.NicknameTag>{props.nickname}</S.NicknameTag>
         <AnimatedPokerBack
           style={{
             opacity: opacity.interpolate((o) => 1 - o),
             transform: transform.interpolate(
-              (t) => `perspective(500px)  ${t} rotateY(180deg)`
+              (t) => `perspective(400px)  ${t} rotateY(180deg)`
             ),
           }}
         />
@@ -35,10 +34,25 @@ export default function Card_Flip(props) {
             <FrontImg src={"/img/Morgana.png"} alt={"Morgana"} />
           )}
           {props.role === "Assassin" && (
-            <FrontImg src={"/img/Assassin.png"} alt={"Heresy"} />
+            <FrontImg src={"/img/Assassin.png"} alt={"Assassin"} />
+          )}
+          {props.role === "Percival" && (
+            <FrontImg src={"/img/Percival.png"} alt={"Percival"} />
+          )}
+          {props.role === "Merlin" && (
+            <FrontImg src={"/img/Merlin.png"} alt={"Merlin"} />
+          )}
+          {props.role === "Citizen" && (
+            <FrontImg src={"/img/Citizen.png"} alt={"Citizen"} />
+          )}
+          {props.role === "Modred" && (
+            <FrontImg src={"/img/Modred.png"} alt={"Modred"} />
+          )}
+          {props.role === "Heresy" && (
+            <FrontImg src={"/img/Heresy.png"} alt={"Heresy"} />
           )}
         </AnimatedPokerFront>
       </S.CardWrapper>
-    </div>
+    </React.Fragment>
   );
 }

@@ -16,6 +16,7 @@ function ASSASSIN_FRAME() {
       winner: winner,
     });
   };
+
   return (
     <>
       <h3>ASSASSIN</h3>
@@ -24,6 +25,7 @@ function ASSASSIN_FRAME() {
           angels.includes(user.role) && (
             <label key={index}>
               {user.nickname}
+
               <input
                 type="radio"
                 name={"vote"}

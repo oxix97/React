@@ -71,12 +71,11 @@ export const PlayerList = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 `;
-
 // https://www.transparenttextures.com/
 export const Container = styled.div`
-  display: flex;
-  top: 0;
-  left: 0;
+  position: fixed;
+  top: 10;
+  left: 10;
   width: 100%;
   height: 100%;
   background-color: #042813;
@@ -84,30 +83,27 @@ export const Container = styled.div`
 `;
 
 // Define card size
-// width: 130px;
-// height: 210px;
 const Card = styled.div`
-  width: 25vw;
-  height: 36vh;
+  width: 250px;
+  height: 450px;
 `;
 
 // Place the card in center
-// top: 50%;
-// left: 50%;
-// position: fixed;
 export const CardWrapper = styled(Card)`
-  display: flex;
-  flex-direction: row wrap;
-  margin: 0 auto;
+  /* position: fixed; */
+  top: 30%;
+  left: 30%;
   transform: translate(-50%, -50%);
 `;
 
 // Poker card default style
 export const PokerCard = styled(Card)`
+  position: absolute;
   border-radius: 5px;
   /* https://css3gen.com/box-shadow/ */
   box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
 `;
+
 // Poker card in back-side
 export const PokerBack = styled(PokerCard)`
   /* https://www.magicpattern.design/tools/css-backgrounds/ */
@@ -124,25 +120,14 @@ export const PokerBack = styled(PokerCard)`
   background-repeat: repeat;
   border: 5px solid #fff;
 `;
-export const FrontImg = styled.img`
-  display: flex;
-  align-item: inherit;
-  flex-flow: row nowrap;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-`;
 // Poker card in front-side
-// background-color: #fff;
 export const PokerFront = styled(PokerCard)`
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+  flex-flow: column nowrap;
   align-items: center;
   padding: 5px;
-  background-color: none;
-
-  & > span {
+  background-color: #fff;
+  s & > span {
     font-size: 20px;
     font-family: sans-serif;
     font-weight: bold;
@@ -165,4 +150,13 @@ export const PokerFront = styled(PokerCard)`
   & > span::selection {
     background-color: transparent;
   }
+`;
+export const FrontImg = styled.img`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+export const NicknameTag = styled.div`
+  font-size: 24px;
+  margin: 50px 0 0 100px;
 `;

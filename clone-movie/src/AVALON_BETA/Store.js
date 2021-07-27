@@ -55,6 +55,7 @@ const initialData = {
   index: 0,
   checked: false,
 };
+
 const GameContext = React.createContext("");
 
 const Store = ({ children }) => {

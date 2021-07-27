@@ -10,10 +10,12 @@ const AnimatedPokerFront = animated(S.PokerFront);
 const AnimatedPokerBack = animated(S.PokerBack);
 
 const Box = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content : flex-start;
+    flex-direction: row;
+    margin : 200px 30px 30px 100px;
+    
 `;
 
 function END_GAME_FRAME() {
@@ -26,19 +28,20 @@ function END_GAME_FRAME() {
     });
     const flip = () => setIsFlipped((prevState) => !prevState);
     return (
-        <>
+        <div>
             <h1>{gameState.winner}</h1>
-            <h3>ENDGAME</h3>
-            <hr/>
+            <Box>
             {gameState.usingPlayers.map((player, index) => (
-                <ul key={index}>
-                    <Box>
-                        player_nickname : <b>{player.nickname}</b>
+                <div key={index}>
+                    <br/>
+                    <div>
                         <Card_Flip nickname={player.nickname} role={player.role}/>
-                    </Box>
-                </ul>
+                    </div>
+                </div>
             ))}
-        </>
+            </Box>    
+        </div>
+       
     );
 }
 

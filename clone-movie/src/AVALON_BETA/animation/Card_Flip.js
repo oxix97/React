@@ -29,10 +29,10 @@ export default function Card_Flip() {
                     }}
                 />
                 <AnimatedPokerFront style={{ opacity, transform }}>
-                    <span>A</span>
-                    <span>❤</span>
-                    <span>A</span>
-                </AnimatedPokerFront>
+                <span>A</span>
+                <span>❤</span>
+                <span>A</span>
+            </AnimatedPokerFront>
             </S.CardWrapper>
         </S.Container>
     )

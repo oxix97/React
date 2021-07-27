@@ -15,6 +15,7 @@ function MAIN_VOTE() {
     console.log(`playerCount : ${playerCount}`);
     console.log(`index : ${e.target.value} , checked : ${e.target.checked}`);
   };
+
   const onClick = () => {
     if (playerCount === gameData.takeStage[gameData.expeditionStage]) {
       gameData.voteCount += 1;
@@ -28,6 +29,7 @@ function MAIN_VOTE() {
       );
     }
   };
+
   return (
     <div>
       <h3>

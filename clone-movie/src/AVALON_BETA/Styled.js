@@ -74,37 +74,40 @@ export const PlayerList = styled.div`
 
 // https://www.transparenttextures.com/
 export const Container = styled.div`
-  position: fixed;
+  display: flex;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: #042813;
-  background-image: url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');
-`
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+`;
 
 // Define card size
+// width: 130px;
+// height: 210px;
 const Card = styled.div`
-  width: 130px;
-  height: 210px;
-`
+  width: 25vw;
+  height: 36vh;
+`;
 
 // Place the card in center
+// top: 50%;
+// left: 50%;
+// position: fixed;
 export const CardWrapper = styled(Card)`
-  position: fixed;
-  top: 50%;
-  left: 50%;
+  display: flex;
+  flex-direction: row wrap;
+  margin: 0 auto;
   transform: translate(-50%, -50%);
-`
+`;
 
 // Poker card default style
 export const PokerCard = styled(Card)`
-  position: absolute;
   border-radius: 5px;
   /* https://css3gen.com/box-shadow/ */
   box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
-`
-
+`;
 // Poker card in back-side
 export const PokerBack = styled(PokerCard)`
   /* https://www.magicpattern.design/tools/css-backgrounds/ */
@@ -120,16 +123,24 @@ export const PokerBack = styled(PokerCard)`
   background-size: 20px 20px;
   background-repeat: repeat;
   border: 5px solid #fff;
-`
-
+`;
+export const FrontImg = styled.img`
+  display: flex;
+  align-item: inherit;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
 // Poker card in front-side
+// background-color: #fff;
 export const PokerFront = styled(PokerCard)`
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   padding: 5px;
-  background-color: #fff;
+  background-color: none;
 
   & > span {
     font-size: 20px;
@@ -154,4 +165,4 @@ export const PokerFront = styled(PokerCard)`
   & > span::selection {
     background-color: transparent;
   }
-`
+`;

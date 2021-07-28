@@ -1,21 +1,21 @@
 import React from "react";
 import {createGlobalStyle} from "styled-components";
-
+import WalkAnimation from "./WalkAnimation";
 const GlobalStyle = createGlobalStyle`
 
 html, body {
-	background: #15171A;
+	background: #FFFFFF;
 }
 
 .column {
   position: relative;
 	display: flex;
 	flex-direction: column;
-  margin : 25% auto;
+  margin : 10% auto;
   align-items: center;
 
   & p {
-	  color: rgba(255,255,255,0.6);
+	  color: gray;
     font-size: 19px;
   }
 }
@@ -31,19 +31,19 @@ html, body {
 }
 
 .box1 {
-	background: rgba(255,255,255,0.6);
+	background: gray;
 	animation: loader9 1.0s ease-in-out infinite alternate;
 }
 .box2 {
-	background: rgba(255,255,255,0.4);
+	background: gray;
 	animation: loader9 1.8s ease-in-out infinite alternate;
 }
 .box3 {
-	background: rgba(255,255,255,0.3);
+	background: gray;
 	animation: loader9 1.1s ease-in-out infinite alternate;
 }
 .box4 {
-	background: rgba(255,255,255,0.4);
+	background: gray;
 	animation: loader9 1.4s ease-in-out infinite alternate;
 }
 
@@ -60,6 +60,7 @@ html, body {
 const WaitingView = () => {
     return (
         <div className="column">
+            <WalkAnimation/>
             <GlobalStyle/>
             <div className="row">
                 <div className="animate box1"/>

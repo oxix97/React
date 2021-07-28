@@ -71,24 +71,21 @@ export const PlayerList = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 `;
-// https://www.transparenttextures.com/
-export const Container = styled.div`
-  position: fixed;
-  top: 10;
-  left: 10;
-  width: 100%;
-  height: 100%;
-  background-color: #042813;
-  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
-`;
+// export const Container = styled.div`
+//   position: fixed;
+//   top: 10;
+//   left: 10;
+//   width: 100%;
+//   height: 100%;
+//   background-color: #042813;
+//   background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+// `;
 
-// Define card size
 const Card = styled.div`
   width: 250px;
   height: 450px;
 `;
 
-// Place the card in center
 export const CardWrapper = styled(Card)`
   /* position: fixed; */
   top: 30%;
@@ -96,25 +93,22 @@ export const CardWrapper = styled(Card)`
   transform: translate(-50%, -50%);
 `;
 
-// Poker card default style
 export const PokerCard = styled(Card)`
   position: absolute;
   border-radius: 5px;
-  /* https://css3gen.com/box-shadow/ */
+  margin-left : 20px;
   box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
 `;
 
-// Poker card in back-side
 export const PokerBack = styled(PokerCard)`
-  /* https://www.magicpattern.design/tools/css-backgrounds/ */
   background-color: #ffffff;
   opacity: 0.8;
   background-color: #f3f3f4;
   opacity: 1;
   background-image: linear-gradient(135deg, #a90c08 25%, transparent 25%),
-    linear-gradient(225deg, #a90c08 25%, transparent 25%),
-    linear-gradient(45deg, #a90c08 25%, transparent 25%),
-    linear-gradient(315deg, #a90c08 25%, #f3f3f4 25%);
+  linear-gradient(225deg, #a90c08 25%, transparent 25%),
+  linear-gradient(45deg, #a90c08 25%, transparent 25%),
+  linear-gradient(315deg, #a90c08 25%, #f3f3f4 25%);
   background-position: 20px 0, 20px 0, 0 0, 0 0;
   background-size: 20px 20px;
   background-repeat: repeat;
@@ -124,32 +118,8 @@ export const PokerBack = styled(PokerCard)`
 export const PokerFront = styled(PokerCard)`
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
   padding: 5px;
-  background-color: #fff;
-  s & > span {
-    font-size: 20px;
-    font-family: sans-serif;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    color: #a90c08;
-  }
-
-  & > span:nth-child(2) {
-    font-size: 45px;
-    flex: 1 1 0;
-    justify-content: center;
-  }
-
-  & > span:last-child {
-    transform: rotate(-180deg);
-  }
-
-  & > span::selection {
-    background-color: transparent;
-  }
+  background-color: #ffffff;
 `;
 export const FrontImg = styled.img`
   display: flex;

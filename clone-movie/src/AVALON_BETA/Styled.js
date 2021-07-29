@@ -11,14 +11,44 @@ export const Title = styled.div`
   flex-direction: row;
   border: 5px solid black;
 `;
-export const Frame = styled.div`
+export const Stage = styled.div`
   display: flex;
-  flex-direction: row;
+  width:auto;
+  height:auto;
+  border-radius: 70%;
+  flex-direction: flex-start;
   flex-wrap: wrap;
-  border: 5px solid ${(props) => props.color};
-  margin: 15px auto;
-  padding: 40px;
+  padding: 50px;
+  margin : 30px;
+  border: 2px solid black;
 `;
+export const VoteFrame = styled.div`
+    display : flex;
+    flex-direction : row;
+`
+export const PlayerFrame = styled.div`
+    display : flex;
+    justify-content : space-evenly;
+    flex-direction : column;
+`
+export const Players = styled.div`
+    
+`
+export const Info = styled.div`
+    
+`
+export const StageFrame = styled.div`
+    display : flex;
+    flex-direction : row;
+`
+// display: flex;
+// flex-direction: row;
+// flex-wrap: wrap;
+// border: 2px solid black;
+// margin: 15px;
+// border-radius: 70%;
+// padding: 60px;
+
 export const RoleList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -30,9 +60,8 @@ export const UserList = styled.div`
 `;
 export const GameFrame = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 50px;
 `;
 export const GameState = styled.div`
   display: flex;
@@ -44,19 +73,23 @@ export const PublicFrame = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content : between;
 `;
 export const Circle = styled.div`
   display: flex;
+  width:auto;
+  height:auto;
   border-radius: 70%;
-  flex-direction: flex-end;
+  flex-direction: flex-start;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 60px;
+  margin-left : 15px;
   border: 2px solid black;
   background: ${(props) => props.color};
 `;
 export const VoteStageFrame = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 `;
 export const User = styled.div`
     display : flex;

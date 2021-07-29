@@ -43,6 +43,11 @@ const initialData = {
     { nickname: "user3", role: "", vote: "", toGo: "", selected: false },
     { nickname: "user4", role: "", vote: "", toGo: "", selected: false },
     { nickname: "user5", role: "", vote: "", toGo: "", selected: false },
+    { nickname: "user6", role: "", vote: "", toGo: "", selected: false },
+    { nickname: "user7", role: "", vote: "", toGo: "", selected: false },
+    // { nickname: "user8", role: "", vote: "", toGo: "", selected: false },
+    // { nickname: "user9", role: "", vote: "", toGo: "", selected: false },
+    // { nickname: "user10", role: "", vote: "", toGo: "", selected: false },
   ],
   voteStage: 0, //5-voteStage 재투표 가능횟수
   expeditionStage: 0, //게임 expedition 진행 상황

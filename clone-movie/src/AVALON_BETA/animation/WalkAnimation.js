@@ -35,6 +35,7 @@ const Walk = styled.div`
     background-size: 800%;
     animation:${walking} 1s infinite steps(7);
 `
+
 function WalkAnimation() {
     return (
         <WalkContainer>

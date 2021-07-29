@@ -11,7 +11,6 @@ export default function CardFlip(props) {
     const {opacity, transform} = useSpring({
         opacity: isFlipped ? 1 : 0,
         transform: `rotateY(${isFlipped ? 0 : 180}deg)`,
-        config: config.stiff,
     });
     const flip = () => setIsFlipped((prevState) => !prevState);
 

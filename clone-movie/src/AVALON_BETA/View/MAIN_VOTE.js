@@ -40,20 +40,19 @@ function MAIN_VOTE() {
             </S.MAIN_VOTE_HEADER>
             <S.SelectPlayer>
                 {gameState.usingPlayers.map((user, index) => (
-                    <ul key={index}>
-                        <S.MAIN_VOTE_label>
+                    <div>
+                        <S.MainVoteLabel>
                             {user.nickname}
-                            <S.MAIN_VOTE_checkbox
-                                onChange={onChange}
-                                type="checkbox"
-                                name={"checkbox"}
-                                value={index}
-                            />
-                        </S.MAIN_VOTE_label>
-                    </ul>
+                        </S.MainVoteLabel>
+                        <S.MainVoteCheckbox
+                            onChange={onChange}
+                            type="checkbox"
+                            name={"checkbox"}
+                            value={index}/>
+                    </div>
                 ))}
             </S.SelectPlayer>
-            <S.MAIN_VOTE_button onClick={onClick}>결정</S.MAIN_VOTE_button>
+            <S.MainVoteButton onClick={onClick}>결정</S.MainVoteButton>
         </S.MainVote>
     );
 }

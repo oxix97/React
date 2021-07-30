@@ -138,7 +138,8 @@ export const Button = styled.button`
 export const SelectPlayer = styled.div`
   flex: 1 1 auto;
   margin: 0 auto;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
 `
 export const MainVote = styled.div`
   display: flex;
@@ -147,20 +148,24 @@ export const MainVote = styled.div`
   align-items: center;
   flex-direction: column;
 `
-export const MAIN_VOTE_label = styled.label`
+export const MainVoteLabel = styled.label`
   font-size: 32px;
+  margin : 0 auto;
 `
-export const MAIN_VOTE_checkbox = styled.input`
+export const MainVoteCheckbox = styled.input`
   width: 32px;
   height: 32px;
   margin: 16px;
 `
-export const MAIN_VOTE_button = styled.button`
-  width: 210px;
-  height: 70px;
+export const MainVoteButton = styled.button`
+  width: 168px;
+  height: 48px;
+  background: #FF0000;
+  opacity: 0.7;
+  backdrop-filter: blur(4px);
   font-size: 32px;
-  padding : 10px 20px 10px 20px;
   margin-top: 5%;
+  color: white;
 `
 export const MAIN_VOTE_HEADER = styled.div`
   background-color: dimgray;

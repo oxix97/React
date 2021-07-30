@@ -14,7 +14,7 @@ function MAIN_FRAME() {
                 <S.StageFrame>
                     {gameState.takeStage.map((stage, index) => (
                         <S.Stage key={index}>
-                            <h3>{stage}</h3>
+                            <b>{stage}</b>
                         </S.Stage>
                     ))}
                 </S.StageFrame>
@@ -49,8 +49,9 @@ function MAIN_FRAME() {
                     ))}
                 </S.Players>
                 <S.Info>
-
+                    <S.Button>플레이어 정보</S.Button>
                 </S.Info>
+
             </S.PlayerFrame>
         </S.PublicFrame>
     );

@@ -9,7 +9,7 @@ import WalkAnimation from "./AVALON_BETA/animation/WalkAnimation";
 function App() {
   return (
     <div>
-       <AVALON_BETA/>
+      <AVALON_BETA />
       {/*<WalkAnimation/>*/}
       {/*<WaitingView />*/}
     </div>

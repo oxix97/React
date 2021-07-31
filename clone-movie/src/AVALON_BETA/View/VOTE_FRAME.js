@@ -18,7 +18,8 @@ function VOTE_FRAME() {
         <S.VoteFrame>
             <S.MAIN_VOTE_HEADER>{`대표자 : ${selectedPlayers()}`}</S.MAIN_VOTE_HEADER>
             <S.VoteImage>
-                <img src={'/img/Assassin.png'} alt={'img'}/>
+                <img src={'/img/vote_img.png'} alt={'img'} width={'10%'}/>
+                <h1>동의 합니까?</h1>
             </S.VoteImage>
             <Title>
                 {gameState.usingPlayers.map((user, index) => (

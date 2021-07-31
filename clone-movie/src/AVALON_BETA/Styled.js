@@ -16,15 +16,17 @@ export const VoteImage = styled.div`
   display: flex;
   margin: 5% 0 5% 0;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `
 export const Stage = styled.div`
   display: flex;
   width: auto;
   height: auto;
-  border-radius: 70%;
+  border-radius:100%;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 50px;
+  padding: 70px;
   margin: 30px;
   border: 2px solid black;
 `;

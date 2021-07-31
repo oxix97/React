@@ -26,30 +26,32 @@ function Vote(props) {
             {click ?
                 <h3>{vote === "agree" ? "찬성" : "반대"}</h3>
                 :
-                <S.PlayerVoteFrame>
-                    <label>
-                        찬성
-                        <S.MainVoteCheckbox
-                            type={"radio"}
-                            name={"vote"}
-                            value={"agree"}
-                            onChange={onChange}
-                        />
-                    </label>
-                    <label>
-                        반대
-                        <S.MainVoteCheckbox
-                            type="radio"
-                            name={"vote"}
-                            value={"oppose"}
-                            onChange={onChange}
-                        />
-                    </label>
-                </S.PlayerVoteFrame>
+                <>
+                    <S.PlayerVoteFrame>
+                        <label>
+                            찬성
+                            <S.MainVoteCheckbox
+                                type={"radio"}
+                                name={"vote"}
+                                value={"agree"}
+                                onChange={onChange}
+                            />
+                        </label>
+                        <label>
+                            반대
+                            <S.MainVoteCheckbox
+                                type="radio"
+                                name={"vote"}
+                                value={"oppose"}
+                                onChange={onChange}
+                            />
+                        </label>
+                    </S.PlayerVoteFrame>
+                    <S.MainVoteButton onClick={onClick} disabled={click} value={vote}>
+                        확인
+                    </S.MainVoteButton>
+                </>
             }
-            <S.MainVoteButton onClick={onClick} disabled={click} value={vote}>
-                확인
-            </S.MainVoteButton>
         </S.PlayerVote>
     );
 }

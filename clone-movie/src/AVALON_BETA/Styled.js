@@ -294,6 +294,16 @@ export const WalkContainer = styled.div`
   overflow: hidden;
   animation: ${stroll} 5s linear infinite;
 `
+export const SuccessImage = styled.button`
+  width:200px;
+  height: 330px;
+  background: url("/img/success.png")
+`
+export const FailImage = styled.button`
+  width:200px;
+  height: 330px;
+  background: url("/img/fail.png");
+`
 export const Walk = styled.div`
   display: inline-block;
   position: absolute;

@@ -2,7 +2,6 @@ import React, {useContext, useState} from "react";
 import {GameContext, VOTE_FRAME} from "../Store";
 import {MAIN_VOTE_ONCLICK} from "../MVC/AVALON_Reducer";
 import * as S from '../Styled'
-import {MainVote} from "../Styled";
 
 function MAIN_VOTE() {
     const {dispatch, gameState} = useContext(GameContext);

@@ -5,13 +5,13 @@ export const PageFrame = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   background: ${(props) => props.color};
-`;
+`
 export const Title = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   border: 5px solid black;
-`;
+`
 export const VoteImage = styled.div`
   display: flex;
   margin: 5% 0 5% 0;
@@ -23,11 +23,11 @@ export const Stage = styled.div`
   display: flex;
   width: auto;
   height: auto;
-  border-radius:100%;
+  border-radius: 100%;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 70px;
-  margin: 30px;
+  padding: 50px;
+  margin: 20px;
   border: 2px solid black;
 `;
 export const MainVoteFrame = styled.div`
@@ -38,7 +38,7 @@ export const MainVoteFrame = styled.div`
 export const VoteFrame = styled.div`
   flex: 1 1 auto;
   flex-wrap: wrap;
-  margin: 10% auto;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
 `
@@ -111,18 +111,18 @@ export const GlobalStyle = createGlobalStyle`
   div {
     color: black;
   }
-`;
+`
 export const PlayerVote = styled.div`
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
 `
 export const PlayerVoteFrame = styled.form`
   display: flex;
   font-size: 32px;
   justify-content: space-between;
-  padding : 30px;
+  padding: 30px;
 `
 export const PublicFrame = styled.div`
   display: flex;
@@ -132,7 +132,6 @@ export const PublicFrame = styled.div`
   flex-direction: row;
   padding: 50px;
   flex-wrap: wrap;
-  //justify-content: space-between;
 `;
 export const Circle = styled.div`
   display: flex;

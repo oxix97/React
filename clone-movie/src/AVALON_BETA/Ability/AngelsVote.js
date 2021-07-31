@@ -11,6 +11,7 @@ function AngelsVote() {
   };
   return (
     <div>
+      <img src="/img/success.png" alt="sucess"/>
       <button onClick={onClick} value={"success"} disabled={isClick}>
         성공
       </button>

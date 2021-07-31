@@ -11,10 +11,12 @@ function EvilsVote() {
   };
   return (
     <div>
-      <button onClick={onClick} value={"success"} disabled={isClick}>
+        <img src="/img/success.png" alt="success"/>
+        <button onClick={onClick} value={"success"} disabled={isClick}>
         성공
       </button>
-      <button onClick={onClick} value={"fail"} disabled={isClick}>
+        <img src="/img/fail.png" alt="fail"/>
+        <button onClick={onClick} value={"fail"} disabled={isClick}>
         실패
       </button>
     </div>

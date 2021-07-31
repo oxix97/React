@@ -18,13 +18,13 @@ function MAIN_FRAME() {
                         </S.Stage>
                     ))}
                 </S.StageFrame>
-                <S.VoteFrame>
+                <S.MainVoteFrame>
                     {colors.map((color, index) => (
                         <S.Circle color={color} key={index}>
                             {index + 1}
                         </S.Circle>
                     ))}
-                </S.VoteFrame>
+                </S.MainVoteFrame>
             </S.GameFrame>
             <S.PlayerFrame>
                 <S.Players>
@@ -34,17 +34,14 @@ function MAIN_FRAME() {
                                 <li>{`nickname : ${user.nickname}`}</li>
                                 <li>{`role : ${user.role}`}</li>
                                 <br/>
-                                {user.role === "Merlin" ? <MerlinPlayer index={index}/> : null}
-                                {user.role === "Percival" ? (
-                                    <PercivalPlayer index={index}/>
-                                ) : null}
+                                {user.role === "Merlin" && <MerlinPlayer index={index}/>}
+                                {user.role === "Percival" && <PercivalPlayer index={index}/>}
                             </ul>
-                            {index === gameState.represent ? (
-                                <button onClick={() =>
-                                    dispatch({type: SET_COMPONENT, component: MAIN_VOTE})}>
-                                    원정 인원 정하기
-                                </button>
-                            ) : null}
+                            {index === gameState.represent &&
+                            <button onClick={() =>
+                                dispatch({type: SET_COMPONENT, component: MAIN_VOTE})}>
+                                원정 인원 정하기
+                            </button>}
                         </S.User>
                     ))}
                 </S.Players>

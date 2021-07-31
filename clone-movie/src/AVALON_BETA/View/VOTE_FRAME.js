@@ -16,21 +16,21 @@ function VOTE_FRAME() {
     }
     return (
         <S.VoteFrame>
-            <S.VoteHeader>{`대표자 : ${selectedPlayers()}`}</S.VoteHeader>
-            <div>
-                <Title>
-                    {gameState.usingPlayers.map((user, index) => (
-                        <Vote key={index} index={index}/>
-                    ))}
-                </Title>
-
-            </div>
-            <button
+            <S.MAIN_VOTE_HEADER>{`대표자 : ${selectedPlayers()}`}</S.MAIN_VOTE_HEADER>
+            <S.VoteImage>
+                <img src={'/img/Assassin.png'} alt={'img'}/>
+            </S.VoteImage>
+            <Title>
+                {gameState.usingPlayers.map((user, index) => (
+                    <Vote key={index} index={index}/>
+                ))}
+            </Title>
+            <S.MainVoteButton
                 onClick={() =>
                     dispatch({type: SET_COMPONENT, component: VOTE_RESULT})
                 }>
                 투표 결과
-            </button>
+            </S.MainVoteButton>
         </S.VoteFrame>
     );
 }

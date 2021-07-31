@@ -1,6 +1,7 @@
 import React, {useContext, useState} from "react";
 import {GameContext} from "../Store";
 import {VOTE_ONCLICK} from "../MVC/AVALON_Reducer";
+import * as S from '../Styled'
 
 function Vote(props) {
     const {dispatch, gameState} = useContext(GameContext);
@@ -21,37 +22,35 @@ function Vote(props) {
         setClick(true);
     };
     return (
-        <div>
+        <S.PlayerVote>
             {click ?
-                <div>{vote === "agree" ? "찬성" : "반대"}</div>
+                <h3>{vote === "agree" ? "찬성" : "반대"}</h3>
                 :
-                <div>
-                    <form>
-                        <label>
-                            찬성
-                            <input
-                                type={"radio"}
-                                name={"vote"}
-                                value={"agree"}
-                                onChange={onChange}
-                            />
-                        </label>
-                        <label>
-                            반대
-                            <input
-                                type="radio"
-                                name={"vote"}
-                                value={"oppose"}
-                                onChange={onChange}
-                            />
-                        </label>
-                    </form>
-                    <button onClick={onClick} disabled={click} value={vote}>
-                        확인
-                    </button>
-                </div>
+                <S.PlayerVoteFrame>
+                    <label>
+                        찬성
+                        <S.MainVoteCheckbox
+                            type={"radio"}
+                            name={"vote"}
+                            value={"agree"}
+                            onChange={onChange}
+                        />
+                    </label>
+                    <label>
+                        반대
+                        <S.MainVoteCheckbox
+                            type="radio"
+                            name={"vote"}
+                            value={"oppose"}
+                            onChange={onChange}
+                        />
+                    </label>
+                </S.PlayerVoteFrame>
             }
-        </div>
+            <S.MainVoteButton onClick={onClick} disabled={click} value={vote}>
+                확인
+            </S.MainVoteButton>
+        </S.PlayerVote>
     );
 }
 

@@ -11,7 +11,7 @@ function MerlinPlayer() {
         </div>
       ))}
     </div>
-  );
+  )
 }
 
 export default MerlinPlayer;

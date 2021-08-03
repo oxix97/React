@@ -33,7 +33,7 @@ function View() {
             {gameState.component === VOTE_FRAME && <VOTE/>}
             {gameState.component === VOTE_RESULT && <RESULT_VOTE/>}
             {gameState.component === EXPEDITION_FRAME && <EXPEDITION/>}
-            {gameState.component === EXPEDITION_RESULT && <RESULT_EXPEDITION/>}
+            {gameState.component === EXPEDITION_RESULT && <RESULT_EXPEDITION />}
             {gameState.component === ASSASSIN_FRAME && <ASSASSIN/>}
             {gameState.component === END_GAME_FRAME && <END_GAME/>}
         </>

@@ -1,5 +1,5 @@
 import React from "react";
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import WalkAnimation from "./WalkAnimation";
 const GlobalStyle = createGlobalStyle`
 
@@ -58,20 +58,20 @@ html, body {
 `;
 
 const WaitingView = () => {
-    return (
-        <div className="column">
-            <WalkAnimation/>
-            <GlobalStyle/>
-            <div className="row">
-                <div className="animate box1"/>
-                <div className="animate box2"/>
-            </div>
-            <div className="row">
-                <div className="animate box3"/>
-                <div className="animate box4"/>
-            </div>
-            <p>투표 대기 중.....</p>
-        </div>
-    );
+  return (
+    <div className="column">
+      <WalkAnimation />
+      <GlobalStyle />
+      <div className="row">
+        <div className="animate box1" />
+        <div className="animate box2" />
+      </div>
+      <div className="row">
+        <div className="animate box3" />
+        <div className="animate box4" />
+      </div>
+      <p>투표 대기 중.....</p>
+    </div>
+  );
 };
-export default WaitingView
+export default WaitingView;

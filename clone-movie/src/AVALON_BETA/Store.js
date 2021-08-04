@@ -69,10 +69,10 @@ const Store = ({ children }) => {
   useEffect(() => {
     const gameData = { ...gameState };
     const angelCount = gameData.takeStage.filter(
-      (element) => "success" === element
+      (element) => "s" === element
     ).length;
     const evilCount = gameData.takeStage.filter(
-      (element) => "fail" === element
+      (element) => "f" === element
     ).length;
     if (angelCount === 3) {
       gameData.component = ASSASSIN_FRAME;
@@ -82,7 +82,6 @@ const Store = ({ children }) => {
       gameData.component = END_GAME_FRAME;
     }
     console.log(`useEffect`);
-    Í;
     dispatch({ type: GAME_CHECK, gameData });
   }, [gameState.expeditionStage]);
 

@@ -10,28 +10,28 @@ function EXPEDITION_RESULT() {
         {gameState.expeditionStage === 4 &&
         gameState.usingPlayers.length >= 7 ? (
           <div>
-            {gameState.vote.filter((element) => "fail" === element).length >= 2
+            {gameState.vote.filter((element) => "f" === element).length >= 2
               ? "원정 실패"
               : "원정 성공"}
             <div>
-              성공 개수 :{" "}
-              {gameState.vote.filter((element) => "success" === element).length}
+              성공 개수 :
+              {gameState.vote.filter((element) => "s" === element).length}
             </div>
             <div>
               실패 개수 :
-              {gameState.vote.filter((element) => "fail" === element).length}
+              {gameState.vote.filter((element) => "f" === element).length}
             </div>
           </div>
         ) : (
           <div>
-            {gameState.vote.includes("fail") ? "원정 실패" : "원정 성공"}
+            {gameState.vote.includes("f") ? "원정 실패" : "원정 성공"}
             <div>
-              성공 개수 :{" "}
-              {gameState.vote.filter((element) => "success" === element).length}
+              성공 개수 :
+              {gameState.vote.filter((element) => "s" === element).length}
             </div>
             <div>
               실패 개수 :
-              {gameState.vote.filter((element) => "fail" === element).length}
+              {gameState.vote.filter((element) => "f" === element).length}
             </div>
           </div>
         )}

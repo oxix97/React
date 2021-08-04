@@ -122,7 +122,7 @@ const reducer = (state, { type, ...action }) => {
         gameData.component = EXPEDITION_FRAME;
       } else {
         if (gameData.voteStage === 4) {
-          gameData.takeStage[gameData.expeditionStage] = "fail";
+          gameData.takeStage[gameData.expeditionStage] = "f";
           gameData.expeditionStage += 1;
           gameData.voteStage = 0;
         } else {
@@ -148,14 +148,14 @@ const reducer = (state, { type, ...action }) => {
       const gameData = { ...state };
       if (gameData.expeditionStage === 4 && gameData.usingPlayers.length >= 7) {
         if (gameData.vote.filter((element) => "fail" === element).length >= 2) {
-          gameData.takeStage[gameData.expeditionStage] = "fail";
+          gameData.takeStage[gameData.expeditionStage] = "f";
         } else {
-          gameData.takeStage[gameData.expeditionStage] = "success";
+          gameData.takeStage[gameData.expeditionStage] = "s";
         }
       } else {
-        gameData.vote.includes("fail")
-          ? (gameData.takeStage[gameData.expeditionStage] = "fail")
-          : (gameData.takeStage[gameData.expeditionStage] = "success");
+        gameData.vote.includes("f")
+          ? (gameData.takeStage[gameData.expeditionStage] = "f")
+          : (gameData.takeStage[gameData.expeditionStage] = "s");
       }
       gameData.expeditionStage += 1;
       gameData.component = EXPEDITION_RESULT;

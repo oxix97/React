@@ -211,7 +211,7 @@ export const PlayerList = styled.div`
   justify-content: flex-end;
 `;
 export const VoteTitle = styled.div`
-  flex: 1 1 auto;w
+  flex: 1 1 auto;
 `;
 // export const Container = styled.div`
 //   position: fixed;

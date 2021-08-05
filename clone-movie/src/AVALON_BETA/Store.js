@@ -65,8 +65,10 @@ const GameContext = React.createContext("");
 
 const Store = ({ children }) => {
   const [gameState, dispatch] = useReducer(reducer, initialData);
-  console.log(gameState);
+  console.log(`gameState : ${gameState}`);
+
   useEffect(() => {
+    console.log(`useEffect_게임 종료 조건`);
     const gameData = { ...gameState };
     const angelCount = gameData.takeStage.filter(
       (element) => "s" === element
@@ -81,9 +83,40 @@ const Store = ({ children }) => {
       gameData.winner = "EVILS_WIN";
       gameData.component = END_GAME_FRAME;
     }
-    console.log(`useEffect`);
     dispatch({ type: GAME_CHECK, gameData });
   }, [gameState.expeditionStage]);
+
+  useEffect(() => {
+    console.log(`useEffect_원정 종료 조건`);
+    console.log(`gameState.vote.length : ${gameState.vote.length}`);
+    if (
+      gameState.vote.length === gameState.takeStage[gameState.expeditionStage]
+    ) {
+      const gameData = { ...gameState };
+      if (gameData.expeditionStage === 4 && gameData.usingPlayers.length >= 7) {
+        //게임 스테이지가 4이며 7명 이상인지 체크
+        if (gameData.vote.filter((element) => "f" === element).length >= 2) {
+          //원정실패가 2개 이상인 경우 원정 실패
+          gameData.takeStage[gameData.expeditionStage] = "f";
+        } else {
+          // 원정 실패가 1개 이하인 경우 성공
+          gameData.takeStage[gameData.expeditionStage] = "s";
+        }
+      } else {
+        //원정 실패가 있는 경우 원정실패 , 그렇지 않으면 성공
+        gameData.vote.includes("f")
+          ? (gameData.takeStage[gameData.expeditionStage] = "f")
+          : (gameData.takeStage[gameData.expeditionStage] = "s");
+      }
+      gameData.expeditionStage += 1;
+      gameData.component = EXPEDITION_RESULT;
+      gameData.voteStage = 0;
+      gameData.usingPlayers.map((user) => {
+        user.selected = false;
+      });
+      dispatch({ type: GAME_CHECK, gameData });
+    }
+  }, [gameState.vote.length]);
 
   return (
     <GameContext.Provider

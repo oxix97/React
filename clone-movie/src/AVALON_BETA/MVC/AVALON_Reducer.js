@@ -147,7 +147,7 @@ const reducer = (state, { type, ...action }) => {
     case EXPEDITION_CLICK: {
       const gameData = { ...state };
       if (gameData.expeditionStage === 4 && gameData.usingPlayers.length >= 7) {
-        if (gameData.vote.filter((element) => "fail" === element).length >= 2) {
+        if (gameData.vote.filter((element) => "f" === element).length >= 2) {
           gameData.takeStage[gameData.expeditionStage] = "f";
         } else {
           gameData.takeStage[gameData.expeditionStage] = "s";

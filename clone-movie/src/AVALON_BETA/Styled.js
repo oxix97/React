@@ -21,12 +21,14 @@ export const VoteImage = styled.div`
 `;
 export const Stage = styled.div`
   display: flex;
-  width: auto;
-  height: auto;
+  width: 120px;
+  height: 120px;
   border-radius: 100%;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  padding: 50px;
+  /* padding: 50px; */
   margin: 20px;
   border: 2px solid black;
 `;
@@ -245,6 +247,21 @@ export const PlayerList = styled.div`
 `;
 export const VoteTitle = styled.div`
   flex: 1 1 auto;
+`;
+export const SuccessImageToken = styled.img`
+  width: inherit;
+  height: inherit;
+  border-radius: 100%;
+  object-fit: contain;
+  background: url("/img/angelToken.png");
+`;
+export const FailImageToken = styled.img`
+  width: inherit;
+  height: inherit;
+  border-radius: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: url("/img/evilToken.png");
 `;
 // export const Container = styled.div`
 //   position: fixed;

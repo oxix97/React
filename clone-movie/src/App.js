@@ -5,6 +5,7 @@ import Card_Flip from "./AVALON_BETA/animation/Card_Flip";
 import Motion_Test from "./AVALON_BETA/animation/Motion_Test";
 import WaitingView from "./AVALON_BETA/animation/WaitingView";
 import WalkAnimation from "./AVALON_BETA/animation/WalkAnimation";
+import Timer from "./AVALON_BETA/Timer";
 
 function App() {
   return (

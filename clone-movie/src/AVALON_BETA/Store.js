@@ -62,6 +62,7 @@ const initialData = {
 };
 
 const GameContext = React.createContext("");
+const TimerData = React.createContext();
 
 const Store = ({ children }) => {
   const [gameState, dispatch] = useReducer(reducer, initialData);
@@ -143,8 +144,8 @@ const Store = ({ children }) => {
         selectedPlayers,
       }}
     >
-      {children}
+      <TimerData.Provider>{children}</TimerData.Provider>
     </GameContext.Provider>
   );
 };
-export { Store, GameContext };
+export { Store, GameContext, TimerData };

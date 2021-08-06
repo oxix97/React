@@ -25,7 +25,13 @@ function MAIN_FRAME() {
         <S.StageFrame>
           {gameState.takeStage.map((stage, index) => (
             <S.Stage key={index}>
-              <b>{stage}</b>
+              {typeof stage === "number" ? (
+                <div>{stage}</div>
+              ) : stage === "o" ? (
+                <S.SuccessImageToken />
+              ) : (
+                <S.FailImageToken />
+              )}
             </S.Stage>
           ))}
         </S.StageFrame>

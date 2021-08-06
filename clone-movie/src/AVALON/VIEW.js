@@ -1,5 +1,5 @@
 import React, { useContext, useReducer } from "react";
-import { PublicFrame, Title, User } from "./MainPage/Styled";
+import { RowFrame, Title, User } from "./MainPage/Styled";
 import MerlinPlayer from "./Ability/MerlinPlayer";
 import PercivalPlayer from "./Ability/PercivalPlayer";
 import Vote from "./RepresentVote/Vote";
@@ -36,19 +36,19 @@ function VIEW() {
     return (
       <>
         <div>Main</div>
-        <PublicFrame>
+        <RowFrame>
           {context.takeStage.map((stage, index) => (
             <Frame key={index}>
               <h3>{stage}</h3>
             </Frame>
           ))}
-        </PublicFrame>
+        </RowFrame>
         <VoteStageFrame>
           {colors.map((color, index) => (
             <Circle color={color} key={index} />
           ))}
         </VoteStageFrame>
-        <PublicFrame>
+        <RowFrame>
           {context.playerData.map((user, index) => (
             <User key={index}>
               <ul>
@@ -67,7 +67,7 @@ function VIEW() {
               ) : null}
             </User>
           ))}
-        </PublicFrame>
+        </RowFrame>
       </>
     );
   }

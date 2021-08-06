@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 import { GAME_CHECK } from "../MVC/AVALON_Reducer";
 import { GameContext } from "../Store";
-import { SuccessImage } from "../Styled";
-
+import * as S from "../Styled";
 function AngelsVote() {
   const { gameState, dispatch } = useContext(GameContext);
   const [isClick, setIsClick] = useState(false);
@@ -15,7 +14,9 @@ function AngelsVote() {
     setIsClick(true);
   };
   return !isClick ? (
-    <SuccessImage onClick={onClick} value={"s"} disabled={isClick} />
+    <S.RowFrame>
+      <S.SuccessImage onClick={onClick} value={"s"} disabled={isClick} />
+    </S.RowFrame>
   ) : (
     <h1>투표 완료 !</h1>
   );

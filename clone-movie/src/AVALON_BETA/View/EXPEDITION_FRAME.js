@@ -7,7 +7,7 @@ import * as S from "../Styled";
 function EXPEDITION_FRAME() {
   const { gameState, dispatch } = useContext(GameContext);
   return (
-    <S.PublicFrame>
+    <S.RowFrame>
       {gameState.usingPlayers.map((user, index) => (
         <ul key={index}>
           {user.selected ? (
@@ -33,7 +33,7 @@ function EXPEDITION_FRAME() {
           결과
         </button>
       </div>
-    </S.PublicFrame>
+    </S.RowFrame>
   );
 }
 

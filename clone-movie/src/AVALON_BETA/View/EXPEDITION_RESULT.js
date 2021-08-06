@@ -1,47 +1,47 @@
 import React, { useContext } from "react";
 import { GameContext, FRAME_MAIN } from "../Store";
 import { SET_COMPONENT } from "../MVC/AVALON_Reducer";
-
+import * as S from "../Styled";
 function EXPEDITION_RESULT() {
   const { gameState, dispatch } = useContext(GameContext);
+  const expeditionResult = gameState.vote.sort();
+  const expeditionSuccessCount = expeditionResult.filter(
+    (e) => "s" === e
+  ).length;
+  const expeditionFailCount = expeditionResult.filter((e) => "f" === e).length;
   return (
-    <div>
-      <div>
+    <S.ColumnFrame>
+      <S.RowFrame>
         {gameState.expeditionStage === 4 &&
         gameState.usingPlayers.length >= 7 ? (
-          <div>
-            {gameState.vote.filter((element) => "f" === element).length >= 2
-              ? "원정 실패"
-              : "원정 성공"}
-            <div>
-              성공 개수 :
-              {gameState.vote.filter((element) => "s" === element).length}
-            </div>
-            <div>
-              실패 개수 :
-              {gameState.vote.filter((element) => "f" === element).length}
-            </div>
-          </div>
+          <S.RowFrame>
+            {expeditionFailCount >= 2 ? "원정 실패" : "원정 성공"}
+            <h3>성공 개수 :{expeditionSuccessCount}</h3>
+            <h3>실패 개수 :{expeditionFailCount}</h3>
+          </S.RowFrame>
         ) : (
-          <div>
-            {gameState.vote.includes("f") ? "원정 실패" : "원정 성공"}
-            <div>
-              성공 개수 :
-              {gameState.vote.filter((element) => "s" === element).length}
-            </div>
-            <div>
-              실패 개수 :
-              {gameState.vote.filter((element) => "f" === element).length}
-            </div>
-          </div>
+          <S.RowFrame>
+            {expeditionResult.includes("f") ? "원정 실패" : "원정 성공"}
+            <h3>성공 개수 :{expeditionSuccessCount}</h3>
+            <h3>실패 개수 :{expeditionFailCount}</h3>
+          </S.RowFrame>
         )}
-      </div>
-      <button
-        onClick={() => dispatch({ type: SET_COMPONENT, component: FRAME_MAIN })}
-      >
-        다음
-      </button>
-    </div>
+      </S.RowFrame>
+      <S.RowFrame>
+        {expeditionResult.map((expeditionStage) =>
+          expeditionStage === "s" ? <S.SuccessImage /> : <S.FailImage />
+        )}
+      </S.RowFrame>
+      <S.RowFrame>
+        <button
+          onClick={() =>
+            dispatch({ type: SET_COMPONENT, component: FRAME_MAIN })
+          }
+        >
+          다음
+        </button>
+      </S.RowFrame>
+    </S.ColumnFrame>
   );
 }
 

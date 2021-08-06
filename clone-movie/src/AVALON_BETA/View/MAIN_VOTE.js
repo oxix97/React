@@ -39,7 +39,7 @@ function MAIN_VOTE() {
       </S.MAIN_VOTE_HEADER>
       <S.SelectPlayer>
         {gameState.usingPlayers.map((user, index) => (
-          <div>
+          <div key={index}>
             <S.MainVoteLabel>{user.nickname}</S.MainVoteLabel>
             <S.MainVoteCheckbox
               onChange={onChange}

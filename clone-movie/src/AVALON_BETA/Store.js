@@ -66,7 +66,13 @@ const GameContext = React.createContext("");
 const Store = ({ children }) => {
   const [gameState, dispatch] = useReducer(reducer, initialData);
   console.log(`gameState : ${gameState}`);
-
+  const selectedPlayers = () => {
+    const temp = [];
+    gameState.usingPlayers.map((user) => {
+      user.selected && temp.push(user.nickname);
+    });
+    return temp;
+  };
   useEffect(() => {
     console.log(`useEffect_게임 종료 조건`);
     const gameData = { ...gameState };
@@ -85,6 +91,17 @@ const Store = ({ children }) => {
     }
     dispatch({ type: GAME_CHECK, gameData });
   }, [gameState.expeditionStage]);
+
+  useEffect(() => {
+    console.log("voteTurn useEffect");
+    const gameData = { ...gameState };
+    const players = gameState.usingPlayers.length;
+    if (gameState.voteTurn === players && players >= 5) {
+      gameData.voteTurn = 0;
+      gameData.component = VOTE_RESULT;
+      dispatch({ type: GAME_CHECK, gameData });
+    }
+  }, [gameState.voteTurn]);
 
   useEffect(() => {
     console.log(`useEffect_원정 종료 조건`);
@@ -123,6 +140,7 @@ const Store = ({ children }) => {
       value={{
         gameState,
         dispatch,
+        selectedPlayers,
       }}
     >
       {children}

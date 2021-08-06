@@ -20,7 +20,7 @@ function MAIN_FRAME() {
     setClick(!click);
   };
   return (
-    <S.PublicFrame>
+    <S.RowFrame>
       <S.GameFrame>
         <S.StageFrame>
           {gameState.takeStage.map((stage, index) => (
@@ -68,7 +68,7 @@ function MAIN_FRAME() {
         )}
         <S.Button onClick={onClick}>플레이어 정보</S.Button>
       </S.PlayerFrame>
-    </S.PublicFrame>
+    </S.RowFrame>
   );
 }
 

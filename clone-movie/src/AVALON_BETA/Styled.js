@@ -124,14 +124,49 @@ export const PlayerVoteFrame = styled.form`
   justify-content: space-between;
   padding: 30px;
 `;
-export const PublicFrame = styled.div`
+export const RowFrame = styled.div`
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
   margin: 0 auto;
   flex-direction: row;
   padding: 50px;
   flex-wrap: wrap;
+`;
+export const VotePlayers = styled.div`
+  display: flex;
+  margin: 10%;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+export const AgreeVotePlayers = styled.div`
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+`;
+export const OpposeVotePlayers = styled.div`
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const PlayerVoteResult = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+`;
+export const ColumnFrame = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
 `;
 export const Circle = styled.div`
   display: flex;

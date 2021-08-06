@@ -127,8 +127,6 @@ export const PlayerVoteFrame = styled.form`
 export const RowFrame = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: 100%;
   margin: 0 auto;
   flex-direction: row;
   padding: 50px;

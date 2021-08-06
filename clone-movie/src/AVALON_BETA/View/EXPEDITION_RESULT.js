@@ -6,9 +6,9 @@ function EXPEDITION_RESULT() {
   const { gameState, dispatch } = useContext(GameContext);
   const expeditionResult = gameState.vote.sort();
   const expeditionSuccessCount = expeditionResult.filter(
-    (e) => "s" === e
+    (e) => "o" === e
   ).length;
-  const expeditionFailCount = expeditionResult.filter((e) => "f" === e).length;
+  const expeditionFailCount = expeditionResult.filter((e) => "x" === e).length;
   return (
     <S.ColumnFrame>
       <S.RowFrame>
@@ -21,7 +21,7 @@ function EXPEDITION_RESULT() {
           </S.RowFrame>
         ) : (
           <S.RowFrame>
-            {expeditionResult.includes("f") ? "원정 실패" : "원정 성공"}
+            {expeditionResult.includes("x") ? "원정 실패" : "원정 성공"}
             <h3>성공 개수 :{expeditionSuccessCount}</h3>
             <h3>실패 개수 :{expeditionFailCount}</h3>
           </S.RowFrame>
@@ -29,7 +29,7 @@ function EXPEDITION_RESULT() {
       </S.RowFrame>
       <S.RowFrame>
         {expeditionResult.map((expeditionStage) =>
-          expeditionStage === "s" ? <S.SuccessImage /> : <S.FailImage />
+          expeditionStage === "o" ? <S.SuccessImage /> : <S.FailImage />
         )}
       </S.RowFrame>
       <S.RowFrame>

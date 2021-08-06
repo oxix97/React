@@ -15,7 +15,7 @@ function AngelsVote() {
   };
   return !isClick ? (
     <S.RowFrame>
-      <S.SuccessImage onClick={onClick} value={"s"} disabled={isClick} />
+      <S.SuccessImage onClick={onClick} value={"o"} disabled={isClick} />
     </S.RowFrame>
   ) : (
     <h1>투표 완료 !</h1>

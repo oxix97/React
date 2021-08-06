@@ -77,10 +77,10 @@ const Store = ({ children }) => {
     console.log(`useEffect_게임 종료 조건`);
     const gameData = { ...gameState };
     const angelCount = gameData.takeStage.filter(
-      (element) => "s" === element
+      (element) => "o" === element
     ).length;
     const evilCount = gameData.takeStage.filter(
-      (element) => "f" === element
+      (element) => "x" === element
     ).length;
     if (angelCount === 3) {
       gameData.component = ASSASSIN_FRAME;
@@ -112,18 +112,18 @@ const Store = ({ children }) => {
       const gameData = { ...gameState };
       if (gameData.expeditionStage === 4 && gameData.usingPlayers.length >= 7) {
         //게임 스테이지가 4이며 7명 이상인지 체크
-        if (gameData.vote.filter((element) => "f" === element).length >= 2) {
+        if (gameData.vote.filter((element) => "x" === element).length >= 2) {
           //원정실패가 2개 이상인 경우 원정 실패
-          gameData.takeStage[gameData.expeditionStage] = "f";
+          gameData.takeStage[gameData.expeditionStage] = "x";
         } else {
           // 원정 실패가 1개 이하인 경우 성공
-          gameData.takeStage[gameData.expeditionStage] = "s";
+          gameData.takeStage[gameData.expeditionStage] = "o";
         }
       } else {
         //원정 실패가 있는 경우 원정실패 , 그렇지 않으면 성공
-        gameData.vote.includes("f")
-          ? (gameData.takeStage[gameData.expeditionStage] = "f")
-          : (gameData.takeStage[gameData.expeditionStage] = "s");
+        gameData.vote.includes("x")
+          ? (gameData.takeStage[gameData.expeditionStage] = "x")
+          : (gameData.takeStage[gameData.expeditionStage] = "o");
       }
       gameData.expeditionStage += 1;
       gameData.component = EXPEDITION_RESULT;

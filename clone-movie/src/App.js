@@ -6,13 +6,16 @@ import Motion_Test from "./AVALON_BETA/animation/Motion_Test";
 import WaitingView from "./AVALON_BETA/animation/WaitingView";
 import WalkAnimation from "./AVALON_BETA/animation/WalkAnimation";
 import Timer from "./AVALON_BETA/Timer";
-
+import Yut_Flip from "./AVALON_BETA/animation/Yut_Flip";
+import CoinFlip from "./AVALON_BETA/animation/Coin_Flip";
 function App() {
   return (
     <div>
-      <AVALON_BETA />
+      {/* <AVALON_BETA /> */}
       {/*<WalkAnimation/>*/}
       {/* <WaitingView /> */}
+      <CoinFlip />
+      {/* <Yut_Flip /> */}
     </div>
   );
 }

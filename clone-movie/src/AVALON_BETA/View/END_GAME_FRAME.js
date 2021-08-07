@@ -10,6 +10,7 @@ const Box = styled.div`
   flex-direction: row;
   margin: 200px 30px 30px 100px;
 `;
+
 function END_GAME_FRAME() {
   const { gameState } = useContext(GameContext);
 

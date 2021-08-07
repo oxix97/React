@@ -1,10 +1,16 @@
 import React, { useContext, useState } from "react";
+import { animated, useSpring, config } from "react-spring";
 import { GameContext, MAIN_VOTE, voteStageColor } from "../Store";
 import * as S from "../Styled";
 import MerlinPlayer from "../Ability/MerlinPlayer";
 import PercivalPlayer from "../Ability/PercivalPlayer";
 import { SET_COMPONENT } from "../MVC/AVALON_Reducer";
 import PlayerRoles from "../animation/PlayerRoles";
+import YutAnimation from "../animation/Yut_Flip";
+
+const FrontInformation = animated(S.StageFrame);
+const BackInformation = animated(S.Info);
+const expeditionToken = animated(YutAnimation);
 
 function MAIN_FRAME() {
   const { gameState, dispatch } = useContext(GameContext);
@@ -12,13 +18,21 @@ function MAIN_FRAME() {
   const [role, setRole] = useState("");
   const nickname = "user4";
   const colors = voteStageColor.slice(gameState.voteStage, 5);
+
+  const [isFlipped, setIsFlipped] = useState(false);
+  const { opacity, transform } = useSpring({
+    opacity: isFlipped ? 1 : 0,
+    transform: `rotateY(${isFlipped ? 0 : 180}deg)`,
+  });
+
   const onClick = () => {
-    gameState.usingPlayers.map((user, index) => {
+    gameState.usingPlayers.map((user) => {
       user.nickname === nickname && setRole(user.role);
     });
-    console.log("setClick");
+    setIsFlipped((prevState) => !prevState);
     setClick(!click);
   };
+
   return (
     <S.RowFrame>
       <S.GameFrame>
@@ -45,7 +59,14 @@ function MAIN_FRAME() {
       </S.GameFrame>
       <S.PlayerFrame>
         {!click ? (
-          <S.Players>
+          <FrontInformation
+            style={{
+              opacity: opacity.interpolate((o) => 1 - o),
+              transform: transform.interpolate(
+                (t) => `perspective(500px)  ${t}  rotateY(180deg)`
+              ),
+            }}
+          >
             {gameState.usingPlayers.map((user, index) => (
               <S.User key={index}>
                 <ul>
@@ -66,11 +87,11 @@ function MAIN_FRAME() {
                 )}
               </S.User>
             ))}
-          </S.Players>
+          </FrontInformation>
         ) : (
-          <S.Info>
+          <BackInformation style={{ opacity, transform }}>
             <PlayerRoles nickname={nickname} role={role} />
-          </S.Info>
+          </BackInformation>
         )}
         <S.Button onClick={onClick}>플레이어 정보</S.Button>
       </S.PlayerFrame>

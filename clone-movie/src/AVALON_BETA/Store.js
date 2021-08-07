@@ -57,11 +57,11 @@ const initialData = {
   playerCount: 0, // 대표자가 원정에 보낼 인원 수
   winner: "",
   component: START_FRAME,
-  index: 0,
+  voteTurn: 0,
   checked: false,
 };
 
-const GameContext = React.createContext("");
+const GameContext = React.createContext();
 const TimerData = React.createContext();
 
 const Store = ({ children }) => {

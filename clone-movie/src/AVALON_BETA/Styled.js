@@ -69,6 +69,7 @@ export const StageFrame = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
 `;
 // display: flex;
 // flex-direction: row;
@@ -187,7 +188,6 @@ export const VoteStageFrame = styled.div`
 export const User = styled.div`
   flex: 1 1 auto;
   margin: 0 auto;
-  align-items: center;
 `;
 export const Button = styled.button`
   margin: 20% auto;
@@ -336,6 +336,7 @@ const stroll = keyframes`
     transform: translateX(300%);
   }
 `;
+
 export const WalkContainer = styled.div`
   display: inline-block;
   position: relative;

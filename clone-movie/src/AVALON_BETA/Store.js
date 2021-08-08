@@ -74,6 +74,21 @@ const Store = ({ children }) => {
     });
     return temp;
   };
+  const buttonAnimation = (e) => {
+    let time;
+    const { classList } = e.target;
+    if (!classList.contains("animate")) {
+      classList.add("animate");
+    }
+    function Debounce() {
+      clearTimeout(time);
+      time = setTimeout(() => {
+        classList.remove("animate");
+      }, 500);
+    }
+
+    return Debounce();
+  };
   useEffect(() => {
     console.log(`useEffect_게임 종료 조건`);
     const gameData = { ...gameState };
@@ -142,6 +157,7 @@ const Store = ({ children }) => {
         gameState,
         dispatch,
         selectedPlayers,
+        buttonAnimation,
       }}
     >
       <TimerData.Provider>{children}</TimerData.Provider>

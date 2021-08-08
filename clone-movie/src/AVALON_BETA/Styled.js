@@ -48,6 +48,7 @@ export const PlayerFrame = styled.div`
   display: flex;
   width: 30%;
   flex-wrap: wrap;
+  align-items: center;
   //margin-left: 10%;
   //justify-content: space-evenly;
   flex-direction: column;
@@ -252,14 +253,14 @@ export const SuccessImageToken = styled.img`
   width: inherit;
   height: inherit;
   border-radius: 100%;
-  object-fit: contain;
+  object-fit: fill;
   background: url("/img/angelToken.png");
 `;
 export const FailImageToken = styled.img`
   width: inherit;
   height: inherit;
   border-radius: 100%;
-  object-fit: contain;
+  object-fit: none;
   object-position: center;
   background: url("/img/evilToken.png");
 `;
@@ -314,7 +315,6 @@ export const PokerFront = styled(PokerCard)`
   background-color: #ffffff;
 `;
 export const FrontImg = styled.img`
-  display: flex;
   width: 100%;
   height: 100%;
 `;
@@ -367,4 +367,51 @@ export const Walk = styled.div`
   background-repeat: no-repeat;
   background-size: 800%;
   animation: ${walking} 1s infinite steps(7);
+`;
+export const ButtonAnimation = createGlobalStyle`
+  body {
+  font-family: sans-serif;
+  text-align: center;
+
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.button {
+  padding: 16px 24px;
+  font-size: 21px;
+  border: none;
+  background: linear-gradient(135deg, blue 1%, red);
+  color: white;
+  border-radius: 4px;
+}
+.button:hover,
+.button:focus {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* .button:active{
+  -moz-animation: buttonRotate 10ms linear 0s 50 normal none;
+  -webkit-animation: buttonRotate 10ms linear 0s 50 normal none;
+  animation: buttonRotate 10ms linear 0s 50 normal none;
+} */
+
+.animate {
+  -moz-animation: buttonRotate 10ms linear 0s 50 normal none;
+  -webkit-animation: buttonRotate 10ms linear 0s 50 normal none;
+  animation: buttonRotate 10ms linear 0s 50 normal none;
+}
+
+@keyframes buttonRotate {
+  0% {
+    transform: translate(-20px, 2px);
+  }
+  100% {
+    transform: translate(20px, -2px);
+  }
+}
 `;

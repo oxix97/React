@@ -1,9 +1,10 @@
+import React from "react";
 import * as S from "../Styled";
 const PlayerRoles = (props) => {
   console.log(`props : ${props.nicka}`);
   console.log(`props.role : ${props.role}`);
   return (
-    <div>
+    <React.Fragment>
       {props.role === "Morgana" && (
         <S.FrontImg src={"/img/Morgana.png"} alt={"Morgana"} />
       )}
@@ -25,7 +26,7 @@ const PlayerRoles = (props) => {
       {props.role === "Heresy" && (
         <S.FrontImg src={"/img/Heresy.png"} alt={"Heresy"} />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 export default PlayerRoles;

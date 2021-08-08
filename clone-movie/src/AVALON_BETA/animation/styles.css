@@ -22,14 +22,10 @@
   backface-visibility: hidden;
 }
 .side-a {
-  background-color: #bb0000;
-  color: white;
   text-align: center;
   z-index: 100;
 }
 .side-b {
-  background-color: #3e3e3e;
-  color: white;
   text-align: center;
   transform: rotateY(-180deg);
 }
@@ -57,18 +53,3 @@
     transform: rotateY(720deg);
   }
 }
-
-/* #coin {
-  transition: transform 1s ease-in;
-  transform-style: preserve-3d;
-}
-#coin div {
-  position: absolute;
-  backface-visibility: hidden;
-} */
-/* .side-a {
-  z-index: 100;
-}
-.side-b {
-  transform: rotateY(-180deg);
-} */

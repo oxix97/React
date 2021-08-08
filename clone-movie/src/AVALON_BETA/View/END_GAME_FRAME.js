@@ -19,12 +19,7 @@ function END_GAME_FRAME() {
       <h1>{gameState.winner}</h1>
       <Box>
         {gameState.usingPlayers.map((player, index) => (
-          <div key={index}>
-            <br />
-            <div>
-              <CardFlip nickname={player.nickname} role={player.role} />
-            </div>
-          </div>
+          <CardFlip nickname={player.nickname} role={player.role} />
         ))}
       </Box>
     </div>

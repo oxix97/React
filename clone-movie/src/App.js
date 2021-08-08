@@ -11,10 +11,10 @@ import CoinFlip from "./AVALON_BETA/animation/Coin_Flip";
 function App() {
   return (
     <div>
-      {/* <AVALON_BETA /> */}
+      <AVALON_BETA />
       {/*<WalkAnimation/>*/}
       {/* <WaitingView /> */}
-      <CoinFlip />
+      {/* <CoinFlip /> */}
       {/* <Yut_Flip /> */}
     </div>
   );

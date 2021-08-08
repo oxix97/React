@@ -7,6 +7,7 @@ import PercivalPlayer from "../Ability/PercivalPlayer";
 import { SET_COMPONENT } from "../MVC/AVALON_Reducer";
 import PlayerRoles from "../animation/PlayerRoles";
 import YutAnimation from "../animation/Yut_Flip";
+import CoinFlip from "../animation/Coin_Flip";
 
 const FrontInformation = animated(S.StageFrame);
 const BackInformation = animated(S.Info);
@@ -42,9 +43,10 @@ function MAIN_FRAME() {
               {typeof stage === "number" ? (
                 <div>{stage}</div>
               ) : stage === "o" ? (
-                <S.SuccessImageToken />
+                // <S.SuccessImageToken />
+                <CoinFlip value={"angels"} />
               ) : (
-                <S.FailImageToken />
+                <CoinFlip value={"evils"} />
               )}
             </S.Stage>
           ))}

@@ -4,10 +4,9 @@ import { MAIN_VOTE_ONCLICK } from "../MVC/AVALON_Reducer";
 import * as S from "../Styled";
 
 function MAIN_VOTE() {
-  const { dispatch, gameState } = useContext(GameContext);
+  const { dispatch, gameState, buttonAnimation } = useContext(GameContext);
   const [playerCount, setPlayerCount] = useState(0);
   const gameData = { ...gameState };
-
   const onChange = (e) => {
     gameData.usingPlayers[e.target.value].selected = e.target.checked;
     e.target.checked
@@ -18,16 +17,16 @@ function MAIN_VOTE() {
     console.log(`index : ${e.target.value} , checked : ${e.target.checked}`);
   };
 
-  const onClick = () => {
+  const onClick = (e) => {
     if (playerCount === gameData.takeStage[gameData.expeditionStage]) {
       gameData.voteCount += 1;
       gameData.vote = [];
       gameData.component = VOTE_FRAME;
       dispatch({ type: MAIN_VOTE_ONCLICK, gameData });
     } else {
-      alert(
-        `${gameData.takeStage[gameData.expeditionStage]}명을 선택해야합니다.`
-      );
+      buttonAnimation(e);
+      // alert();
+      // `${gameData.takeStage[gameData.expeditionStage]}명을 선택해야합니다.`
     }
   };
   return (
@@ -50,6 +49,7 @@ function MAIN_VOTE() {
           </div>
         ))}
       </S.SelectPlayer>
+      <S.ButtonAnimation />
       <S.MainVoteButton onClick={onClick}>결정</S.MainVoteButton>
     </S.MainVote>
   );

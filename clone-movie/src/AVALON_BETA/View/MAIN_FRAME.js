@@ -6,12 +6,10 @@ import MerlinPlayer from "../Ability/MerlinPlayer";
 import PercivalPlayer from "../Ability/PercivalPlayer";
 import { SET_COMPONENT } from "../MVC/AVALON_Reducer";
 import PlayerRoles from "../animation/PlayerRoles";
-import YutAnimation from "../animation/Yut_Flip";
 import CoinFlip from "../animation/Coin_Flip";
 
 const FrontInformation = animated(S.StageFrame);
 const BackInformation = animated(S.Info);
-const expeditionToken = animated(YutAnimation);
 
 function MAIN_FRAME() {
   const { gameState, dispatch } = useContext(GameContext);

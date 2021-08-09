@@ -25,8 +25,6 @@ function MAIN_VOTE() {
       dispatch({ type: MAIN_VOTE_ONCLICK, gameData });
     } else {
       buttonAnimation(e);
-      // alert();
-      // `${gameData.takeStage[gameData.expeditionStage]}명을 선택해야합니다.`
     }
   };
   return (

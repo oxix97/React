@@ -12,8 +12,8 @@ import Timer_test from "./AVALON_BETA/View/Timer_test";
 function App() {
   return (
     <div>
-      {/* <AVALON_BETA /> */}
-      <Timer_test />
+      <AVALON_BETA />
+      {/* <Timer_test /> */}
       {/*<WalkAnimation/>*/}
       {/* <WaitingView /> */}
       {/* <CoinFlip /> */}

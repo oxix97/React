@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { GameContext } from "../Store";
 import { VOTE_ONCLICK } from "../MVC/AVALON_Reducer";
 import * as S from "../Styled";
+import Timer_test from "./Timer_test";
 
 function Vote(props) {
   const { dispatch, gameState } = useContext(GameContext);
@@ -29,6 +30,7 @@ function Vote(props) {
       ) : (
         <>
           <S.PlayerVoteFrame>
+            <Timer_test />
             <label>
               찬성
               <S.MainVoteCheckbox
@@ -42,6 +44,7 @@ function Vote(props) {
               반대
               <S.MainVoteCheckbox
                 type="radio"
+                a
                 name={"vote"}
                 value={"oppose"}
                 onChange={onChange}

@@ -7,7 +7,7 @@ import PercivalPlayer from "../Ability/PercivalPlayer";
 import { SET_COMPONENT } from "../MVC/AVALON_Reducer";
 import PlayerRoles from "../animation/PlayerRoles";
 import CoinFlip from "../animation/Coin_Flip";
-
+import Timer_test from "./Timer_test";
 const FrontInformation = animated(S.StageFrame);
 const BackInformation = animated(S.Info);
 
@@ -58,6 +58,7 @@ function MAIN_FRAME() {
         </S.MainVoteFrame>
       </S.GameFrame>
       <S.PlayerFrame>
+        <Timer_test component={MAIN_VOTE} minutes={0} seconds={3} />
         {!click ? (
           <FrontInformation
             style={{
